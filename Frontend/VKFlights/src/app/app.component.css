@@ -1,0 +1,241 @@
+:root {
+  --primary: #76B2B9; /* moonstone */
+  --secondary: #173154; /* berkeley-blue */
+  --background: #EDF6F7; /* azure-web */
+  --accent: #B9D1D8; /* columbia-blue */
+  --white: #FAFCFB;
+  --gradient-main: linear-gradient(135deg, #76B2B9 60%, #173154 100%);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--background);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary);
+  color: var(--white);
+  padding: 0.8rem 3vw 0.8rem 3vw;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 16px 0 rgba(23,49,84,0.13);
+  border-bottom: 3px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--primary);
+  text-shadow: 1px 2px 8px var(--accent), 0 1px 0 var(--white);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  font-weight: 500;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1.5rem;
+  color: var(--white);
+  background: transparent;
+  box-shadow: 0 1px 4px 0 rgba(185,209,216,0.10);
+  position: relative;
+}
+
+.navbar-menu li:hover, .navbar-menu li:focus {
+  background: var(--primary);
+  color: var(--secondary);
+  box-shadow: 0 2px 8px 0 var(--accent);
+  outline: none;
+}
+
+.navbar-menu li::after {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 0%;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.navbar-menu li:hover::after, .navbar-menu li:focus::after {
+  width: 80%;
+}
+
+/* Hero Section */
+.hero {
+  background: var(--gradient-main);
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-bg {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+}
+
+.hero-banner-img {
+  width: 100vw;
+  max-width: 100vw;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  margin-top: 0;
+}
+
+.flight-card {
+  background: var(--white);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(23, 49, 84, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 700px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.trip-type {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.trip-type button {
+  background: var(--accent);
+  color: var(--secondary);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.6rem 2.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.trip-type button.active,
+.trip-type button:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.flight-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.field-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.field input {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 1rem;
+  background: var(--background);
+  font-size: 1rem;
+  color: var(--secondary);
+  outline: none;
+  transition: border 0.2s;
+}
+
+.field input:focus {
+  border: 1.5px solid var(--primary);
+}
+
+.search-btn {
+  width: 100%;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(23,49,84,0.07);
+}
+
+.search-btn:hover {
+  background: var(--secondary);
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.7rem 1vw;
+  }
+  .navbar-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .navbar-menu {
+    gap: 1.2rem;
+  }
+  .flight-card {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
+  }
+  .hero-content {
+    min-height: 200px;
+  }
+}
