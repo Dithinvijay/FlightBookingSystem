@@ -1,39 +1,91 @@
 <img src="assets/Landingpageimage.png" alt="Plane" class="hero-banner-img" />
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-content">
-      <div class="flight-card">
-        <div class="trip-type">
-          <button class="active">Round Trip</button>
-          <button>Oneway</button>
-        </div>
-        <div class="flight-fields">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Discover Your Next Adventure</h1>
+      <p>Find and book your perfect flight with our best-in-class booking system</p>
+    </div>
+    
+    <div class="flight-card">
+      <div class="flight-fields enhanced-fields">
+        <div class="field-row">
           <div class="field">
-            <label><img src="src/images/from.png" alt="From" class="field-icon" /> From</label>
-            <input type="text" placeholder="Paris" />
+            <label>
+              <i class="fas fa-plane-departure"></i>
+              From
+            </label>
+            <input type="text" placeholder="City or Airport" [(ngModel)]="fromValue" />
           </div>
-          <div class="field">
-            <label><img src="src/images/to.png" alt="To" class="field-icon" /> To</label>
-            <input type="text" placeholder="Florence" />
+          
+          <div class="field-separator">
+            <button class="swap-btn" (click)="swapFromTo()">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
           </div>
+
           <div class="field">
-            <label><img src="src/images/calendar.png" alt="Depart" class="field-icon" /> Depart</label>
-            <input type="text" placeholder="24 January" />
-          </div>
-          <div class="field">
-            <label><img src="src/images/calendar.png" alt="Return" class="field-icon" /> Return</label>
-            <input type="text" placeholder="31 January" />
-          </div>
-          <div class="field">
-            <label><img src="src/images/passenger.png" alt="Passengers" class="field-icon" /> Passengers</label>
-            <input type="number" min="1" value="2" />
-          </div>
-          <div class="field">
-            <label><img src="src/images/class.png" alt="Class" class="field-icon" /> Class</label>
-            <input type="text" placeholder="First" />
+            <label>
+              <i class="fas fa-plane-arrival"></i>
+              To
+            </label>
+            <input type="text" placeholder="City or Airport" [(ngModel)]="toValue" />
           </div>
         </div>
-        <button class="search-btn">Search Flights</button>
+
+        <div class="field-row">
+          <div class="field">
+            <label>
+              <i class="fas fa-calendar"></i>
+              Departure
+            </label>
+            <input type="date" />
+          </div>
+
+          <div class="field">
+            <label>
+              <i class="fas fa-calendar-alt"></i>
+              Return
+            </label>
+            <input type="date" />
+          </div>
+
+          <div class="field">
+            <label>
+              <i class="fas fa-user-friends"></i>
+              Travelers & Class
+            </label>
+            <select>
+              <option>1 Adult, Economy</option>
+              <option>2 Adults, Economy</option>
+              <option>1 Adult, Business</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="search-btn animated-search-btn"
+        [class.active]="isActive"
+        [class.finished]="isFinished"
+        (click)="onAnimatedSearchClick()"
+        [disabled]="!fromValue || !toValue">
+        <span class="submit" *ngIf="!isFinished"><i class="fas fa-search"></i> Search Flights</span>
+        <span class="loading" *ngIf="isActive && isLoading"><i class="fas fa-sync fa-spin"></i></span>
+        <span class="check" *ngIf="isFinished"><i class="fas fa-check"></i></span>
+      </button>
+    </div>
+
+    <div class="hero-features">
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <span>Secure Booking</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-tag"></i>
+        <span>Best Prices</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-clock"></i>
+        <span>24/7 Support</span>
       </div>
     </div>
   </div>
