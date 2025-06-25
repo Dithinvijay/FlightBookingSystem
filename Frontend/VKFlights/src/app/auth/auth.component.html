@@ -1,0 +1,41 @@
+<div class="auth-wrapper">
+  <div class="container" [class.right-panel-active]="rightPanelActive" id="container">
+    <div class="form-container sign-up-container">
+      <form (ngSubmit)="onRegister()" autocomplete="off">
+        <h1>Create Account</h1>
+        <input type="text" placeholder="First Name" [(ngModel)]="regFirstName" name="regFirstName" required />
+        <input type="text" placeholder="Last Name" [(ngModel)]="regLastName" name="regLastName" required />
+        <input type="email" placeholder="Email" [(ngModel)]="regEmail" name="regEmail" required />
+        <input type="tel" placeholder="Phone Number" [(ngModel)]="regPhoneNo" name="regPhoneNo" required />
+        <input type="text" placeholder="Username" [(ngModel)]="regUsername" name="regUsername" required />
+        <input type="password" placeholder="Password" [(ngModel)]="regPassword" name="regPassword" required />
+        <div class="error-message" *ngIf="registerError">{{ registerError }}</div>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form (ngSubmit)="onLogin()" autocomplete="off">
+        <h1>Sign in</h1>
+        <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required />
+        <input type="password" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
+        <a href="#">Forgot your password?</a>
+        <div class="error-message" *ngIf="loginError">{{ loginError }}</div>
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" (click)="showSignIn()">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" (click)="showSignUp()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
