@@ -1,0 +1,35 @@
+<div class="deals-banner">
+  <img [src]="bannerUrl" alt="Deals & Offers Banner" />
+  <h1 class="deals-title">Deals & Offers</h1>
+</div>
+<div class="deals-grid">
+  <div *ngFor="let deal of deals" class="deal-card" [class.featured]="deal.featured" (click)="showDetails(deal)">
+    <img *ngIf="deal.imageUrl" [src]="deal.imageUrl" alt="{{deal.title}}" class="deal-image" />
+    <div class="deal-content">
+      <h2>{{ deal.title }}</h2>
+      <p>{{ deal.description }}</p>
+      <div class="deal-meta">
+        <span *ngIf="deal.code" class="deal-code">Code: <b>{{ deal.code }}</b></span>
+        <span class="deal-valid">Valid till: {{ deal.validTill }}</span>
+      </div>
+      <button class="deal-btn"> Book Now</button>
+    </div>
+    <span *ngIf="deal.featured" class="deal-featured-badge">Featured</span>
+  </div>
+</div>
+
+<!-- Modal for deal details -->
+<div class="deal-modal-backdrop" *ngIf="selectedDeal" (click)="closeDetails()"></div>
+<div class="deal-modal" *ngIf="selectedDeal">
+  <div class="deal-modal-content">
+    <button class="close-btn" (click)="closeDetails()">&times;</button>
+    <img *ngIf="selectedDeal.imageUrl" [src]="selectedDeal.imageUrl" alt="{{selectedDeal.title}}" class="deal-modal-image" />
+    <h2>{{ selectedDeal.title }}</h2>
+    <p>{{ selectedDeal.description }}</p>
+    <div class="deal-meta">
+      <span *ngIf="selectedDeal.code" class="deal-code">Code: <b>{{ selectedDeal.code }}</b></span>
+      <span class="deal-valid">Valid till: {{ selectedDeal.validTill }}</span>
+    </div>
+    <button class="deal-btn"><a href="/" style="text-decoration: none;">Book Now</a></button>
+  </div>
+</div>
