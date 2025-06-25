@@ -30,6 +30,9 @@ export class AuthComponent {
   // UI state
   rightPanelActive = false;
 
+  // Show/hide password for login
+  showLoginPassword = false;
+
   constructor(private router: Router, private http: HttpClient) {}
 
   // Toggle panels

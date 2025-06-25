@@ -17,7 +17,15 @@
       <form (ngSubmit)="onLogin()" autocomplete="off">
         <h1>Sign in</h1>
         <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required />
-        <input type="password" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
+        <div style="position: relative;">
+          <input [type]="showLoginPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
+          <i 
+            class="fa" 
+            [ngClass]="showLoginPassword ? 'fa-eye' : 'fa-eye-slash'" 
+            (click)="showLoginPassword = !showLoginPassword"
+            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+          </i>
+        </div>
         <a href="#">Forgot your password?</a>
         <div class="error-message" *ngIf="loginError">{{ loginError }}</div>
         <button type="submit">Sign In</button>

@@ -154,6 +154,15 @@ input {
   transition: border 0.2s;
 }
 
+/* Ensure all inputs inside the form take full width, including those in relative containers */
+.form-container input[type="password"],
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 input:focus {
   border: 1.5px solid #76B2B9;
 }
@@ -198,6 +207,24 @@ h1 {
   color: #d32f2f;
   margin-top: 8px;
   font-size: 0.95rem;
+}
+
+/* Style for the eye icon in the password field */
+.fa-eye, .fa-eye-slash {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1.2em;
+  color: #173154;
+}
+
+/* Ensure the password input takes full width inside its relative container */
+.form-container .sign-in-container div[style*="position: relative"] input[type="password"],
+.form-container .sign-in-container div[style*="position: relative"] input[type="text"] {
+  padding-right: 36px; /* only add space for the icon */
 }
 
 @media (max-width: 900px) {
