@@ -16,7 +16,7 @@
     <div class="form-container sign-in-container">
       <form (ngSubmit)="onLogin()" autocomplete="off">
         <h1>Sign in</h1>
-        <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required />
+        <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required style="width:82%;"/>
         <div style="position: relative;">
           <input [type]="showLoginPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
           <i 
