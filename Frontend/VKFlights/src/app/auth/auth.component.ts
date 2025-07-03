@@ -46,7 +46,7 @@ export class AuthComponent {
       return;
     }
     this.loginError = '';
-    this.http.post(`${environment.apiUrl}/login`, {
+    this.http.post(`${environment.apiUrlLogin}/login`, {
       username: this.loginUsername,
       password: this.loginPassword
     }, { responseType: 'text' }).subscribe({
@@ -69,7 +69,7 @@ export class AuthComponent {
       return;
     }
     this.registerError = '';
-    this.http.post(`${environment.apiUrl}/register`, {
+    this.http.post(`${environment.apiUrlLogin}/register`, {
       firstName: this.regFirstName,
       lastName: this.regLastName,
       email: this.regEmail,
