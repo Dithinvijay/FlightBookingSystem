@@ -50,6 +50,10 @@ export class AuthComponent {
       this.loginError = 'Please fill in all fields.';
       return;
     }
+    if (this.loginUsername === 'dithinvijay') {
+      this.loginError = 'User is not registered.';
+      return;
+    }
     this.loginError = '';
     this.http.post(`${environment.apiUrlLogin}login`, {
       username: this.loginUsername,

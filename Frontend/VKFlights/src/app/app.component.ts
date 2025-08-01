@@ -25,4 +25,8 @@ export class AppComponent {
   ngOnInit() {
     this.isLoggedIn = !!localStorage.getItem('jwt');
   }
+
+  isAdminDashboard(): boolean {
+    return this.router.url.startsWith('/admin-dashboard');
+  }
 }
