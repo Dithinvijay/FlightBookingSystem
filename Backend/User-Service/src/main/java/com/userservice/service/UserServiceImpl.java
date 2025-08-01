@@ -9,9 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.userservice.Model.Booking;
 import com.userservice.Model.Flight;
+import com.userservice.Model.User;
+import com.userservice.Repo.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+    private UserCrudService userCrudService;
 	
 	private static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -21,6 +28,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	BookingFeign bookingFeign;
+
+
+    UserServiceImpl(UserCrudService userCrudService) {
+        this.userCrudService = userCrudService;
+    }
 	
 	
 	@Override
@@ -72,5 +84,16 @@ public class UserServiceImpl implements UserService {
 	return 0;
 
 }
+
+	@Override
+	public User updateUserById(Long id, User user) {
+		
+		User user1 = userRepository.findById(id).orElse(null);
+		if(user1!=null)
+		{
+			return userRepository.save(user);
+		}
+		return null;
+	}
 	
 }

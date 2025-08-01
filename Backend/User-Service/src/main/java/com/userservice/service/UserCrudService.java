@@ -45,15 +45,16 @@ public class UserCrudService {
         logger.info("User registered successfully with ID: {}", savedUser.getId());
         return savedUser;
     }
+    
 
-    public User getUserById(Long id) {
-        logger.info("Fetching user by ID: {}", id);
-        Optional<User> userOptional = userRepository.findById(id);
-        User user = userOptional.orElse(null);
+    public User getUserById(String username) {
+        logger.info("Fetching user by ID: {}", username);
+        User userOptional = userRepository.findByUsername(username);
+        User user = userOptional;
         if (user != null) {
-            logger.info("User found with ID: {}", id);
+            logger.info("User found with ID: {}", username);
         } else {
-            logger.warn("User not found with ID: {}", id);
+            logger.warn("User not found with ID: {}", username);
         }
         return user;
     }

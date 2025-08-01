@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { FlightsDashboardComponent } from './flights-dashboard/flights-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { DealsDashboardComponent } from './dealsdashboard/deals-dashboard.component';
 import { AboutComponent } from './about/about.component';
@@ -12,4 +13,5 @@ export const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'flights-dashboard', component: FlightsDashboardComponent },
 ];

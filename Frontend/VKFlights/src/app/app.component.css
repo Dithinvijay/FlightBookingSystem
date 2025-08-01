@@ -1,3 +1,24 @@
+/* Profile and login status styles */
+.profile-link {
+  display: flex;
+  align-items: center;
+  margin-left: 1.2rem;
+}
+.profile-icon {
+  font-size: 1.7rem;
+  color: rgb(17, 44, 77);
+  transition: color 0.2s;
+}
+.profile-link:hover .profile-icon {
+  color: #B9D1D8;
+}
+.login-status {
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.85;
+}
 :root {
   --primary: #76B2B9; /* moonstone */
   --secondary: #173154; /* berkeley-blue */

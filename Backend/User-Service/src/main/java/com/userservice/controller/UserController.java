@@ -1,7 +1,8 @@
 package com.userservice.controller;
 
+import java.awt.desktop.UserSessionEvent;
 import java.util.List;
-
+import com.userservice.service.UserServiceImpl;
 import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,9 @@ import com.userservice.service.UserCrudService;
 
 @RestController
 public class UserController {
+
+	@Autowired
+    private UserServiceImpl userServiceImpl;
 	
 	@Autowired
 	private UserCrudService userCrudService;
@@ -31,6 +36,11 @@ public class UserController {
 
 	@Autowired
 	private JwtService jwtService;
+
+
+    UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
+    }
 	
 	
 	@PostMapping("/register")
@@ -60,10 +70,10 @@ public class UserController {
 //        }
 //    }
 	
-	@GetMapping("/getUser/{id}")
-	public User getUser(@PathVariable Long id) throws UserNotFoundException {
+	@GetMapping("/getUser/{username}")
+	public User getUser(@PathVariable String username) throws UserNotFoundException {
 	
-		User user = userCrudService.getUserById(id);
+		User user = userCrudService.getUserById(username);
 		if(user == null) {
 			throw new UserNotFoundException("User Not found");
 		}
@@ -77,6 +87,12 @@ public class UserController {
 			throw new UserNotFoundException("User Not Found");
 		}
 		return roles;
+	}
+	
+	@PutMapping("/updateUser/{id}")
+	public ResponseEntity<User> updateUserById(@PathVariable Long id, @RequestBody User user)
+	{
+		return new ResponseEntity<>(userServiceImpl.updateUserById(id, user) ,HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/user/deleteById/{id}")

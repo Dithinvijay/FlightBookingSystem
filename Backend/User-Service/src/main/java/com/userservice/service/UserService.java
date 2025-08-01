@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.userservice.Model.Booking;
 import com.userservice.Model.Flight;
+import com.userservice.Model.User;
 
 @Service
 public interface UserService {
@@ -14,6 +15,8 @@ public interface UserService {
 	List<Flight> getFlightsByLocationAndDate(String source,String destination,LocalDate date);
 	
 	List<Booking> getBookingsByPassengerId(Integer passengerId);
+	
+	User updateUserById(Long id,User user);
 	
 	int bookFlight(String flightNumber, String seatclass, int noOfSeats, Booking booking);
 	

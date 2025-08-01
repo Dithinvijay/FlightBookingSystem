@@ -1,11 +1,18 @@
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="navbar-title">VKFlights</div>
+  <div class="navbar-title"><i>VK-Flights</i></div>
   <ul class="navbar-menu">
     <li><a routerLink="/" routerLinkActive="">Home</a></li>
     <li><a routerLink="/deals" routerLinkActive="active">Deals</a></li>
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+    <li *ngIf="!isLoggedIn"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/dashboard" routerLinkActive="active" class="profile-link" title="Profile">
+        <i class="fa fa-user-circle profile-icon"></i>
+      </a>
+    </li>
   </ul>
+  <span *ngIf="isLoggedIn" class="login-status">Logged in</span>
+  <span *ngIf="!isLoggedIn" class="login-status">Logged out</span>
 </nav>
 <router-outlet></router-outlet>

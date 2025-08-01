@@ -1,0 +1,30 @@
+<section class="flights-dashboard-section">
+  <h2>Available Flights</h2>
+  <div *ngIf="loading" class="loading">Loading flights...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="!loading && flights.length === 0 && !error" class="no-flights">No flights found for your search.</div>
+  <div *ngIf="flights.length > 0" class="flights-list">
+    <table class="flights-table">
+      <thead>
+        <tr>
+          <th>Flight Number</th>
+          <th>Airline</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Departure Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights">
+          <td>{{ flight.flightNumber }}</td>
+          <td>{{ flight.airline }}</td>
+          <td>{{ flight.departureAirport }}</td>
+          <td>{{ flight.arrivalAirport }}</td>
+          <td>{{ flight.departureTime | date:'medium' }}</td>
+          <td>{{ flight.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
