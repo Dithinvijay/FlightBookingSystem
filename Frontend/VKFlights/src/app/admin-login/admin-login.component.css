@@ -1,0 +1,120 @@
+/* Admin Login Page Styles */
+.admin-auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #EDF6F7 0%, #B9D1D8 60%, #76B2B9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-auth-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(23,49,84,0.18), 0 10px 10px rgba(23,49,84,0.10);
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  min-height: 480px;
+}
+.admin-auth-image {
+  flex: 1.2;
+  background: #EDF6F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-auth-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-width: 320px;
+  min-height: 480px;
+}
+.admin-auth-form-section {
+  flex: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #B9D1D8 0%, #76B2B9 100%);
+}
+.admin-auth-form {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(23,49,84,0.10);
+}
+.admin-auth-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #173154;
+  margin-bottom: 2.2rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 8px #B9D1D8;
+}
+.admin-auth-form input {
+  width: 90%;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.2rem;
+  border: 1.5px solid #B9D1D8;
+  border-radius: 1.2rem;
+  font-size: 1.1rem;
+  background: #EDF6F7;
+  color: #173154;
+  outline: none;
+  transition: border 0.2s;
+}
+.admin-auth-form input:focus {
+  border: 1.5px solid #76B2B9;
+}
+.admin-auth-gradient-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #76B2B9 60%, #173154 100%);
+  color: #FAFCFB;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(23,49,84,0.07);
+}
+.admin-auth-gradient-btn:hover {
+  background: linear-gradient(90deg, #173154 60%, #76B2B9 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px #B9D1D8;
+}
+.admin-error-message {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .admin-auth-container {
+    flex-direction: column;
+    min-width: 320px;
+    min-height: 0;
+    max-width: 98vw;
+  }
+  .admin-auth-image {
+    min-height: 180px;
+    max-height: 220px;
+  }
+  .admin-auth-image img {
+    min-width: 0;
+    min-height: 0;
+    max-height: 220px;
+  }
+  .admin-auth-form-section {
+    padding: 1.2rem 0.5rem;
+  }
+}

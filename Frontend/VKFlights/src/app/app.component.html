@@ -1,6 +1,11 @@
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="navbar-title"><i>VK-Flights</i></div>
+  <div class="navbar-brand">
+    <a routerLink="/" class="navbar-logo-link">
+      <img src="assets/websitelogo.png" alt="VKFlights Logo" class="navbar-logo" style="height:48px; width:auto; border-radius:8px; vertical-align:middle;" />
+    </a>
+    <div class="navbar-title"><i>VK-Flights</i></div>
+  </div>
   <ul class="navbar-menu">
     <li><a routerLink="/" routerLinkActive="">Home</a></li>
     <li><a routerLink="/deals" routerLinkActive="active">Deals</a></li>
@@ -12,7 +17,7 @@
       </a>
     </li>
   </ul>
-  <span *ngIf="isLoggedIn" class="login-status">Logged in</span>
-  <span *ngIf="!isLoggedIn" class="login-status">Logged out</span>
+  <span *ngIf="isLoggedIn" class="login-status" style="color: black;">Logged in</span>
+  <span *ngIf="!isLoggedIn" class="login-status" style="color: black;">Logged out</span>
 </nav>
 <router-outlet></router-outlet>

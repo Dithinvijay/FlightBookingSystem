@@ -5,6 +5,7 @@ import { DealsDashboardComponent } from './dealsdashboard/deals-dashboard.compon
 import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'register', component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'flights-dashboard', component: FlightsDashboardComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
 ];

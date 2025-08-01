@@ -1,3 +1,77 @@
+/* Stylish gradient button for Sign In and Sign Up */
+.auth-gradient-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #1976d2 60%, #76B2B9 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1.2rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin: 0.7rem 0 1.2rem 0;
+  padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+  box-shadow: 0 2px 8px 0 rgba(23,49,84,0.10);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.auth-gradient-btn:hover, .auth-gradient-btn:focus {
+  background: linear-gradient(90deg, #76B2B9 60%, #1976d2 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px 0 #1976d2, 0 0 8px 2px #76B2B9;
+  transform: translateY(-2px) scale(1.04);
+}
+/* Stylish admin login link/button */
+/* Row for sign in and admin login buttons */
+.signin-btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.admin-login-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1976d2 60%, #76B2B9 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
+  min-width: 39px;
+  min-height: 39px;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 8px 0 rgba(23,49,84,0.10);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+.admin-login-link i {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0;
+  transition: color 0.2s;
+}
+.admin-login-link:hover, .admin-login-link:focus {
+  background: linear-gradient(135deg, #76B2B9 60%, #1976d2 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px 0 #1976d2, 0 0 8px 2px #76B2B9;
+  transform: translateY(-2px) scale(1.08);
+}
+.admin-login-link:hover i, .admin-login-link:focus i {
+  color: #B9D1D8;
+}
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 .auth-wrapper {

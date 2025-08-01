@@ -1,0 +1,19 @@
+<div class="admin-auth-wrapper">
+  <div class="admin-auth-container">
+    <div class="admin-auth-image">
+      <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80" alt="Flight" />
+    </div>
+    <div class="admin-auth-form-section">
+      <form (ngSubmit)="onAdminLogin()" autocomplete="off" class="admin-auth-form">
+        <h1 class="admin-auth-title">Admin Login</h1>
+        <input type="text" placeholder="Admin Username" [(ngModel)]="adminUsername" name="adminUsername" required style="width:80%;transform: translateX(9px); box-sizing:border-box;"/>
+        <div style="position: relative;">
+          <input [type]="showAdminPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="adminPassword" name="adminPassword" required/>
+          <i class="fa" [ngClass]="showAdminPassword ? 'fa-eye' : 'fa-eye-slash'" (click)="showAdminPassword = !showAdminPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+        </div>
+        <div class="admin-error-message" *ngIf="adminLoginError">{{ adminLoginError }}</div>
+        <button type="submit" class="admin-auth-gradient-btn" style="width: 90%;">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

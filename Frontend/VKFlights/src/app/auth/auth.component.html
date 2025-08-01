@@ -10,7 +10,7 @@
         <input type="text" placeholder="Username" [(ngModel)]="regUsername" name="regUsername" required />
         <input type="password" placeholder="Password" [(ngModel)]="regPassword" name="regPassword" required />
         <div class="error-message" *ngIf="registerError">{{ registerError }}</div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" class="auth-gradient-btn">Sign Up</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
@@ -27,7 +27,12 @@
           </i>
         </div>
         <div class="error-message" *ngIf="loginError">{{ loginError }}</div>
-        <button type="submit">Sign In</button>
+        <div class="signin-btn-row">
+          <button type="submit" class="auth-gradient-btn">Sign In</button>
+          <button type="button" class="admin-login-link" (click)="onAdminLogin()" title="Admin Login">
+            <i class="fa fa-user-shield"></i>
+          </button>
+        </div>
       </form>
     </div>
     <div class="overlay-container">

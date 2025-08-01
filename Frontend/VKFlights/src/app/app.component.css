@@ -55,6 +55,15 @@ body {
   box-shadow: 0 8px 32px 0 rgba(23,49,84,0.18);
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
+  margin-right: 0; /* No space after logo */
+}
 .navbar-title {
   font-size: 2.3rem;
   font-weight: bold;
@@ -62,6 +71,7 @@ body {
   color: var(--primary);
   text-shadow: 1px 2px 8px var(--accent), 0 1px 0 var(--white);
   font-family:  Arial, sans-serif;
+  margin-left: 0; /* No space before title */
 }
 
 .navbar-menu {
@@ -70,6 +80,7 @@ body {
   gap: 2.5rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .navbar-menu:hover {

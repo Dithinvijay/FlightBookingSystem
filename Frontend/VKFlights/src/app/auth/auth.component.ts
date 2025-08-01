@@ -35,6 +35,11 @@ export class AuthComponent {
 
   constructor(private router: Router, private http: HttpClient) {}
 
+  // Navigate to admin login page
+  onAdminLogin() {
+    this.router.navigate(['/admin-login']);
+  }
+
   // Toggle panels
   showSignUp() { this.rightPanelActive = true; }
   showSignIn() { this.rightPanelActive = false; }
