@@ -1,30 +1,47 @@
 <section class="flights-dashboard-section">
-  <h2>Available Flights</h2>
-  <div *ngIf="loading" class="loading">Loading flights...</div>
-  <div *ngIf="error" class="error-message">{{ error }}</div>
-  <div *ngIf="!loading && flights.length === 0 && !error" class="no-flights">No flights found for your search.</div>
-  <div *ngIf="flights.length > 0" class="flights-list">
-    <table class="flights-table">
-      <thead>
-        <tr>
-          <th>Flight Number</th>
-          <th>Airline</th>
-          <th>Departure</th>
-          <th>Arrival</th>
-          <th>Departure Time</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let flight of flights">
-          <td>{{ flight.flightNumber }}</td>
-          <td>{{ flight.airline }}</td>
-          <td>{{ flight.departureAirport }}</td>
-          <td>{{ flight.arrivalAirport }}</td>
-          <td>{{ flight.departureTime | date:'medium' }}</td>
-          <td>{{ flight.status }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 class="dashboard-title"><i class="fa-solid fa-plane-departure"></i> Available Flights</h2>
+  <div *ngIf="loading" class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading flights...</div>
+  <div *ngIf="error" class="error-message"><i class="fa-solid fa-triangle-exclamation"></i> {{ error }}</div>
+  <div *ngIf="!loading && flights.length === 0 && !error" class="no-flights"><i class="fa-solid fa-plane-slash"></i> No flights found for your search.</div>
+
+  <!-- Filter/Search Bar -->
+  <div class="filter-bar" *ngIf="flights.length > 0">
+    <input type="text" [(ngModel)]="filterText" placeholder="Filter by airline, status, or airport..." class="filter-input" />
+  </div>
+
+  <div *ngIf="flights.length > 0" class="flights-card-list">
+    <div class="flight-card" *ngFor="let flight of flights | flightFilter:filterText" [ngStyle]="{'border-top': '5px solid ' + getAirlineColor(flight.airline)}">
+      <div class="flight-card-header">
+        <img class="airline-logo" [src]="getAirlineLogo(flight.airline)" alt="Logo" onerror="this.src='assets/indigologo.png'" />
+        <div class="airline-info">
+          <div class="airline-name" [ngStyle]="{'color': getAirlineColor(flight.airline)}">{{ flight.airline }}</div>
+          <div class="flight-number">{{ flight.flightNumber }}</div>
+        </div>
+      </div>
+      <div class="flight-card-body">
+        <div class="flight-route">
+          <div class="airport departure">
+            <i class="fa-solid fa-plane-departure"></i>
+            <span class="airport-code">{{ flight.departureAirport }}</span>
+            <span class="time"><b>{{ flight.departureTime | date:'shortTime' }}</b></span>
+          </div>
+          <div class="route-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="airport arrival">
+            <i class="fa-solid fa-plane-arrival"></i>
+            <span class="airport-code">{{ flight.arrivalAirport }}</span>
+            <span class="time"><b>{{ flight.arrivalTime ? (flight.arrivalTime | date:'shortTime') : (flight.departureTime | date:'shortTime') }}</b></span>
+          </div>
+        </div>
+        <div class="flight-details-row">
+          <button class="book-btn" [ngStyle]="{'background': getAirlineColor(flight.airline)}" 
+                  [disabled]="!isLoggedIn" (click)="onBookFlight(flight)">
+            <i class="fa-solid fa-ticket"></i> Book
+          </button>
+  
+        </div>
+      </div>
+    </div>
   </div>
 </section>
