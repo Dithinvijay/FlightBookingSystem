@@ -26,6 +26,13 @@ export class HomeComponent {
 
   onAnimatedSearchClick() {
     if (this.isActive || this.isLoading) return;
+    // Check if user is logged in (JWT present)
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      alert('login first to search the flights');
+      this.router.navigate(['/login']);
+      return;
+    }
     this.isActive = true;
     this.isLoading = true;
     this.searchError = '';
@@ -49,8 +56,7 @@ export class HomeComponent {
       return;
     }
     // Add Authorization header if token exists
-    const token = localStorage.getItem('jwt');
-    const headers = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
+    const headers = { headers: { 'Authorization': `Bearer ${token}` } };
     this.http.get<any[]>(`${environment.apiUrlLogin}FMS/flights/${source}/${destination}`, headers
     ).subscribe({
       next: (flights) => {

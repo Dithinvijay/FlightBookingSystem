@@ -14,9 +14,8 @@ export class AppComponent {
   isLoggedIn = false;
 
   constructor(private router: Router) {
-    // Always clear token on app start (reload)
-    localStorage.removeItem('jwt');
-    this.isLoggedIn = false;
+    // On app start, check if token exists and is valid
+    this.isLoggedIn = this.hasValidToken();
     // Listen to router events to update login state on navigation
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -26,8 +25,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // No-op: token is always cleared on app start
-    this.isLoggedIn = false;
+    this.isLoggedIn = this.hasValidToken();
   }
 
   hasValidToken(): boolean {

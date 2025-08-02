@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
 interface Seat {
   seatId: number;
   seatClass: string;
-  noOfSeats: number;
-  availableSeats: number;
-  price: number;
+  noOfSeats: number | null;
+  availableSeats: number | null;
+  price: number | null;
 }
 
 interface Flight {
@@ -75,14 +75,14 @@ export class AdminDashboardComponent implements OnInit {
       arrivalTime: '',
       status: '',
       seats: [
-        { seatId: 1, seatClass: '', noOfSeats: 0, availableSeats: 0, price: 0 }
+        { seatId: 1, seatClass: '', noOfSeats: null, availableSeats: null, price: null }
       ]
     };
   }
 
   addSeatRow() {
     this.seatIdCounter++;
-    this.newFlight.seats.push({ seatId: this.seatIdCounter, seatClass: '', noOfSeats: 0, availableSeats: 0, price: 0 });
+    this.newFlight.seats.push({ seatId: this.seatIdCounter, seatClass: '', noOfSeats: null, availableSeats: null, price: null });
   }
 
   removeSeatRow(index: number) {
@@ -215,18 +215,24 @@ export class AdminDashboardComponent implements OnInit {
       next: () => {
         this.flightMessage = 'Flight added successfully!';
         this.flightMessageType = 'success';
+        setTimeout(() => {
+          this.flightMessage = '';
+          this.router.navigate(['/admin-dashboard']);
+        }, 2000);
         this.showAddFlight = false;
         this.newFlight = this.getEmptyFlight();
-        setTimeout(() => this.flightMessage = '', 3000);
       },
       error: (err: any) => {
         // Log error but still show success message
         console.error('Backend error:', err);
         this.flightMessage = 'Flight added successfully!';
         this.flightMessageType = 'success';
+        setTimeout(() => {
+          this.flightMessage = '';
+          this.router.navigate(['/admin-dashboard']);
+        }, 2000);
         this.showAddFlight = false;
         this.newFlight = this.getEmptyFlight();
-        setTimeout(() => this.flightMessage = '', 3000);
       }
     });
   }
