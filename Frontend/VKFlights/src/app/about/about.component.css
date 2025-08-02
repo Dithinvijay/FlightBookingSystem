@@ -1,46 +1,192 @@
+
 :root {
   --primary: #76B2B9;
-  --secondary: #173154;
+  --secondary: #173154;       
   --background: #EDF6F7;
   --accent: #B9D1D8;
   --white: #FAFCFB;
 }
 
-.about-section {
+.about-hero {
+  width: 100vw;
+  min-height: 340px;
   background: var(--background);
-  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.about-hero-img {
+  width: 100vw;
+  max-height: 340px;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+.about-hero-content {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-top: 2rem;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 0 4px 24px #17315499;
+  background: rgba(23,49,84,0.25);
+}
+.about-hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+}
+.about-hero-content p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  max-width: 700px;
+  text-align: center;
 }
 
-.about-title {
-  color: var(--secondary);
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+.about-section {
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  flex-wrap: wrap;
 }
-
-.about-card {
+.about-features {
+  flex-direction: row;
+}
+.about-feature-card {
   background: var(--white);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(23, 49, 84, 0.10);
+  box-shadow: 0 4px 24px rgba(23,49,84,0.10);
   padding: 2rem 2.5rem;
-  max-width: 600px;
+  max-width: 340px;
   width: 100%;
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   color: var(--secondary);
+  margin-bottom: 2rem;
+}
+.about-feature-card img {
+  width: 100%;
+  max-width: 220px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.about-feature-card h3 {
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+.about-feature-card p {
+  font-size: 1.05rem;
 }
 
-.about-card ul {
+.about-values {
+  flex-direction: row-reverse;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(23,49,84,0.10);
+  padding: 2.5rem 2.5rem;
+  margin: 2.5rem 0;
+  gap: 2.5rem;
+}
+.about-values-content {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-values-content h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+.about-values-content ul {
   margin-top: 1rem;
   padding-left: 1.2rem;
 }
-
-.about-card li {
+.about-values-content li {
   margin-bottom: 0.5rem;
-  color: var(--primary);
+  color: var(--secondary);
   font-weight: 500;
+  font-size: 1.08rem;
+}
+.about-values-img {
+  flex: 1.1;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 1.2rem;
+  object-fit: cover;
+  box-shadow: 0 4px 24px rgba(23,49,84,0.10);
+}
+
+.about-cta {
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0;
+}
+.about-cta-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(23,49,84,0.10);
+  padding: 2.5rem 3rem;
+  text-align: center;
+  color: var(--secondary);
+  max-width: 500px;
+  width: 100%;
+}
+.about-cta-card h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+.about-cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #76B2B9 60%, #173154 100%);
+  color: #FAFCFB;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(23,49,84,0.07);
+}
+.about-cta-btn:hover {
+  background: linear-gradient(90deg, #173154 60%, #76B2B9 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px #B9D1D8;
+}
+
+@media (max-width: 900px) {
+  .about-hero-img {
+    max-height: 220px;
+  }
+  .about-section, .about-values {
+    flex-direction: column;
+    padding: 1.2rem 0.5rem;
+    gap: 1.2rem;
+  }
+  .about-values-img {
+    max-width: 98vw;
+    margin-top: 1.2rem;
+  }
 }

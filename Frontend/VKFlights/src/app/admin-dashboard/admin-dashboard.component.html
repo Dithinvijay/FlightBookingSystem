@@ -21,20 +21,29 @@
     </div>
     <div class="flights-management-section">
       <h3>Flights Management</h3>
+
       <div class="flights-actions">
-        <button class="admin-action-btn" (click)="showAddFlight = true"><i class="fa fa-plus"></i> Add Flight</button>
+        <button class="admin-action-btn" (click)="openAddFlight()"><i class="fa fa-plus"></i> Add Flight</button>
+        <button class="admin-action-btn" (click)="openUpdateStatus()"><i class="fa fa-edit"></i> Update Flight Status</button>
+        <button class="admin-action-btn" (click)="openUpdateSeats()"><i class="fa fa-users"></i> Update Seats</button>
+        <button class="admin-action-btn delete" (click)="openDeleteFlight()"><i class="fa fa-trash"></i> Delete Flight</button>
       </div>
+
+      <!-- Add Flight Form -->
       <div *ngIf="showAddFlight" class="add-flight-form-card">
+        <div *ngIf="flightMessage" [ngClass]="{'admin-alert-message': true, 'admin-alert-success': flightMessageType === 'success', 'admin-alert-error': flightMessageType === 'error'}">{{ flightMessage }}</div>
         <form (ngSubmit)="addFlight()" #addFlightForm="ngForm">
           <input type="text" placeholder="Flight Number" [(ngModel)]="newFlight.flightNumber" name="flightNumber" required />
           <input type="text" placeholder="Airline" [(ngModel)]="newFlight.airline" name="airline" required />
           <input type="text" placeholder="Departure Airport" [(ngModel)]="newFlight.departureAirport" name="departureAirport" required />
           <input type="text" placeholder="Arrival Airport" [(ngModel)]="newFlight.arrivalAirport" name="arrivalAirport" required />
           <input type="datetime-local" placeholder="Departure Time" [(ngModel)]="newFlight.departureTime" name="departureTime" required />
+          <input type="datetime-local" placeholder="Arrival Time" [(ngModel)]="newFlight.arrivalTime" name="arrivalTime" required />
           <input type="text" placeholder="Status" [(ngModel)]="newFlight.status" name="status" required />
           <div class="seats-section">
             <label style="font-weight:600; margin-top:10px;">Seats:</label>
             <div *ngFor="let seat of newFlight.seats; let i = index" class="seat-row">
+              <input type="number" placeholder="Seat ID" [(ngModel)]="seat.seatId" name="seatId{{i}}" style="width: 70px; font-weight: 600;" required/>
               <input type="text" placeholder="Seat Class" [(ngModel)]="seat.seatClass" name="seatClass{{i}}" required />
               <input type="number" placeholder="No. of Seats" [(ngModel)]="seat.noOfSeats" name="noOfSeats{{i}}" required />
               <input type="number" placeholder="Available" [(ngModel)]="seat.availableSeats" name="availableSeats{{i}}" required />
@@ -43,53 +52,46 @@
             </div>
             <button type="button" (click)="addSeatRow()" class="add-seat-btn">+ Add Seat</button>
           </div>
+          <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="submit" class="admin-auth-gradient-btn">Add Flight</button>
           <button type="button" class="admin-cancel-btn" (click)="showAddFlight = false">Cancel</button>
         </form>
       </div>
-      <div class="flights-list-card">
-        <h4>All Flights</h4>
-        <div *ngIf="flights.length === 0" class="no-flights">No flights found.</div>
-        <table *ngIf="flights.length > 0" class="flights-table">
-          <thead>
-            <tr>
-              <th>Flight Number</th>
-              <th>Airline</th>
-              <th>Departure</th>
-              <th>Arrival</th>
-              <th>Departure Time</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let flight of flights">
-              <td>{{ flight.flightNumber }}</td>
-              <td>{{ flight.airline }}</td>
-              <td>{{ flight.departureAirport }}</td>
-              <td>{{ flight.arrivalAirport }}</td>
-              <td>{{ flight.departureTime | date:'medium' }}</td>
-              <td>{{ flight.status }}</td>
-              <td>
-                <button class="admin-action-btn" (click)="editFlight(flight)"><i class="fa fa-edit"></i></button>
-                <button class="admin-action-btn delete" (click)="deleteFlight(flight.flightNumber)"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div *ngIf="editingFlight" class="edit-flight-form-card">
-        <form (ngSubmit)="updateFlight()" #editFlightForm="ngForm">
-          <input type="text" placeholder="Flight Number" [(ngModel)]="editingFlight.flightNumber" name="editFlightNumber" required disabled />
-          <input type="text" placeholder="Airline" [(ngModel)]="editingFlight.airline" name="editAirline" required />
-          <input type="text" placeholder="Departure Airport" [(ngModel)]="editingFlight.departureAirport" name="editDepartureAirport" required />
-          <input type="text" placeholder="Arrival Airport" [(ngModel)]="editingFlight.arrivalAirport" name="editArrivalAirport" required />
-          <input type="datetime-local" placeholder="Departure Time" [(ngModel)]="editingFlight.departureTime" name="editDepartureTime" required />
-          <input type="text" placeholder="Status" [(ngModel)]="editingFlight.status" name="editStatus" required />
-          <button type="submit" class="admin-auth-gradient-btn">Update Flight</button>
-          <button type="button" class="admin-cancel-btn" (click)="editingFlight = null">Cancel</button>
+
+      <!-- Update Flight Status Form -->
+      <div *ngIf="showUpdateStatus" class="add-flight-form-card">
+        <h4 style="margin-bottom: 10px;">Update Flight</h4>
+        <form (ngSubmit)="updateFlightStatus()" #updateStatusForm="ngForm" style="margin-bottom: 10px;">
+          <input type="text" placeholder="Flight Number" [(ngModel)]="updateFlightNumber" name="updateFlightNumber" required />
+          <input type="text" placeholder="New Status" [(ngModel)]="updateStatus" name="updateStatus" required />
+          <button type="submit" class="admin-auth-gradient-btn">Update Status</button>
+          <button type="button" class="admin-cancel-btn" (click)="showUpdateStatus = false">Cancel</button>
         </form>
       </div>
+
+      <!-- Update Available Seats Form -->
+      <div *ngIf="showUpdateSeats" class="add-flight-form-card">
+        <h4 style="margin-bottom: 10px;">Update Available Seats</h4>
+        <form (ngSubmit)="updateAvailableSeats()" #updateSeatsForm="ngForm">
+          <input type="text" placeholder="Flight Number" [(ngModel)]="updateSeatsFlightNumber" name="updateSeatsFlightNumber" required />
+          <input type="text" placeholder="Seat Class (e.g. Economy)" [(ngModel)]="updateSeatsClass" name="updateSeatsClass" required />
+          <input type="number" placeholder="Seats to Book" [(ngModel)]="updateSeatsCount" name="updateSeatsCount" required />
+          <button type="submit" class="admin-auth-gradient-btn">Update Available Seats</button>
+          <button type="button" class="admin-cancel-btn" (click)="showUpdateSeats = false">Cancel</button>
+        </form>
+      </div>
+
+      <!-- Delete Flight Form -->
+      <div *ngIf="showDeleteFlight" class="add-flight-form-card">
+        <h4 style="margin-bottom: 10px;">Delete Flight</h4>
+        <form (ngSubmit)="deleteFlight()" #deleteFlightForm="ngForm">
+          <input type="text" placeholder="Flight Number" [(ngModel)]="deleteFlightId" name="deleteFlightId" required />
+          <button type="submit" class="admin-action-btn delete">Delete Flight</button>
+          <button type="button" class="admin-cancel-btn" (click)="showDeleteFlight = false">Cancel</button>
+        </form>
+      </div>
+
+
     </div>
   </div>
 </div>
