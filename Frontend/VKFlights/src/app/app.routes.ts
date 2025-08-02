@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { BookingDashboardComponent } from './booking-dashboard/booking-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'register', component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'flights-dashboard', component: FlightsDashboardComponent },
+  { path: 'booking-dashboard', component: BookingDashboardComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
 ];

@@ -39,13 +39,15 @@ export class FlightFilterPipe implements PipeTransform {
   imports: [CommonModule, FormsModule, FlightFilterPipe]
 })
 export class FlightsDashboardComponent implements OnInit {
-onBookFlight(_t28: any) {
-throw new Error('Method not implemented.');
+onBookFlight(flight: Flight) {
+  localStorage.setItem('selectedFlight', JSON.stringify(flight));
+  this.router.navigate(['/booking-dashboard'], { state: { flight } });
 }
   flights: Flight[] = [];
   error: string = '';
   loading: boolean = false;
   filterText: string = '';
+  isLoggedIn: boolean = false;
 
   // Airline logo and color mapping
   airlineLogoMap: { [key: string]: string } = {
@@ -70,7 +72,6 @@ throw new Error('Method not implemented.');
     'allianceair': '#D9232E', // red
     'default': '#1976d2' // fallback blue
   };
-isLoggedIn: any;
 
   getAirlineLogo(airline: string): string {
     if (!airline) return this.airlineLogoMap['default'];
@@ -87,6 +88,8 @@ isLoggedIn: any;
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
+    // Set isLoggedIn based on JWT token
+    this.isLoggedIn = !!localStorage.getItem('jwt');
     // Get search params from localStorage (set by home component)
     const search = localStorage.getItem('flightSearch');
     if (!search) {
