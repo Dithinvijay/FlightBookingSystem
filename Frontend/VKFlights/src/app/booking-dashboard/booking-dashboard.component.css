@@ -5,10 +5,9 @@
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  background: linear-gradient(120deg, #f5f7fa 60%, #e3eafc 100%);
+  background-color: #1565c0;
   padding: 2rem 0;
 }
-
 .booking-card {
   background: #fff;
   border-radius: 18px;
@@ -47,6 +46,21 @@
   color: var(--airline-color, #1976d2);
   letter-spacing: 0.5px;
 }
+.flight-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 1.2rem;
+}
+.flight-card{
+  display: flex;
+  width:fit-content;
+  margin: 0 auto;
+  align-self: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
 .flight-number {
   font-size: 1.05rem;
   color: #757575;
@@ -55,7 +69,7 @@
 .flight-route {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 1.2rem;
 }
 .airport {
