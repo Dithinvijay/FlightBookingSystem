@@ -226,7 +226,7 @@ export class AdminDashboardComponent implements OnInit {
         // Log error but still show success message
         console.error('Backend error:', err);
         this.flightMessage = 'Flight added successfully!';
-        this.flightMessageType = 'success';
+        this.flightMessageType = 'error';
         setTimeout(() => {
           this.flightMessage = '';
           this.router.navigate(['/admin-dashboard']);

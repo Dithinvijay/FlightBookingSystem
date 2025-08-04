@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +9,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./home.component.css'],
   imports: [NgIf, FormsModule]
 })
+
 export class HomeComponent {
   isActive = false;
   isFinished = false;
@@ -18,66 +17,59 @@ export class HomeComponent {
 
   fromValue = '';
   toValue = '';
-  searchResults: any[] = [];
+  dateValue = '';
   searchError: string = '';
-  searchPerformed = false;
+  todayDateString: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    this.todayDateString = `${yyyy}-${mm}-${dd}`;
+  }
 
   onAnimatedSearchClick() {
+    this.searchError = '';
     if (this.isActive || this.isLoading) return;
-    // Check if user is logged in (JWT present)
+    // Check login
     const token = localStorage.getItem('jwt');
     if (!token) {
-      alert('login first to search the flights');
-      this.router.navigate(['/login']);
+      this.searchError = 'Please login first to search for flights.';
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 1800);
+      return;
+    }
+    // Validate fields
+    if (!this.fromValue || !this.toValue || !this.dateValue) {
+      this.searchError = 'Please enter source, destination, and date.';
+      return;
+    }
+    // Validate date is not less than today
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const userDate = new Date(this.dateValue);
+    userDate.setHours(0,0,0,0);
+    if (userDate < today) {
+      this.searchError = 'Departure date cannot be in the past.';
       return;
     }
     this.isActive = true;
     this.isLoading = true;
-    this.searchError = '';
-    this.searchResults = [];
-    this.searchPerformed = false;
-    // Save search params to localStorage for flights dashboard
-    const today = new Date();
-    const date = today.toISOString().split('T')[0];
     localStorage.setItem('flightSearch', JSON.stringify({
       source: this.fromValue,
       destination: this.toValue,
-      date: date
+      date: this.dateValue
     }));
-    // Fetch search results from backend using user input for source and destination
-    const source = this.fromValue.trim();
-    const destination = this.toValue.trim();
-    if (!source || !destination || !date) {
-      this.searchError = 'Please enter source, destination and date.';
+    setTimeout(() => {
       this.isActive = false;
+      this.isFinished = true;
       this.isLoading = false;
-      return;
-    }
-    // Add Authorization header if token exists
-    const headers = { headers: { 'Authorization': `Bearer ${token}` } };
-    this.http.get<any[]>(`${environment.apiUrlLogin}FMS/flights/${source}/${destination}`, headers
-    ).subscribe({
-      next: (flights) => {
-        this.searchResults = flights;
-        this.isActive = false;
-        this.isFinished = true;
-        this.isLoading = false;
-        this.searchPerformed = true;
-        if (flights && flights.length > 0) {
-          // Navigate to flights dashboard to show results
-          this.router.navigate(['/flights-dashboard']);
-        }
-      },
-      error: (err) => {
-        this.searchError = err.error?.message || 'Failed to fetch flights.';
-        this.isActive = false;
-        this.isFinished = false;
-        this.isLoading = false;
-        this.searchPerformed = true;
-      }
-    });
+      setTimeout(() => {
+        this.router.navigate(['/flights-dashboard']);
+      }, 800); // Show checkmark before redirect
+    }, 1800); // Animation duration
   }
 
   swapFromTo() {

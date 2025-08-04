@@ -38,7 +38,7 @@
               <i class="fas fa-calendar"></i>
               Departure
             </label>
-            <input type="date" required/>
+            <input type="date" required [(ngModel)]="dateValue" [min]="(todayDateString || '')" />
           </div>
           <div class="field">
             <label>
@@ -58,11 +58,12 @@
         [class.active]="isActive"
         [class.finished]="isFinished"
         (click)="onAnimatedSearchClick()"
-        [disabled]="!fromValue || !toValue">
+        [disabled]="!fromValue || !toValue || !dateValue">
         <span class="submit" *ngIf="!isFinished"><i class="fas fa-search"></i> Search Flights</span>
         <span class="loading" *ngIf="isActive && isLoading"><i class="fas fa-sync fa-spin"></i></span>
         <span class="check" *ngIf="isFinished"><i class="fas fa-check"></i></span>
       </button>
+      <div *ngIf="searchError" class="prompt-message">{{ searchError }}</div>
     </div>
 
     <div class="hero-features">

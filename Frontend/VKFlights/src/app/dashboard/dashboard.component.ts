@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
@@ -29,7 +30,10 @@ export class DashboardComponent implements OnInit {
   updateSuccess = false;
   updateError = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+  goToCheckin() {
+    this.router.navigate(['/checkin']);
+  }
 
   ngOnInit() {
     const token = localStorage.getItem('jwt');

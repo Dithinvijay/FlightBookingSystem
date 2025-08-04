@@ -1,7 +1,10 @@
 <section class="dashboard-section">
   <div class="dashboard-header">
     <h2>User Dashboard</h2>
-    <button class="logout-btn" (click)="logout()">Logout</button>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <button class="checkin-btn" type="button" (click)="goToCheckin()">Check-In</button>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
   </div>
   <div *ngIf="error" class="error-message">{{ error }}</div>
   <div *ngIf="user" class="dashboard-card">
@@ -27,6 +30,7 @@
         </li>
       </ul>
       <button class="update-btn" type="submit" [disabled]="userForm.invalid || updating">Update</button>
+      <!-- Check-In button moved to header -->
       <span *ngIf="updateSuccess" class="update-success">Profile updated successfully!</span>
       <span *ngIf="updateError" class="update-error">{{ updateError }}</span>
     </form>

@@ -49,7 +49,12 @@
             <div *ngFor="let passenger of passengers.controls; let i = index" [formGroupName]="i" class="passenger-form">
               <h4><i class="fa-solid fa-user"></i> Passenger {{ i + 1 }}</h4>
               <input formControlName="passengerName" placeholder="Name" required />
-              <input formControlName="gender" placeholder="Gender" required />
+              <select formControlName="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Not to specify">Not to specify</option>
+              </select>
               <input formControlName="age" type="number" placeholder="Age" required />
             </div>
           </div>

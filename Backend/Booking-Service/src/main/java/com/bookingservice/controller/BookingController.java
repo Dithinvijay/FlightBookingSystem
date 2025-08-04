@@ -118,7 +118,7 @@ public class BookingController {
 //
 //		    String orderId = (String) responseBody.get("order_id");
 				
-			emailService.sendEmail(booking.getEmail(), "Tickets Confirmation", "Tickets Booked successfully Amount Paid "+price+"\n Passenger Details : "+booking.getPassengers());
+			emailService.sendEmail(booking.getEmail(), "Tickets Confirmation", "Tickets Booked successfully Amount Paid "+price+"\n\n Passenger Details are as of below : \n\n"+booking.getPassengers());
 			return ResponseEntity.ok("Order created successfully. Please pay amount "+price + " to book");
 			//return ResponseEntity.ok("Please pay "+price+" for confirming the booking");
 		//	return ResponseEntity.status(HttpStatus.CREATED).body("Booking Succesful. Your Booking_Id is "+booking.getBookingId());

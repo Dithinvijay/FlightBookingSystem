@@ -9,6 +9,7 @@
         <input type="tel" placeholder="Phone Number" [(ngModel)]="regPhoneNo" name="regPhoneNo" required />
         <input type="text" placeholder="Username" [(ngModel)]="regUsername" name="regUsername" required />
         <input type="password" placeholder="Password" [(ngModel)]="regPassword" name="regPassword" required />
+        <input type="text" value="USER" readonly style="background:#EDF6F7; color:#1976d2; font-weight:600; letter-spacing:1px; text-align:center;" name="regRole" />
         <div class="error-message" *ngIf="registerError">{{ registerError }}</div>
         <button type="submit" class="auth-gradient-btn">Sign Up</button>
       </form>

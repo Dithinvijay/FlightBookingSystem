@@ -22,7 +22,7 @@
   width: 100vw;
   max-height: 340px;
   object-fit: cover;
-  filter: brightness(0.85);
+  filter: brightness(0.75);
 }
 .about-hero-content {
   position: absolute;
@@ -125,8 +125,9 @@
 }
 .about-values-img {
   flex: 1.1;
-  width: 100%;
+  width: 70%;
   max-width: 340px;
+  height: 340px;
   border-radius: 1.2rem;
   object-fit: cover;
   box-shadow: 0 4px 24px rgba(23,49,84,0.10);

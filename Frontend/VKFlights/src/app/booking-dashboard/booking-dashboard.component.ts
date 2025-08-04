@@ -114,22 +114,17 @@ export class BookingDashboardComponent implements OnInit {
   submitBooking() {
     if (this.bookingForm.invalid) return;
     const { seatClass, noOfSeats, email, passengerBookingId, passengers } = this.bookingForm.value;
-    const booking = {
+    // Prepare booking data to pass to payment page
+    const bookingData = {
+      flightNumber: this.flight.flightNumber,
+      seatClass,
+      noOfSeats,
       email,
       passengerBookingId,
-      passengers
+      passengers,
+      flight: this.flight
     };
-    const token = localStorage.getItem('jwt');
-    const headers = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
-    this.http.post(`${environment.apiUrlLogin}BMS/bookTickets/${this.flight.flightNumber}/${seatClass}/${noOfSeats}`, booking, { ...headers, responseType: 'text' })
-      .subscribe({
-        next: (res) => {
-          this.bookingStatus = 'Booking successful!';
-          setTimeout(() => this.router.navigate(['/']), 2000);
-        },
-        error: (err) => {
-          this.error = 'Booking failed. Please try again.';
-        }
-      });
+    localStorage.setItem('pendingBooking', JSON.stringify(bookingData));
+    this.router.navigate(['/payment'], { state: bookingData });
   }
 }

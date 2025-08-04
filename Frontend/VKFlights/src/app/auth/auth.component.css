@@ -1,4 +1,5 @@
-/* Stylish gradient button for Sign In and Sign Up */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 .auth-gradient-btn {
   display: flex;
   align-items: center;
@@ -72,7 +73,6 @@
 .admin-login-link:hover i, .admin-login-link:focus i {
   color: #B9D1D8;
 }
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 .auth-wrapper {
   min-height: 100vh;
@@ -220,7 +220,7 @@ input {
   border: 1.5px solid #B9D1D8;
   border-radius: 0.8rem;
   padding: 12px 15px;
-  margin: 8px 0;
+  margin: 5px 0;
   width: 100%;
   font-size: 1rem;
   color: #173154;
@@ -278,7 +278,7 @@ h1 {
 }
 
 .error-message {
-  color: #d32f2f;
+  color: #ff0000;
   margin-top: 8px;
   font-size: 0.95rem;
 }

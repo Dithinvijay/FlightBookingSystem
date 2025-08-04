@@ -131,8 +131,12 @@ public class PassengerDetails {
 
 	@Override
 	public String toString() {
-		return "PassengerDetails [passengerId=" + passengerId + ", passengerName=" + passengerName + ", gender="
-				+ gender + ", age=" + age + "]";
+	    return "\n"+
+	           "  Passenger ID   : " + passengerId + "\n" +
+	           "  Name           : " + passengerName + "\n" +
+	           "  Gender         : " + gender + "\n" +
+	           "  Age            : " + age + "\n" +
+	           "  Booking ID     : " + booking.getBookingId() +"\n";
 	}
 
 }

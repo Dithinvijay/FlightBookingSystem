@@ -25,6 +25,7 @@ export class AuthComponent {
   regPhoneNo = '';
   regUsername = '';
   regPassword = '';
+  regRole='';
   registerError = '';
 
   // UI state
@@ -84,7 +85,8 @@ export class AuthComponent {
       email: this.regEmail,
       phoneNo: this.regPhoneNo,
       username: this.regUsername,
-      password: this.regPassword
+      password: this.regPassword,
+      role: this.regRole
     }).subscribe({
       next: () => {
         this.showSignIn();
