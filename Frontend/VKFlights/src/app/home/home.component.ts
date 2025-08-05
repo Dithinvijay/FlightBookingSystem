@@ -38,7 +38,7 @@ export class HomeComponent {
       this.searchError = 'Please login first to search for flights.';
       setTimeout(() => {
         this.router.navigate(['/login']);
-      }, 1800);
+      }, 1800); // Show prompt for 1.8s before navigating
       return;
     }
     // Validate fields

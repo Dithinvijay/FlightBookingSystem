@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 import { FlightsDashboardComponent } from './flights-dashboard/flights-dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -9,7 +10,6 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BookingDashboardComponent } from './booking-dashboard/booking-dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
-
 import { CheckinComponent } from './checkin/checkin.component';
 
 export const routes: Routes = [
@@ -25,4 +25,5 @@ export const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'checkin', component: CheckinComponent },
+
 ];
