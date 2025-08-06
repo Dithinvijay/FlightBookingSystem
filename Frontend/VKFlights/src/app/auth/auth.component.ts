@@ -13,12 +13,10 @@ import { environment } from '../../environments/environment';
   imports: [CommonModule, FormsModule]
 })
 export class AuthComponent {
-  // Login fields
   loginUsername = '';
   loginPassword = '';
   loginError = '';
 
-  // Register fields
   regFirstName = '';
   regLastName = '';
   regEmail = '';
@@ -28,24 +26,20 @@ export class AuthComponent {
   regRole='';
   registerError = '';
 
-  // UI state
   rightPanelActive = false;
 
-  // Show/hide password for login
   showLoginPassword = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  // Navigate to admin login page
   onAdminLogin() {
     this.router.navigate(['/admin-login']);
   }
 
-  // Toggle panels
+
   showSignUp() { this.rightPanelActive = true; }
   showSignIn() { this.rightPanelActive = false; }
 
-  // Login logic
   onLogin() {
     if (!this.loginUsername || !this.loginPassword) {
       this.loginError = 'Please fill in all fields.';
@@ -72,7 +66,6 @@ export class AuthComponent {
     });
   }
 
-  // Register logic
   onRegister() {
     if (!this.regFirstName || !this.regLastName || !this.regEmail || !this.regPhoneNo || !this.regUsername || !this.regPassword) {
       this.registerError = 'Please fill in all fields.';

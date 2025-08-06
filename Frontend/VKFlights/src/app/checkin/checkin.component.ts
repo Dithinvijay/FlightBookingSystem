@@ -33,17 +33,14 @@ export class CheckinComponent {
     if (this.checkinForm.invalid) return;
     this.successMsg = '';
     this.errorMsg = '';
-    // Validate check-in time is not in the past
     const raw = this.checkinForm.value;
     let checkInTime = raw.checkInTime;
     let checkInDate: Date;
     if (checkInTime && checkInTime.includes('T')) {
-      // Convert '2025-08-05T10:30' to '2025-08-05 10:30:00'
       const [date, time] = checkInTime.split('T');
       checkInTime = `${date} ${time.length === 5 ? time + ':00' : time}`;
       checkInDate = new Date(`${date}T${time}`);
     } else {
-      // If already in 'YYYY-MM-DD HH:mm:ss' format
       checkInDate = new Date(checkInTime.replace(' ', 'T'));
     }
     const now = new Date();
@@ -59,7 +56,6 @@ export class CheckinComponent {
       flightNumber: raw.flightNumber,
       checkInTime: checkInTime
     };
-    // Add Authorization header if JWT token exists
     const token = localStorage.getItem('jwt');
     const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
     this.http.post('http://localhost:8080/checkIn/addCheckIn', payload, headers).subscribe({

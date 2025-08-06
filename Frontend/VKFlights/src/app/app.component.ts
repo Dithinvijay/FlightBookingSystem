@@ -14,9 +14,7 @@ export class AppComponent {
   isLoggedIn = false;
 
   constructor(private router: Router) {
-    // On app start, check if token exists and is valid
     this.isLoggedIn = this.hasValidToken();
-    // Listen to router events to update login state on navigation
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isLoggedIn = this.hasValidToken();
@@ -31,7 +29,6 @@ export class AppComponent {
   hasValidToken(): boolean {
     const token = localStorage.getItem('jwt');
     if (!token) return false;
-    // Basic JWT validation: check for 3 parts and not expired
     const parts = token.split('.');
     if (parts.length !== 3) return false;
     try {

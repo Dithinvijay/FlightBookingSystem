@@ -16,7 +16,6 @@ interface Flight {
   status: string;
 }
 
-// Standalone pipe for filtering flights
 @Pipe({ name: 'flightFilter', standalone: true })
 export class FlightFilterPipe implements PipeTransform {
   transform(flights: any[], filterText: string): any[] {
@@ -49,7 +48,6 @@ onBookFlight(flight: Flight) {
   filterText: string = '';
   isLoggedIn: boolean = false;
 
-  // Airline logo and color mapping
   airlineLogoMap: { [key: string]: string } = {
     'indigo': 'assets/indigologo.png',
     'airindia': 'assets/airindialogo.png',
@@ -88,9 +86,7 @@ onBookFlight(flight: Flight) {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    // Set isLoggedIn based on JWT token
     this.isLoggedIn = !!localStorage.getItem('jwt');
-    // Get search params from localStorage (set by home component)
     const search = localStorage.getItem('flightSearch');
     if (!search) {
       this.error = 'No search parameters found.';
@@ -98,7 +94,6 @@ onBookFlight(flight: Flight) {
     }
     const { source, destination, date } = JSON.parse(search);
     this.loading = true;
-    // Add Authorization header if token exists
     const token = localStorage.getItem('jwt');
     const headers = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
     this.http.get<Flight[]>(`${environment.apiUrlLogin}FMS/flights/${source}/${destination}`, headers

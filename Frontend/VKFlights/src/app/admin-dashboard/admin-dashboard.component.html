@@ -58,7 +58,6 @@
         </form>
       </div>
 
-      <!-- Update Flight Status Form -->
       <div *ngIf="showUpdateStatus" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Update Flight</h4>
         <form (ngSubmit)="updateFlightStatus()" #updateStatusForm="ngForm" style="margin-bottom: 10px;">
@@ -69,7 +68,6 @@
         </form>
       </div>
 
-      <!-- Update Available Seats Form -->
       <div *ngIf="showUpdateSeats" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Update Available Seats</h4>
         <form (ngSubmit)="updateAvailableSeats()" #updateSeatsForm="ngForm">
@@ -81,7 +79,6 @@
         </form>
       </div>
 
-      <!-- Delete Flight Form -->
       <div *ngIf="showDeleteFlight" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Delete Flight</h4>
         <form (ngSubmit)="deleteFlight()" #deleteFlightForm="ngForm">
@@ -90,8 +87,6 @@
           <button type="button" class="admin-cancel-btn" (click)="showDeleteFlight = false">Cancel</button>
         </form>
       </div>
-
-
     </div>
   </div>
 </div>

@@ -32,21 +32,18 @@ export class HomeComponent {
   onAnimatedSearchClick() {
     this.searchError = '';
     if (this.isActive || this.isLoading) return;
-    // Check login
     const token = localStorage.getItem('jwt');
     if (!token) {
       this.searchError = 'Please login first to search for flights.';
       setTimeout(() => {
         this.router.navigate(['/login']);
-      }, 1800); // Show prompt for 1.8s before navigating
+      }, 1800); 
       return;
     }
-    // Validate fields
     if (!this.fromValue || !this.toValue || !this.dateValue) {
       this.searchError = 'Please enter source, destination, and date.';
       return;
     }
-    // Validate date is not less than today
     const today = new Date();
     today.setHours(0,0,0,0);
     const userDate = new Date(this.dateValue);
@@ -68,8 +65,8 @@ export class HomeComponent {
       this.isLoading = false;
       setTimeout(() => {
         this.router.navigate(['/flights-dashboard']);
-      }, 800); // Show checkmark before redirect
-    }, 1800); // Animation duration
+      }, 800); 
+    }, 1800); 
   }
 
   swapFromTo() {

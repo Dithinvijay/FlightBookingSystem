@@ -26,8 +26,7 @@
   box-shadow: 0 4px 16px 0 #1976d2, 0 0 8px 2px #76B2B9;
   transform: translateY(-2px) scale(1.04);
 }
-/* Stylish admin login link/button */
-/* Row for sign in and admin login buttons */
+
 .signin-btn-row {
   display: flex;
   align-items: center;
@@ -179,7 +178,6 @@
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
   box-sizing: border-box;
-  /* Prevent text overflow and overlap */
   overflow: auto;
 }
 
@@ -228,7 +226,6 @@ input {
   transition: border 0.2s;
 }
 
-/* Ensure all inputs inside the form take full width, including those in relative containers */
 .form-container input[type="password"],
 .form-container input[type="text"],
 .form-container input[type="email"],
@@ -283,7 +280,6 @@ h1 {
   font-size: 0.95rem;
 }
 
-/* Style for the eye icon in the password field */
 .fa-eye, .fa-eye-slash {
   position: absolute;
   right: 18px;
@@ -295,10 +291,9 @@ h1 {
   color: #173154;
 }
 
-/* Ensure the password input takes full width inside its relative container */
 .form-container .sign-in-container div[style*="position: relative"] input[type="password"],
 .form-container .sign-in-container div[style*="position: relative"] input[type="text"] {
-  padding-right: 36px; /* only add space for the icon */
+  padding-right: 36px;
 }
 
 @media (max-width: 900px) {

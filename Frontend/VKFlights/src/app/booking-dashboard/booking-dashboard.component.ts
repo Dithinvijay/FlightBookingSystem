@@ -71,13 +71,11 @@ export class BookingDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check authentication
     this.isLoggedIn = !!localStorage.getItem('jwt');
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
       return;
     }
-    // Get flight from navigation state or localStorage
     const nav = this.router.getCurrentNavigation();
     this.flight = nav?.extras?.state?.['flight'];
     if (!this.flight) {
@@ -114,7 +112,6 @@ export class BookingDashboardComponent implements OnInit {
   submitBooking() {
     if (this.bookingForm.invalid) return;
     const { seatClass, noOfSeats, email, passengerBookingId, passengers } = this.bookingForm.value;
-    // Prepare booking data to pass to payment page
     const bookingData = {
       flightNumber: this.flight.flightNumber,
       seatClass,

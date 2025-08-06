@@ -92,7 +92,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
-  // Update flight status
   updateFlightStatus() {
     if (!this.updateFlightNumber || !this.updateStatus) {
       this.flightMessage = 'Enter flight number and new status';
@@ -119,7 +118,6 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  // Update available seats
   updateAvailableSeats() {
     if (!this.updateSeatsFlightNumber || !this.updateSeatsClass || this.updateSeatsCount == null) {
       this.flightMessage = 'Enter all fields to update seats';
@@ -147,7 +145,6 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  // Delete flight
   deleteFlight() {
     if (!this.deleteFlightId) {
       this.flightMessage = 'Enter flight number to delete';
@@ -174,14 +171,12 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   addFlight() {
-    // Validate required fields
     if (!this.newFlight.flightNumber || !this.newFlight.airline || !this.newFlight.departureAirport || !this.newFlight.arrivalAirport || !this.newFlight.departureTime || !this.newFlight.arrivalTime || !this.newFlight.status) {
       this.flightMessage = 'Enter the data first';
       this.flightMessageType = 'error';
       setTimeout(() => this.flightMessage = '', 3000);
       return;
     }
-    // Validate at least one seat and all seat fields
     for (let i = 0; i < this.newFlight.seats.length; i++) {
       const seat = this.newFlight.seats[i];
       if (!seat.seatId || !seat.seatClass || seat.noOfSeats == null || seat.availableSeats == null || seat.price == null || seat.seatClass.trim() === '') {
@@ -192,7 +187,6 @@ export class AdminDashboardComponent implements OnInit {
       }
     }
 
-    // Format departureTime and arrivalTime to 'yyyy-MM-dd HH:mm:ss'
     const pad = (n: number) => n < 10 ? '0' + n : n;
     const dtDep = new Date(this.newFlight.departureTime);
     const dtArr = new Date(this.newFlight.arrivalTime);
@@ -200,14 +194,12 @@ export class AdminDashboardComponent implements OnInit {
       + pad(dtDep.getHours()) + ':' + pad(dtDep.getMinutes()) + ':' + pad(dtDep.getSeconds());
     const formattedArr = dtArr.getFullYear() + '-' + pad(dtArr.getMonth() + 1) + '-' + pad(dtArr.getDate()) + ' '
       + pad(dtArr.getHours()) + ':' + pad(dtArr.getMinutes()) + ':' + pad(dtArr.getSeconds());
-    // Ensure seatId is set for all seats
     const seatsWithId = this.newFlight.seats.map((seat, idx) => ({
       ...seat,
       seatId: seat.seatId || idx + 1
     }));
     const flightToSend = { ...this.newFlight, departureTime: formattedDep, arrivalTime: formattedArr, seats: seatsWithId };
 
-    // Send to backend and show acknowledgment based on response
     const token = localStorage.getItem('jwt');
     const headers: Record<string, string> = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -223,7 +215,6 @@ export class AdminDashboardComponent implements OnInit {
         this.newFlight = this.getEmptyFlight();
       },
       error: (err: any) => {
-        // Log error but still show success message
         console.error('Backend error:', err);
         this.flightMessage = 'Flight added successfully!';
         this.flightMessageType = 'error';
@@ -237,7 +228,6 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  // Toggle forms
   openAddFlight() {
     this.showAddFlight = true;
     this.showUpdateStatus = false;
@@ -262,10 +252,6 @@ export class AdminDashboardComponent implements OnInit {
     this.showUpdateSeats = false;
     this.showDeleteFlight = true;
   }
-  // ...existing code for updateFlightStatus, updateAvailableSeats, deleteFlight, addFlight, and form toggles...
-
-
-
   logout() {
     localStorage.removeItem('jwt');
     this.router.navigate(['/admin-login']);

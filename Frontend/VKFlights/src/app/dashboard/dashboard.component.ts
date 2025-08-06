@@ -41,7 +41,6 @@ export class DashboardComponent implements OnInit {
       this.error = 'No authentication token found. Please log in.';
       return;
     }
-    // Decode JWT to get user id (payload is base64 encoded)
     let userId = '';
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
@@ -54,7 +53,6 @@ export class DashboardComponent implements OnInit {
       this.error = 'Could not extract user id from token.';
       return;
     }
-    // Fetch user by id
     this.http.get<User>(`${environment.apiUrlLogin}getUser/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
@@ -87,7 +85,6 @@ export class DashboardComponent implements OnInit {
   logout() {
     const token = localStorage.getItem('jwt');
     if (token) {
-      // Optionally call backend to invalidate session/token (if supported)
       this.http.post(`${environment.apiUrlLogin}logout`, {}, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'text'
@@ -99,5 +96,4 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('jwt');
     window.location.href = '/login';
   }
-// removed extra closing brace
 }

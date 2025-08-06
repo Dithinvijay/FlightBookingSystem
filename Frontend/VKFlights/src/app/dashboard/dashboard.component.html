@@ -30,7 +30,6 @@
         </li>
       </ul>
       <button class="update-btn" type="submit" [disabled]="userForm.invalid || updating">Update</button>
-      <!-- Check-In button moved to header -->
       <span *ngIf="updateSuccess" class="update-success">Profile updated successfully!</span>
       <span *ngIf="updateError" class="update-error">{{ updateError }}</span>
     </form>

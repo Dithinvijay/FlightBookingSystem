@@ -40,7 +40,6 @@ export class PaymentComponent implements OnInit {
   error: string = '';
 
   ngOnInit() {
-    // Get booking data from navigation state or localStorage
     const nav = window.history.state;
     if (nav && nav.flight && nav.seatClass && nav.noOfSeats) {
       this.bookingData = nav;
@@ -73,9 +72,7 @@ export class PaymentComponent implements OnInit {
 
   payNow() {
     this.paymentStatus = 'processing';
-    // Simulate payment gateway
     setTimeout(() => {
-      // On real payment success, call backend to add booking to DB
       const booking = {
         flightNumber: this.bookingData.flight.flightNumber,
         seatClass: this.bookingData.seatClass,
@@ -96,7 +93,7 @@ export class PaymentComponent implements OnInit {
           setTimeout(() => {
             this.generateTicketPDF();
             this.router.navigate(['/']);
-          }, 1500); // Short delay for user to see success message
+          }, 1500); 
         },
         error: (err) => {
           this.paymentStatus = 'failed';
@@ -131,17 +128,13 @@ export class PaymentComponent implements OnInit {
     doc.text('Passengers:', 15, 132);
     let y = 140;
     booking.passengers.forEach((p: any, i: number) => {
-      // Add passengerId and bookingId if available
       const passengerId = p.passengerId ? ` | Passenger ID: ${p.passengerId}` : '';
       const bookingId = booking.passengerBookingId ? ` | Booking ID: ${booking.passengerBookingId}` : '';
       doc.text(`${i + 1}. Name: ${p.passengerName} | Gender: ${p.gender} | Age: ${p.age}${passengerId}${bookingId}`, 18, y);
       y += 8;
     });
-    // Open the PDF in a new tab
     const pdfBlob = doc.output('blob');
     const pdfUrl = URL.createObjectURL(pdfBlob);
     window.open(pdfUrl, '_blank');
-    // Optionally, also trigger download
-    // doc.save('VKFlights-Ticket.pdf');
   }
 }
