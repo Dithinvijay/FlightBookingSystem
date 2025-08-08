@@ -82,7 +82,7 @@
       <div *ngIf="showDeleteFlight" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Delete Flight</h4>
         <form (ngSubmit)="deleteFlight()" #deleteFlightForm="ngForm">
-          <input type="text" placeholder="Flight Number" [(ngModel)]="deleteFlightId" name="deleteFlightId" required />
+          <input type="text" placeholder="Flight Id" [(ngModel)]="deleteFlightId" name="deleteFlightId" required />
           <button type="submit" class="admin-action-btn delete">Delete Flight</button>
           <button type="button" class="admin-cancel-btn" (click)="showDeleteFlight = false">Cancel</button>
         </form>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent {
   searchError: string = '';
   todayDateString: string = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -37,7 +38,7 @@ export class HomeComponent {
       this.searchError = 'Please login first to search for flights.';
       setTimeout(() => {
         this.router.navigate(['/login']);
-      }, 1800); 
+      }, 1800);
       return;
     }
     if (!this.fromValue || !this.toValue || !this.dateValue) {
@@ -52,21 +53,40 @@ export class HomeComponent {
       this.searchError = 'Departure date cannot be in the past.';
       return;
     }
+    // Ensure date is in yyyy-MM-dd format
+    const dateObj = new Date(this.dateValue);
+    const yyyy = dateObj.getFullYear();
+    const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const dd = String(dateObj.getDate()).padStart(2, '0');
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
     this.isActive = true;
     this.isLoading = true;
-    localStorage.setItem('flightSearch', JSON.stringify({
-      source: this.fromValue,
-      destination: this.toValue,
-      date: this.dateValue
-    }));
-    setTimeout(() => {
-      this.isActive = false;
-      this.isFinished = true;
-      this.isLoading = false;
-      setTimeout(() => {
-        this.router.navigate(['/flights-dashboard']);
-      }, 800); 
-    }, 1800); 
+    const url = `http://localhost:8080/FMS/flights/${this.fromValue}/${this.toValue}/${formattedDate}`;
+    console.log('Requesting flights from:', url);
+    const headers = { headers: { 'Authorization': `Bearer ${token}` } };
+    this.http.get<any[]>(url, headers).subscribe({
+      next: (flights) => {
+        console.log('Flights received:', flights);
+        localStorage.setItem('flightSearchResults', JSON.stringify(flights));
+        localStorage.setItem('flightSearch', JSON.stringify({
+          source: this.fromValue,
+          destination: this.toValue,
+          date: formattedDate
+        }));
+        this.isActive = false;
+        this.isFinished = true;
+        this.isLoading = false;
+        setTimeout(() => {
+          this.router.navigate(['/flights-dashboard']);
+        }, 1800);
+      },
+      error: (err) => {
+        this.isActive = false;
+        this.isLoading = false;
+        this.searchError = ('No flights found for your search.');
+        console.error('Flight search error:', err);
+      }
+    });
   }
 
   swapFromTo() {

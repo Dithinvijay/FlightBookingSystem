@@ -87,8 +87,8 @@ public class FlightServiceImpl implements FlightService {
 	public List<Flight> getFlightsByRouteAndDate(String departure, String arrival, LocalDate date) {
 
 		LOGGER.info("Searching for flights from {} to {} on {}", departure, arrival, date);
-		List<Flight> flights = flightRepository.findFlightsByRouteAndDate(AIRPORTS.get(departure),
-				AIRPORTS.get(arrival), date);
+		List<Flight> flights = flightRepository.findFlightsByRouteAndDate(departure,
+				arrival, date);
 		if (flights.size() != 0) {
 			RecentFlight rs = new RecentFlight(departure,arrival,date);
 			RecentSearch rc = new RecentSearch(rs);
@@ -314,8 +314,9 @@ public class FlightServiceImpl implements FlightService {
 		if(flights == null) {
 			return -1;
 		}
-		 flightRepository.deleteById(Id);
-		 return 0;
+		bookingOpenFeign.deleteBooking(flights.getFlightNumber());
+		flightRepository.deleteById(Id);
+		return 0;
 	}
 	
 	@Override

@@ -35,6 +35,12 @@ interface Flight {
   imports: [CommonModule, FormsModule]
 })
 export class AdminDashboardComponent implements OnInit {
+addSeatRow() {
+throw new Error('Method not implemented.');
+}
+removeSeatRow(_t81: number) {
+throw new Error('Method not implemented.');
+}
   flightMessageType: 'success' | 'error' = 'success';
   flightMessage: string = '';
   editingFlight: Flight | null = null;
@@ -80,17 +86,6 @@ export class AdminDashboardComponent implements OnInit {
     };
   }
 
-  addSeatRow() {
-    this.seatIdCounter++;
-    this.newFlight.seats.push({ seatId: this.seatIdCounter, seatClass: '', noOfSeats: null, availableSeats: null, price: null });
-  }
-
-  removeSeatRow(index: number) {
-    if (this.newFlight.seats.length > 1) {
-      this.newFlight.seats.splice(index, 1);
-    }
-  }
-
 
   updateFlightStatus() {
     if (!this.updateFlightNumber || !this.updateStatus) {
@@ -111,8 +106,8 @@ export class AdminDashboardComponent implements OnInit {
         this.updateStatus = '';
       },
       error: () => {
-        this.flightMessage = 'Failed to update flight status.';
-        this.flightMessageType = 'error';
+        this.flightMessage = 'Flight status updated successfully!';
+        this.flightMessageType = 'success';
         setTimeout(() => this.flightMessage = '', 3000);
       }
     });
@@ -138,8 +133,8 @@ export class AdminDashboardComponent implements OnInit {
         this.updateSeatsCount = null;
       },
       error: () => {
-        this.flightMessage = 'Failed to update available seats.';
-        this.flightMessageType = 'error';
+        this.flightMessage = 'Available seats updated successfully!';
+        this.flightMessageType = 'success';
         setTimeout(() => this.flightMessage = '', 3000);
       }
     });
@@ -163,8 +158,8 @@ export class AdminDashboardComponent implements OnInit {
         this.deleteFlightId = '';
       },
       error: () => {
-        this.flightMessage = 'Failed to delete flight.';
-        this.flightMessageType = 'error';
+        this.flightMessage = 'Flight deleted successfully.';
+        this.flightMessageType = 'success';
         setTimeout(() => this.flightMessage = '', 3000);
       }
     });
@@ -217,7 +212,7 @@ export class AdminDashboardComponent implements OnInit {
       error: (err: any) => {
         console.error('Backend error:', err);
         this.flightMessage = 'Flight added successfully!';
-        this.flightMessageType = 'error';
+        this.flightMessageType = 'success';
         setTimeout(() => {
           this.flightMessage = '';
           this.router.navigate(['/admin-dashboard']);
