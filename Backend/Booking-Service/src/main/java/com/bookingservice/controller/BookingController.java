@@ -117,8 +117,26 @@ public class BookingController {
 //		    Map<String, Object> responseBody = razorpayResponse.getBody();
 //
 //		    String orderId = (String) responseBody.get("order_id");
-				
-			emailService.sendEmail(booking.getEmail(), "Tickets Confirmation", "Tickets Booked successfully Amount Paid "+price+"\n\n Passenger Details are as of below : \n\n"+booking.getPassengers());
+			
+			String template = "🎟️ Congratulations! Your Tickets Are Confirmed! 🎉\n"
+					+ "\n"
+					+ "Dear "+booking.getPassengers().get(0).getPassengerName()
+					+ "\n"
+					+ "📍 Flight Number: "+booking.getFlightNumber()
+					+ "\n"
+					+ "📅 Date: "+booking.getBookingDate()
+					+ "\n"
+					+ "🪑 Seats: "+booking.getPassengers().size()
+					+"\n"
+					+ "🎟️ PassengerDetails - "+booking.getPassengers()
+					+ "\n"
+					+ "💰 Amount Paid: "+price
+					+ "\n"
+					+ "✅ Thank you for choosing us! Your journey awaits.\n"
+					+ "\n"
+					+ "Best Regards,\n"
+					+ "✈️ VK-Flights";
+			emailService.sendEmail(booking.getEmail(), "Tickets Confirmation", template);
 			return ResponseEntity.ok("Order created successfully. Please pay amount "+price + " to book");
 			//return ResponseEntity.ok("Please pay "+price+" for confirming the booking");
 		//	return ResponseEntity.status(HttpStatus.CREATED).body("Booking Succesful. Your Booking_Id is "+booking.getBookingId());

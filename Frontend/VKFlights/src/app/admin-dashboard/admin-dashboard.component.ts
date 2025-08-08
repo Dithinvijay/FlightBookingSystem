@@ -36,10 +36,22 @@ interface Flight {
 })
 export class AdminDashboardComponent implements OnInit {
 addSeatRow() {
-throw new Error('Method not implemented.');
+  // Add a new seat row with incremented seatId
+  this.seatIdCounter++;
+  this.newFlight.seats.push({
+    seatId: this.seatIdCounter,
+    seatClass: '',
+    noOfSeats: null,
+    availableSeats: null,
+    price: null
+  });
 }
-removeSeatRow(_t81: number) {
-throw new Error('Method not implemented.');
+
+removeSeatRow(index: number) {
+  // Remove the seat row at the given index, but keep at least one row
+  if (this.newFlight.seats.length > 1) {
+    this.newFlight.seats.splice(index, 1);
+  }
 }
   flightMessageType: 'success' | 'error' = 'success';
   flightMessage: string = '';
