@@ -10,7 +10,7 @@
 .about-hero {
   width: 100vw;
   min-height: 340px;
-  background: var(--background);
+  background: linear-gradient(120deg, #e3f6ff 0%, #b9d1d8 60%, #76b2b9 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,27 +19,22 @@
   margin-bottom: 2.5rem;
 }
 .about-hero-img {
-  width: 100vw;
+  border-radius: 10px;
+  width: 99vw;
   max-height: 340px;
   object-fit: cover;
-  filter: brightness(0.75);
+  filter: brightness(1);
 }
 .about-hero-content {
   position: absolute;
   left: 0; right: 0; top: 0; bottom: 0;
   display: flex;
+  border-radius: 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #fff;
   text-shadow: 0 4px 24px #17315499;
-  background: rgba(23,49,84,0.25);
-}
-.about-hero-content h1 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  margin-bottom: 1.2rem;
-  letter-spacing: 2px;
 }
 .about-hero-content p {
   font-size: 1.3rem;
@@ -49,7 +44,7 @@
 }
 
 .about-section {
-  background: var(--background);
+  background: #EDF6F7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +56,7 @@
   flex-direction: row;
 }
 .about-feature-card {
-  background: var(--white);
+  background: #FAFCFB;
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(23,49,84,0.10);
   padding: 2rem 2.5rem;
@@ -71,7 +66,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: var(--secondary);
+  color: #173154;
   margin-bottom: 2rem;
 }
 .about-feature-card img {
@@ -83,7 +78,7 @@
   margin-bottom: 1.2rem;
 }
 .about-feature-card h3 {
-  color: var(--primary);
+  color: #76B2B9;
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
@@ -108,7 +103,7 @@
   justify-content: center;
 }
 .about-values-content h2 {
-  color: var(--primary);
+  color: #76B2B9;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 1.2rem;
@@ -119,7 +114,7 @@
 }
 .about-values-content li {
   margin-bottom: 0.5rem;
-  color: var(--secondary);
+  color: #173154;
   font-weight: 500;
   font-size: 1.08rem;
 }
@@ -134,7 +129,7 @@
 }
 
 .about-cta {
-  background: var(--primary);
+  background: #76B2B9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,12 +141,12 @@
   box-shadow: 0 4px 24px rgba(23,49,84,0.10);
   padding: 2.5rem 3rem;
   text-align: center;
-  color: var(--secondary);
+  color: #173154;
   max-width: 500px;
   width: 100%;
 }
 .about-cta-card h2 {
-  color: var(--primary);
+  color: #76B2B9;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 1.2rem;
@@ -179,7 +174,7 @@
 
 @media (max-width: 900px) {
   .about-hero-img {
-    max-height: 220px;
+    max-height: 300px;
   }
   .about-section, .about-values {
     flex-direction: column;

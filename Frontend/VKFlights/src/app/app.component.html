@@ -1,9 +1,9 @@
 <nav class="navbar" *ngIf="!isAdminDashboard()">
   <div class="navbar-brand">
     <a routerLink="/" class="navbar-logo-link">
-      <img src="assets/websitelogo.png" alt="VKFlights Logo" class="navbar-logo" style="height:48px; width:auto; border-radius:8px; vertical-align:middle;" />
+      <img src="assets/websitelogo.png" alt="VKFlights Logo" class="navbar-logo" />
     </a>
-    <div class="navbar-title"><i>VK-Flights</i></div>
+    
   </div>
   <ul class="navbar-menu">
     <li><a routerLink="/" routerLinkActive="">Home</a></li>
@@ -16,7 +16,5 @@
       </a>
     </li>
   </ul>
-  <span *ngIf="isLoggedIn" class="login-status" style="color: black;"><b><i>Logged in</i></b></span>
-  <span *ngIf="!isLoggedIn" class="login-status" style="color: black;"><b><i>Logged out</i></b></span>
 </nav>
 <router-outlet></router-outlet>

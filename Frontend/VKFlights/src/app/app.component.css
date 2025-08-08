@@ -43,6 +43,7 @@ body {
   font-size: 1.2rem;
   box-shadow: 0 4px 24px 0 rgba(23,49,84,0.13);
   border-bottom: 3px solid var(--primary);
+  border-radius: 30px;
   transition: box-shadow 0.3s;
   overflow-x: auto;
   white-space: nowrap;
@@ -56,6 +57,13 @@ body {
 .navbar-brand {
   display: flex;
   align-items: center;
+}
+.navbar-logo {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  vertical-align: middle;
+  margin-right: 1.2rem;
 }
 .navbar-logo-link {
   display: flex;
