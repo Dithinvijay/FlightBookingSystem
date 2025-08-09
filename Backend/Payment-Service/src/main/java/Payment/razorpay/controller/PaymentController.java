@@ -11,6 +11,7 @@ import Payment.razorpay.model.Payment;
 import Payment.razorpay.repository.PaymentRepository;
 import Payment.razorpay.service.PaymentService;
 
+@CrossOrigin(origins = "http://localhost:2025")
 @RestController
 @RequestMapping("/api/payments")
 public class PaymentController {

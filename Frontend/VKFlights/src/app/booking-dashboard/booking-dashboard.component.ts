@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { environment } from '../../environments/environment';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-booking-dashboard',
   templateUrl: './booking-dashboard.component.html',
@@ -121,7 +121,97 @@ export class BookingDashboardComponent implements OnInit {
       passengers,
       flight: this.flight
     };
-    localStorage.setItem('pendingBooking', JSON.stringify(bookingData));
-    this.router.navigate(['/payment'], { state: bookingData });
+    // Call backend Razorpay order API
+    const orderPayload = {
+      amount: this.calculateTotalPrice(seatClass, noOfSeats), // amount in INR paise
+      currency: 'INR',
+      receipt: `rcptid_${Date.now()}`,
+      notes: { email, flightNumber: this.flight.flightNumber }
+    };
+    this.http.post<any>('http://localhost:1004/api/payments/orders', orderPayload).subscribe({
+      next: (order) => {
+        this.launchRazorpay(order, bookingData);
+      },
+      error: (err) => {
+        this.error = 'Failed to initiate payment. Please try again.';
+      }
+    });
+  }
+
+  launchRazorpay(order: any, bookingData: any) {
+    if (!order?.razorpayOrderId || !order?.amount) {
+      this.error = 'Payment order not found or invalid.';
+      return;
+    }
+    const options = {
+      key: 'rzp_test_Krj1zUQFRHYumw',
+      amount: order.amount * 100,
+      currency: order.currency || 'INR',
+      name: 'VKFlights',
+      description: 'Flight Booking Payment',
+      order_id: order.razorpayOrderId,
+      handler: (response: any) => {
+        // Always generate PDF and navigate home, regardless of payment status
+        this.onPaymentComplete(bookingData);
+      },
+      prefill: { email: bookingData.email || '' },
+      theme: { color: '#1976d2' }
+    };
+    const rzp = new (window as any).Razorpay(options);
+    rzp.on('payment.failed', (_: any) => {
+      // Always generate PDF and navigate home, regardless of payment status
+      this.onPaymentComplete(bookingData);
+    });
+    rzp.open();
+  }
+
+  onPaymentComplete(bookingData: any) {
+    this.generateTicketPDFAndNavigate(bookingData);
+  }
+
+  generateTicketPDFAndNavigate(bookingData: any) {
+    const doc = new jsPDF();
+    const b = bookingData;
+    doc.setFontSize(18);
+    doc.text('VKFlights - E-Ticket', 70, 15);
+    doc.setFontSize(12);
+    doc.text('Booking Details:', 15, 30);
+    doc.text(`Flight Number: ${b.flight.flightNumber}`, 15, 40);
+    doc.text(`Airline: ${b.flight.airline}`, 15, 48);
+    doc.text(`From: ${b.flight.departureAirport}`, 15, 56);
+    doc.text(`To: ${b.flight.arrivalAirport}`, 15, 64);
+    doc.text(`Departure: ${b.flight.departureTime}`, 15, 72);
+    doc.text(`Arrival: ${b.flight.arrivalTime}`, 15, 80);
+    doc.text(`Seat Class: ${b.seatClass}`, 15, 88);
+    doc.text(`No. of Seats: ${b.noOfSeats}`, 15, 96);
+    doc.text(`Total Price: ₹${this.calculateTotalPrice(b.seatClass, b.noOfSeats) / 100}`, 15, 104);
+    doc.text(`Booking Email: ${b.email}`, 15, 112);
+    doc.text(`Passenger Booking ID: ${b.passengerBookingId}`, 15, 120);
+    doc.text('Passengers:', 15, 132);
+    let y = 140;
+    b.passengers.forEach((p: any, i: number) => {
+      doc.text(
+        `${i + 1}. Name: ${p.passengerName} | Gender: ${p.gender} | Age: ${p.age}` +
+          (p.passengerId ? ` | Passenger ID: ${p.passengerId}` : ''),
+        18,
+        y
+      );
+      y += 8;
+    });
+    const pdfBlob = doc.output('blob');
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, '_blank');
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 500);
+  }
+
+  calculateTotalPrice(seatClass: string, noOfSeats: number): number {
+    if (!this.flight || !this.flight.seats) return 0;
+    const seat = this.flight.seats.find((s: any) => s.seatClass === seatClass);
+    if (seat) {
+      return seat.price * noOfSeats * 100; 
+    }
+    return 0;
   }
 }
