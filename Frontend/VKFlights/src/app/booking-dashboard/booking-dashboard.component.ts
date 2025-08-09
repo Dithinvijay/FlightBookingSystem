@@ -121,9 +121,8 @@ export class BookingDashboardComponent implements OnInit {
       passengers,
       flight: this.flight
     };
-    // Call backend Razorpay order API
     const orderPayload = {
-      amount: this.calculateTotalPrice(seatClass, noOfSeats), // amount in INR paise
+      amount: this.calculateTotalPrice(seatClass, noOfSeats), 
       currency: 'INR',
       receipt: `rcptid_${Date.now()}`,
       notes: { email, flightNumber: this.flight.flightNumber }
@@ -151,7 +150,6 @@ export class BookingDashboardComponent implements OnInit {
       description: 'Flight Booking Payment',
       order_id: order.razorpayOrderId,
       handler: (response: any) => {
-        // Always generate PDF and navigate home, regardless of payment status
         this.onPaymentComplete(bookingData);
       },
       prefill: { email: bookingData.email || '' },
@@ -159,14 +157,26 @@ export class BookingDashboardComponent implements OnInit {
     };
     const rzp = new (window as any).Razorpay(options);
     rzp.on('payment.failed', (_: any) => {
-      // Always generate PDF and navigate home, regardless of payment status
       this.onPaymentComplete(bookingData);
     });
     rzp.open();
   }
 
   onPaymentComplete(bookingData: any) {
-    this.generateTicketPDFAndNavigate(bookingData);
+    const token = localStorage.getItem('jwt');
+    const headers = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
+    this.http.post<any>(`${environment.apiUrlLogin}BMS/bookTickets/${bookingData.flightNumber}/${bookingData.seatClass}/${bookingData.noOfSeats}`, {
+      email: bookingData.email,
+      passengerBookingId: bookingData.passengerBookingId,
+      passengers: bookingData.passengers
+    }, headers).subscribe({
+      next: () => {
+        this.generateTicketPDFAndNavigate(bookingData);
+      },
+      error: () => {
+        this.generateTicketPDFAndNavigate(bookingData);
+      }
+    });
   }
 
   generateTicketPDFAndNavigate(bookingData: any) {
