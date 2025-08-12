@@ -63,6 +63,7 @@
         <form (ngSubmit)="updateFlightStatus()" #updateStatusForm="ngForm" style="margin-bottom: 10px;">
           <input type="text" placeholder="Flight Number" [(ngModel)]="updateFlightNumber" name="updateFlightNumber" required />
           <input type="text" placeholder="New Status" [(ngModel)]="updateStatus" name="updateStatus" required />
+          <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="submit" class="admin-auth-gradient-btn">Update Status</button>
           <button type="button" class="admin-cancel-btn" (click)="showUpdateStatus = false">Cancel</button>
         </form>
@@ -74,6 +75,7 @@
           <input type="text" placeholder="Flight Number" [(ngModel)]="updateSeatsFlightNumber" name="updateSeatsFlightNumber" required />
           <input type="text" placeholder="Seat Class (e.g. Economy)" [(ngModel)]="updateSeatsClass" name="updateSeatsClass" required />
           <input type="number" placeholder="Seats to Book" [(ngModel)]="updateSeatsCount" name="updateSeatsCount" required />
+          <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="submit" class="admin-auth-gradient-btn">Update Available Seats</button>
           <button type="button" class="admin-cancel-btn" (click)="showUpdateSeats = false">Cancel</button>
         </form>
@@ -84,6 +86,7 @@
         <form (ngSubmit)="deleteFlight()" #deleteFlightForm="ngForm">
           <input type="text" placeholder="Flight Id" [(ngModel)]="deleteFlightId" name="deleteFlightId" required />
           <button type="submit" class="admin-action-btn delete">Delete Flight</button>
+          <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="button" class="admin-cancel-btn" (click)="showDeleteFlight = false">Cancel</button>
         </form>
       </div>

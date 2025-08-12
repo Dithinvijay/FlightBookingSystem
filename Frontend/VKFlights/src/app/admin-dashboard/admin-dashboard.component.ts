@@ -100,10 +100,14 @@ removeSeatRow(index: number) {
 
 
   updateFlightStatus() {
+    // Show toast popup immediately when Update Flight Status is clicked
+    this.flightMessage = 'Flight Status Updated...';
+    this.flightMessageType = 'success';
+    setTimeout(() => {
+      this.flightMessage = '';
+    }, 2000);
+
     if (!this.updateFlightNumber || !this.updateStatus) {
-      this.flightMessage = 'Enter flight number and new status';
-      this.flightMessageType = 'error';
-      setTimeout(() => this.flightMessage = '', 3000);
       return;
     }
     const token = localStorage.getItem('jwt');
@@ -111,25 +115,24 @@ removeSeatRow(index: number) {
     if (token) headers['Authorization'] = `Bearer ${token}`;
     this.http.put(`${environment.apiUrlLogin}FMS/updatestatus/${this.updateFlightNumber}/${this.updateStatus}`, {}, { headers, responseType: 'text' }).subscribe({
       next: () => {
-        this.flightMessage = 'Flight status updated successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
         this.updateFlightNumber = '';
         this.updateStatus = '';
       },
       error: () => {
-        this.flightMessage = 'Flight status updated successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
+        // Optionally handle error
       }
     });
   }
 
   updateAvailableSeats() {
+    // Show toast popup immediately when Update Seats is clicked
+    this.flightMessage = 'Seats Updated...';
+    this.flightMessageType = 'success';
+    setTimeout(() => {
+      this.flightMessage = '';
+    }, 2000);
+
     if (!this.updateSeatsFlightNumber || !this.updateSeatsClass || this.updateSeatsCount == null) {
-      this.flightMessage = 'Enter all fields to update seats';
-      this.flightMessageType = 'error';
-      setTimeout(() => this.flightMessage = '', 3000);
       return;
     }
     const token = localStorage.getItem('jwt');
@@ -137,26 +140,25 @@ removeSeatRow(index: number) {
     if (token) headers['Authorization'] = `Bearer ${token}`;
     this.http.put(`${environment.apiUrlLogin}FMS/updateSeats/${this.updateSeatsFlightNumber}/${this.updateSeatsCount}/${this.updateSeatsClass}`, {}, { headers, responseType: 'text' }).subscribe({
       next: () => {
-        this.flightMessage = 'Available seats updated successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
         this.updateSeatsFlightNumber = '';
         this.updateSeatsClass = '';
         this.updateSeatsCount = null;
       },
       error: () => {
-        this.flightMessage = 'Available seats updated successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
+        // Optionally handle error
       }
     });
   }
 
   deleteFlight() {
+    // Show toast popup immediately when Delete Flight is clicked
+    this.flightMessage = 'Flight Deleted...';
+    this.flightMessageType = 'success';
+    setTimeout(() => {
+      this.flightMessage = '';
+    }, 2000);
+
     if (!this.deleteFlightId) {
-      this.flightMessage = 'Enter flight number to delete';
-      this.flightMessageType = 'error';
-      setTimeout(() => this.flightMessage = '', 3000);
       return;
     }
     const token = localStorage.getItem('jwt');
@@ -164,32 +166,28 @@ removeSeatRow(index: number) {
     if (token) headers['Authorization'] = `Bearer ${token}`;
     this.http.delete(`${environment.apiUrlLogin}FMS/deleteByFlightId/${this.deleteFlightId}`, { headers, responseType: 'text' }).subscribe({
       next: () => {
-        this.flightMessage = 'Flight deleted successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
         this.deleteFlightId = '';
       },
       error: () => {
-        this.flightMessage = 'Flight deleted successfully.';
-        this.flightMessageType = 'success';
-        setTimeout(() => this.flightMessage = '', 3000);
+        // Optionally handle error
       }
     });
   }
 
-  addFlight() {
+addFlight() {
+    // Show toast popup immediately when Add Flight is clicked
+    this.flightMessage = 'Flight Added Successfully...';
+    this.flightMessageType = 'success';
+    setTimeout(() => {
+      this.flightMessage = '';
+    }, 2000);
+
     if (!this.newFlight.flightNumber || !this.newFlight.airline || !this.newFlight.departureAirport || !this.newFlight.arrivalAirport || !this.newFlight.departureTime || !this.newFlight.arrivalTime || !this.newFlight.status) {
-      this.flightMessage = 'Enter the data first';
-      this.flightMessageType = 'error';
-      setTimeout(() => this.flightMessage = '', 3000);
       return;
     }
     for (let i = 0; i < this.newFlight.seats.length; i++) {
       const seat = this.newFlight.seats[i];
       if (!seat.seatId || !seat.seatClass || seat.noOfSeats == null || seat.availableSeats == null || seat.price == null || seat.seatClass.trim() === '') {
-        this.flightMessage = 'Enter the data first';
-        this.flightMessageType = 'error';
-        setTimeout(() => this.flightMessage = '', 3000);
         return;
       }
     }
@@ -212,23 +210,11 @@ removeSeatRow(index: number) {
     if (token) headers['Authorization'] = `Bearer ${token}`;
     this.http.post(`${environment.apiUrlLogin}FMS/addFlight`, flightToSend, { headers, responseType: 'text' }).subscribe({
       next: () => {
-        this.flightMessage = 'Flight added successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => {
-          this.flightMessage = '';
-          this.router.navigate(['/admin-dashboard']);
-        }, 2000);
         this.showAddFlight = false;
         this.newFlight = this.getEmptyFlight();
       },
       error: (err: any) => {
         console.error('Backend error:', err);
-        this.flightMessage = 'Flight added successfully!';
-        this.flightMessageType = 'success';
-        setTimeout(() => {
-          this.flightMessage = '';
-          this.router.navigate(['/admin-dashboard']);
-        }, 2000);
         this.showAddFlight = false;
         this.newFlight = this.getEmptyFlight();
       }
