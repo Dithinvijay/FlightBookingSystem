@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>17</java.version>
 				<spring-cloud.version>2024.0.0</spring-cloud.version>
+						<sonar.host.url>http://localhost:9080</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,7 +98,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>4.0.0.4121</version>
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
+<!--00dce03af26d6553207de98c279a16a0728107e1-->

@@ -33,21 +33,43 @@
       <div *ngIf="showAddFlight" class="add-flight-form-card">
         <div *ngIf="flightMessage" [ngClass]="{'admin-alert-message': true, 'admin-alert-success': flightMessageType === 'success', 'admin-alert-error': flightMessageType === 'error'}">{{ flightMessage }}</div>
         <form (ngSubmit)="addFlight()" #addFlightForm="ngForm">
-          <input type="text" placeholder="Flight Number" [(ngModel)]="newFlight.flightNumber" name="flightNumber" required />
-          <input type="text" placeholder="Airline" [(ngModel)]="newFlight.airline" name="airline" required />
-          <input type="text" placeholder="Departure Airport" [(ngModel)]="newFlight.departureAirport" name="departureAirport" required />
-          <input type="text" placeholder="Arrival Airport" [(ngModel)]="newFlight.arrivalAirport" name="arrivalAirport" required />
-          <input type="datetime-local" placeholder="Departure Time" [(ngModel)]="newFlight.departureTime" name="departureTime" required />
-          <input type="datetime-local" placeholder="Arrival Time" [(ngModel)]="newFlight.arrivalTime" name="arrivalTime" required />
-          <input type="text" placeholder="Status" [(ngModel)]="newFlight.status" name="status" required />
+          <input type="text" placeholder="Flight Number" [(ngModel)]="newFlight.flightNumber" name="flightNumber" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors.flightNumber" required />
+          <div *ngIf="addFlightErrors.flightNumber" class="validation-error">{{ addFlightErrors.flightNumber }}</div>
+          
+          <input type="text" placeholder="Airline" [(ngModel)]="newFlight.airline" name="airline" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors.airline" required />
+          <div *ngIf="addFlightErrors.airline" class="validation-error">{{ addFlightErrors.airline }}</div>
+          
+          <input type="text" placeholder="Departure Airport" [(ngModel)]="newFlight.departureAirport" name="departureAirport" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors.departureAirport" required />
+          <div *ngIf="addFlightErrors.departureAirport" class="validation-error">{{ addFlightErrors.departureAirport }}</div>
+          
+          <input type="text" placeholder="Arrival Airport" [(ngModel)]="newFlight.arrivalAirport" name="arrivalAirport" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors.arrivalAirport" required />
+          <div *ngIf="addFlightErrors.arrivalAirport" class="validation-error">{{ addFlightErrors.arrivalAirport }}</div>
+          
+          <input type="datetime-local" placeholder="Departure Time" [(ngModel)]="newFlight.departureTime" name="departureTime" (change)="clearAddFlightErrors()" [class.error]="addFlightErrors.departureTime" required />
+          <div *ngIf="addFlightErrors.departureTime" class="validation-error">{{ addFlightErrors.departureTime }}</div>
+          
+          <input type="datetime-local" placeholder="Arrival Time" [(ngModel)]="newFlight.arrivalTime" name="arrivalTime" (change)="clearAddFlightErrors()" [class.error]="addFlightErrors.arrivalTime" required />
+          <div *ngIf="addFlightErrors.arrivalTime" class="validation-error">{{ addFlightErrors.arrivalTime }}</div>
+          
+          <input type="text" placeholder="Status" [(ngModel)]="newFlight.status" name="status" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors.status" required />
+          <div *ngIf="addFlightErrors.status" class="validation-error">{{ addFlightErrors.status }}</div>
           <div class="seats-section">
             <label style="font-weight:600; margin-top:10px;">Seats:</label>
             <div *ngFor="let seat of newFlight.seats; let i = index" class="seat-row">
               <input type="number" placeholder="Seat ID" [(ngModel)]="seat.seatId" name="seatId{{i}}" style="width: 70px; font-weight: 600;" required/>
-              <input type="text" placeholder="Seat Class" [(ngModel)]="seat.seatClass" name="seatClass{{i}}" required />
-              <input type="number" placeholder="No. of Seats" [(ngModel)]="seat.noOfSeats" name="noOfSeats{{i}}" required />
-              <input type="number" placeholder="Available" [(ngModel)]="seat.availableSeats" name="availableSeats{{i}}" required />
-              <input type="number" placeholder="Price" [(ngModel)]="seat.price" name="price{{i}}" required />
+              
+              <input type="text" placeholder="Seat Class" [(ngModel)]="seat.seatClass" name="seatClass{{i}}" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors['seatClass' + i]" required />
+              <div *ngIf="addFlightErrors['seatClass' + i]" class="validation-error">{{ addFlightErrors['seatClass' + i] }}</div>
+              
+              <input type="number" placeholder="No. of Seats" [(ngModel)]="seat.noOfSeats" name="noOfSeats{{i}}" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors['noOfSeats' + i]" required />
+              <div *ngIf="addFlightErrors['noOfSeats' + i]" class="validation-error">{{ addFlightErrors['noOfSeats' + i] }}</div>
+              
+              <input type="number" placeholder="Available" [(ngModel)]="seat.availableSeats" name="availableSeats{{i}}" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors['availableSeats' + i]" required />
+              <div *ngIf="addFlightErrors['availableSeats' + i]" class="validation-error">{{ addFlightErrors['availableSeats' + i] }}</div>
+              
+              <input type="number" placeholder="Price" [(ngModel)]="seat.price" name="price{{i}}" (input)="clearAddFlightErrors()" [class.error]="addFlightErrors['price' + i]" required />
+              <div *ngIf="addFlightErrors['price' + i]" class="validation-error">{{ addFlightErrors['price' + i] }}</div>
+              
               <button type="button" (click)="removeSeatRow(i)" [disabled]="newFlight.seats.length === 1" class="remove-seat-btn">-</button>
             </div>
             <button type="button" (click)="addSeatRow()" class="add-seat-btn">+ Add Seat</button>
@@ -61,8 +83,11 @@
       <div *ngIf="showUpdateStatus" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Update Flight</h4>
         <form (ngSubmit)="updateFlightStatus()" #updateStatusForm="ngForm" style="margin-bottom: 10px;">
-          <input type="text" placeholder="Flight Number" [(ngModel)]="updateFlightNumber" name="updateFlightNumber" required />
-          <input type="text" placeholder="New Status" [(ngModel)]="updateStatus" name="updateStatus" required />
+          <input type="text" placeholder="Flight Number" [(ngModel)]="updateFlightNumber" name="updateFlightNumber" (input)="clearUpdateStatusErrors()" [class.error]="updateStatusErrors.flightNumber" required />
+          <div *ngIf="updateStatusErrors.flightNumber" class="validation-error">{{ updateStatusErrors.flightNumber }}</div>
+          
+          <input type="text" placeholder="New Status" [(ngModel)]="updateStatus" name="updateStatus" (input)="clearUpdateStatusErrors()" [class.error]="updateStatusErrors.status" required />
+          <div *ngIf="updateStatusErrors.status" class="validation-error">{{ updateStatusErrors.status }}</div>
           <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="submit" class="admin-auth-gradient-btn">Update Status</button>
           <button type="button" class="admin-cancel-btn" (click)="showUpdateStatus = false">Cancel</button>
@@ -72,9 +97,14 @@
       <div *ngIf="showUpdateSeats" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Update Available Seats</h4>
         <form (ngSubmit)="updateAvailableSeats()" #updateSeatsForm="ngForm">
-          <input type="text" placeholder="Flight Number" [(ngModel)]="updateSeatsFlightNumber" name="updateSeatsFlightNumber" required />
-          <input type="text" placeholder="Seat Class (e.g. Economy)" [(ngModel)]="updateSeatsClass" name="updateSeatsClass" required />
-          <input type="number" placeholder="Seats to Book" [(ngModel)]="updateSeatsCount" name="updateSeatsCount" required />
+          <input type="text" placeholder="Flight Number" [(ngModel)]="updateSeatsFlightNumber" name="updateSeatsFlightNumber" (input)="clearUpdateSeatsErrors()" [class.error]="updateSeatsErrors.flightNumber" required />
+          <div *ngIf="updateSeatsErrors.flightNumber" class="validation-error">{{ updateSeatsErrors.flightNumber }}</div>
+          
+          <input type="text" placeholder="Seat Class (e.g. Economy)" [(ngModel)]="updateSeatsClass" name="updateSeatsClass" (input)="clearUpdateSeatsErrors()" [class.error]="updateSeatsErrors.seatClass" required />
+          <div *ngIf="updateSeatsErrors.seatClass" class="validation-error">{{ updateSeatsErrors.seatClass }}</div>
+          
+          <input type="number" placeholder="Seats to Book" [(ngModel)]="updateSeatsCount" name="updateSeatsCount" (input)="clearUpdateSeatsErrors()" [class.error]="updateSeatsErrors.seatsCount" required />
+          <div *ngIf="updateSeatsErrors.seatsCount" class="validation-error">{{ updateSeatsErrors.seatsCount }}</div>
           <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="submit" class="admin-auth-gradient-btn">Update Available Seats</button>
           <button type="button" class="admin-cancel-btn" (click)="showUpdateSeats = false">Cancel</button>
@@ -84,7 +114,8 @@
       <div *ngIf="showDeleteFlight" class="add-flight-form-card">
         <h4 style="margin-bottom: 10px;">Delete Flight</h4>
         <form (ngSubmit)="deleteFlight()" #deleteFlightForm="ngForm">
-          <input type="text" placeholder="Flight Id" [(ngModel)]="deleteFlightId" name="deleteFlightId" required />
+          <input type="text" placeholder="Flight Id" [(ngModel)]="deleteFlightId" name="deleteFlightId" (input)="clearDeleteFlightErrors()" [class.error]="deleteFlightErrors.flightId" required />
+          <div *ngIf="deleteFlightErrors.flightId" class="validation-error">{{ deleteFlightErrors.flightId }}</div>
           <button type="submit" class="admin-action-btn delete">Delete Flight</button>
           <div *ngIf="flightMessage" class="admin-alert-message error-alert">{{ flightMessage }}</div>
           <button type="button" class="admin-cancel-btn" (click)="showDeleteFlight = false">Cancel</button>

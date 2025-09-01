@@ -31,6 +31,9 @@ public class ServiceImplTest {
 	 
 	 @Mock
 	 private BookingOpenFeign bookingOpenFeign;
+	 
+	 @Mock
+	 private com.flightservice.Repo.RecentRepo recentRepo;
 
 
 	    @InjectMocks
@@ -45,18 +48,21 @@ public class ServiceImplTest {
 
 	    @BeforeEach
 	    void setUp() {
+	        flight1 = new Flight("AI101", "Air India", "Delhi", "Mumbai", 
+	        		LocalDateTime.of(2025, 4, 1, 10, 0), LocalDateTime.of(2025, 4, 1, 12, 0), "Scheduled", 
+	                null);
+
+	        flight2 = new Flight("IG202", "IndiGo", "Mumbai", "Bangalore", 
+	        		LocalDateTime.of(2025, 4, 2, 14, 0), LocalDateTime.of(2025, 4, 2, 16, 0), "On Time", 
+	                null);
+	                
 	        seat1 = new Seat(1, "Economy", 100, 80, 5000.0, flight1);
 	        seat2 = new Seat(2, "Business", 20, 15, 15000.0, flight1);
 	        seat3 = new Seat(3, "Economy", 100, 90, 4500.0, flight2);
 	        seat4 = new Seat(4, "Business", 25, 20, 14000.0, flight2);
-
-	        flight1 = new Flight("AI101", "Air India", "Delhi", "Mumbai", 
-	        		LocalDateTime.of(2025, 4, 1, 10, 0), LocalDateTime.of(2025, 4, 1, 12, 0), "Scheduled", 
-	                Arrays.asList(seat1, seat2));
-
-	        flight2 = new Flight("IG202", "IndiGo", "Mumbai", "Bangalore", 
-	        		LocalDateTime.of(2025, 4, 2, 14, 0), LocalDateTime.of(2025, 4, 2, 16, 0), "On Time", 
-	                Arrays.asList(seat3, seat4));
+	        
+	        flight1.setSeats(Arrays.asList(seat1, seat2));
+	        flight2.setSeats(Arrays.asList(seat3, seat4));
 	    }
 
 	    @Test
@@ -70,11 +76,11 @@ public class ServiceImplTest {
 
 	    @Test
 	    void testFindBySourceAndDestination() {
-	        when(flightRepository.findByDepartureAirportAndArrivalAirport("Indira Gandhi International Airport", "Chhatrapati Shivaji Maharaj International Airport"))
+	        when(flightRepository.findByDepartureAirportAndArrivalAirport("Delhi", "Mumbai"))
 	                .thenReturn(Arrays.asList(flight1));
 	        List<Flight> flights = flightService.findBySourceAndDestination("Delhi", "Mumbai");
 	        assertEquals(1, flights.size());
-	        verify(flightRepository, times(1)).findByDepartureAirportAndArrivalAirport("Indira Gandhi International Airport", "Chhatrapati Shivaji Maharaj International Airport");
+	        verify(flightRepository, times(1)).findByDepartureAirportAndArrivalAirport("Delhi", "Mumbai");
 	    }
 
 	    @Test
@@ -106,8 +112,7 @@ public class ServiceImplTest {
 	    
 	    @Test
 	    void testGetFlightsByRouteAndDate() {
-	        // Mocking AIRPORTS HashMap
-	        when(flightRepository.findFlightsByRouteAndDate("Indira Gandhi International Airport", "Chhatrapati Shivaji Maharaj International Airport", LocalDate.of(2025, 4, 1)))
+	        when(flightRepository.findFlightsByRouteAndDate("Delhi", "Mumbai", LocalDate.of(2025, 4, 1)))
 	                .thenReturn(Arrays.asList(flight1));
 
 	        List<Flight> flights = flightService.getFlightsByRouteAndDate("Delhi", "Mumbai", LocalDate.of(2025, 4, 1));
@@ -115,7 +120,7 @@ public class ServiceImplTest {
 	        assertEquals(1, flights.size());
 	        assertEquals("AI101", flights.get(0).getFlightNumber());
 
-	        verify(flightRepository, times(1)).findFlightsByRouteAndDate("Indira Gandhi International Airport", "Chhatrapati Shivaji Maharaj International Airport", LocalDate.of(2025, 4, 1));
+	        verify(flightRepository, times(1)).findFlightsByRouteAndDate("Delhi", "Mumbai", LocalDate.of(2025, 4, 1));
 	    }
 
 

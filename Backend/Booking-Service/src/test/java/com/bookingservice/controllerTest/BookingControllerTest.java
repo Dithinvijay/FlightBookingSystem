@@ -99,7 +99,7 @@ public class BookingControllerTest {
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .content(objectMapper.writeValueAsString(booking)))
 	            .andExpect(MockMvcResultMatchers.status().isOk())
-	            .andExpect(content().string("Order created successfully. Please pay amount 150.0 Booking Successfully"));
+	            .andExpect(content().string("Order created successfully. Please pay amount 150.0 to book"));
 
 	    // Verify that the service method was called exactly once with the expected arguments
 	    verify(bookingService, times(1)).addBooking(
@@ -117,7 +117,7 @@ public class BookingControllerTest {
         when(bookingService.cancelBookingByBookingId(bookingIdToDelete)).thenReturn(1);
 
         // Act: Call the controller method via MockMvc
-        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/deleteBookingById/{bookingId}", bookingIdToDelete)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/cancelBookingById/{bookingId}", bookingIdToDelete)
                 .contentType(MediaType.APPLICATION_JSON)) // You might not need ContentType for DELETE
                 .andExpect(status().isAccepted()) // Assuming your controller returns 200 OK on success
                 .andExpect(content().string("Deleted"));
@@ -134,7 +134,7 @@ public class BookingControllerTest {
         when(bookingService.cancelBookingByBookingId(bookingIdToDelete)).thenReturn(0);
 
         // Act: Call the controller method via MockMvc
-        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/deleteBookingById/{bookingId}", bookingIdToDelete)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/cancelBookingById/{bookingId}", bookingIdToDelete)
                 .contentType(MediaType.APPLICATION_JSON)) // You might not need ContentType for DELETE
                 .andExpect(status().isBadRequest()) // Assuming your controller returns 200 OK on success
                 .andExpect(content().string("Booking Id is not available "));
@@ -237,7 +237,7 @@ public class BookingControllerTest {
 	        when(bookingService.cancelBookingByBookingId(bookingIdToDelete)).thenReturn(1);
 
 	        // Act & Assert using MockMvc for URL handling
-	        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/deleteBookingById/" + bookingIdToDelete)
+	        mockMvc.perform(MockMvcRequestBuilders.delete("/BMS/cancelBookingById/" + bookingIdToDelete)
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isAccepted()) // Expecting 202 Accepted
 	                .andExpect(content().string("Deleted"));

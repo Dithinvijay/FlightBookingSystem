@@ -31,6 +31,7 @@
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 		    <junit.jupiter.version>5.9.3</junit.jupiter.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    		<sonar.host.url>http://localhost:9080</sonar.host.url>
     <!-- Java 17 -->
 
 	</properties>
@@ -128,7 +129,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>4.0.0.4121</version>
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
+<!--75a904f6a8ebca75598325951a5b6d4e8fd900d8-->

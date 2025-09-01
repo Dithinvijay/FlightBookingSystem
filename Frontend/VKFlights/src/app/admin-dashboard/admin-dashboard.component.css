@@ -19,6 +19,25 @@
   border: 1px solid #f8bbbb;
 }
 
+.validation-error {
+  color: #d32f2f;
+  background: #fff3f3;
+  border: 1px solid #f8bbbb;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px 0 rgba(211,47,47,0.05);
+}
+
+.add-flight-form-card input.error,
+.edit-flight-form-card input.error {
+  border-color: #d32f2f !important;
+  box-shadow: 0 0 0 2px rgba(211,47,47,0.1) !important;
+}
+
 
 body {
   background: #EDF6F7;

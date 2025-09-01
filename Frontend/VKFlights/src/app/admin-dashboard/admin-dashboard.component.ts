@@ -69,6 +69,12 @@ removeSeatRow(index: number) {
   updateSeatsClass: string = '';
   updateSeatsCount: number | null = null;
   deleteFlightId: string = '';
+  
+  // Validation error properties
+  addFlightErrors: any = {};
+  updateStatusErrors: any = {};
+  updateSeatsErrors: any = {};
+  deleteFlightErrors: any = {};
 
   constructor(public http: HttpClient, private router: Router) {
     this.newFlight = this.getEmptyFlight();
@@ -100,16 +106,16 @@ removeSeatRow(index: number) {
 
 
   updateFlightStatus() {
+    if (!this.validateUpdateStatus()) {
+      return;
+    }
+    
     // Show toast popup immediately when Update Flight Status is clicked
     this.flightMessage = 'Flight Status Updated...';
     this.flightMessageType = 'success';
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
-
-    if (!this.updateFlightNumber || !this.updateStatus) {
-      return;
-    }
     const token = localStorage.getItem('jwt');
     const headers: Record<string, string> = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -125,16 +131,16 @@ removeSeatRow(index: number) {
   }
 
   updateAvailableSeats() {
+    if (!this.validateUpdateSeats()) {
+      return;
+    }
+    
     // Show toast popup immediately when Update Seats is clicked
     this.flightMessage = 'Seats Updated...';
     this.flightMessageType = 'success';
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
-
-    if (!this.updateSeatsFlightNumber || !this.updateSeatsClass || this.updateSeatsCount == null) {
-      return;
-    }
     const token = localStorage.getItem('jwt');
     const headers: Record<string, string> = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -151,16 +157,16 @@ removeSeatRow(index: number) {
   }
 
   deleteFlight() {
+    if (!this.validateDeleteFlight()) {
+      return;
+    }
+    
     // Show toast popup immediately when Delete Flight is clicked
     this.flightMessage = 'Flight Deleted...';
     this.flightMessageType = 'success';
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
-
-    if (!this.deleteFlightId) {
-      return;
-    }
     const token = localStorage.getItem('jwt');
     const headers: Record<string, string> = {};
     if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -175,22 +181,16 @@ removeSeatRow(index: number) {
   }
 
 addFlight() {
+    if (!this.validateAddFlight()) {
+      return;
+    }
+    
     // Show toast popup immediately when Add Flight is clicked
     this.flightMessage = 'Flight Added Successfully...';
     this.flightMessageType = 'success';
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
-
-    if (!this.newFlight.flightNumber || !this.newFlight.airline || !this.newFlight.departureAirport || !this.newFlight.arrivalAirport || !this.newFlight.departureTime || !this.newFlight.arrivalTime || !this.newFlight.status) {
-      return;
-    }
-    for (let i = 0; i < this.newFlight.seats.length; i++) {
-      const seat = this.newFlight.seats[i];
-      if (!seat.seatId || !seat.seatClass || seat.noOfSeats == null || seat.availableSeats == null || seat.price == null || seat.seatClass.trim() === '') {
-        return;
-      }
-    }
 
     const pad = (n: number) => n < 10 ? '0' + n : n;
     const dtDep = new Date(this.newFlight.departureTime);
@@ -248,5 +248,134 @@ addFlight() {
   logout() {
     localStorage.removeItem('jwt');
     this.router.navigate(['/admin-login']);
+  }
+  
+  validateAddFlight(): boolean {
+    this.addFlightErrors = {};
+    let isValid = true;
+    
+    if (!this.newFlight.flightNumber?.trim()) {
+      this.addFlightErrors.flightNumber = 'Flight number is required';
+      isValid = false;
+    }
+    if (!this.newFlight.airline?.trim()) {
+      this.addFlightErrors.airline = 'Airline is required';
+      isValid = false;
+    }
+    if (!this.newFlight.departureAirport?.trim()) {
+      this.addFlightErrors.departureAirport = 'Departure airport is required';
+      isValid = false;
+    }
+    if (!this.newFlight.arrivalAirport?.trim()) {
+      this.addFlightErrors.arrivalAirport = 'Arrival airport is required';
+      isValid = false;
+    }
+    if (!this.newFlight.departureTime) {
+      this.addFlightErrors.departureTime = 'Departure time is required';
+      isValid = false;
+    } else if (new Date(this.newFlight.departureTime) < new Date()) {
+      this.addFlightErrors.departureTime = 'Departure time cannot be in the past';
+      isValid = false;
+    }
+    if (!this.newFlight.arrivalTime) {
+      this.addFlightErrors.arrivalTime = 'Arrival time is required';
+      isValid = false;
+    } else if (new Date(this.newFlight.arrivalTime) < new Date()) {
+      this.addFlightErrors.arrivalTime = 'Arrival time cannot be in the past';
+      isValid = false;
+    } else if (this.newFlight.departureTime && new Date(this.newFlight.arrivalTime) <= new Date(this.newFlight.departureTime)) {
+      this.addFlightErrors.arrivalTime = 'Arrival time must be after departure time';
+      isValid = false;
+    }
+    if (!this.newFlight.status?.trim()) {
+      this.addFlightErrors.status = 'Status is required';
+      isValid = false;
+    }
+    
+    // Validate seats
+    this.newFlight.seats.forEach((seat, i) => {
+      if (!seat.seatClass?.trim()) {
+        this.addFlightErrors[`seatClass${i}`] = 'Seat class is required';
+        isValid = false;
+      }
+      if (!seat.noOfSeats || seat.noOfSeats <= 0) {
+        this.addFlightErrors[`noOfSeats${i}`] = 'Number of seats must be greater than 0';
+        isValid = false;
+      }
+      if (!seat.availableSeats || seat.availableSeats < 0) {
+        this.addFlightErrors[`availableSeats${i}`] = 'Available seats cannot be negative';
+        isValid = false;
+      }
+      if (!seat.price || seat.price <= 0) {
+        this.addFlightErrors[`price${i}`] = 'Price must be greater than 0';
+        isValid = false;
+      }
+    });
+    
+    return isValid;
+  }
+  
+  validateUpdateStatus(): boolean {
+    this.updateStatusErrors = {};
+    let isValid = true;
+    
+    if (!this.updateFlightNumber?.trim()) {
+      this.updateStatusErrors.flightNumber = 'Flight number is required';
+      isValid = false;
+    }
+    if (!this.updateStatus?.trim()) {
+      this.updateStatusErrors.status = 'Status is required';
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+  
+  validateUpdateSeats(): boolean {
+    this.updateSeatsErrors = {};
+    let isValid = true;
+    
+    if (!this.updateSeatsFlightNumber?.trim()) {
+      this.updateSeatsErrors.flightNumber = 'Flight number is required';
+      isValid = false;
+    }
+    if (!this.updateSeatsClass?.trim()) {
+      this.updateSeatsErrors.seatClass = 'Seat class is required';
+      isValid = false;
+    }
+    if (!this.updateSeatsCount || this.updateSeatsCount <= 0) {
+      this.updateSeatsErrors.seatsCount = 'Seats count must be greater than 0';
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+  
+  validateDeleteFlight(): boolean {
+    this.deleteFlightErrors = {};
+    let isValid = true;
+    
+    if (!this.deleteFlightId?.trim()) {
+      this.deleteFlightErrors.flightId = 'Flight ID is required';
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+  
+  clearAddFlightErrors() {
+    this.addFlightErrors = {};
+  }
+  
+  clearUpdateStatusErrors() {
+    this.updateStatusErrors = {};
+  }
+  
+  clearUpdateSeatsErrors() {
+    this.updateSeatsErrors = {};
+  }
+  
+  clearDeleteFlightErrors() {
+    this.deleteFlightErrors = {};
   }
 }

@@ -134,13 +134,13 @@ public class BookingServiceImplTest {
 	@Test
 	void testDeleteBookingByBookingId() {
 		when(bookingRepo.findByBookingId(12106348)).thenReturn(bookings);
-		doNothing().when(bookingRepo).deleteByBookingId(12106348);
+		when(bookingRepo.save(b1)).thenReturn(b1);
 		
 		int x = bookingService.cancelBookingByBookingId(12106348);
 		assertEquals(1,x );
 		assertNotNull(x);
 		verify(bookingRepo , times(1)).findByBookingId(12106348);
-		verify(bookingRepo , times(1)).deleteByBookingId(12106348);
+		verify(bookingRepo , times(1)).save(b1);
 
 	}
 	

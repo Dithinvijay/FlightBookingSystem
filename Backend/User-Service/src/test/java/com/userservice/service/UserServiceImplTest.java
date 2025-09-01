@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.userservice.Model.Booking;
@@ -31,9 +32,14 @@ public class UserServiceImplTest {
 	@Mock
 	private FlightOpenFeign flightOpenFeign;
 	
-
 	@Mock
 	private BookingFeign bookingFeign;
+	
+	@Mock
+	private com.userservice.Repo.UserRepository userRepository;
+	
+	@Mock
+	private UserCrudService userCrudService;
 	
 	@InjectMocks
 	private UserServiceImpl userServiceImpl;
@@ -55,29 +61,35 @@ public class UserServiceImplTest {
 
 	    @BeforeEach
 	    void setUp() {
+	        MockitoAnnotations.openMocks(this);
+	        flight1 = new Flight("AI101", "Air India", "Delhi", "Mumbai", 
+	        		LocalDateTime.of(2025, 4, 1, 10, 0), LocalDateTime.of(2025, 4, 1, 12, 0), "Scheduled", 
+	                null);
+
+	        flight2 = new Flight("IG202", "IndiGo", "Mumbai", "Bangalore", 
+	        		LocalDateTime.of(2025, 4, 2, 14, 0), LocalDateTime.of(2025, 4, 2, 16, 0), "On Time", 
+	                null);
+	                
 	        seat1 = new Seat(1, "Economy", 100, 80, 5000.0, flight1);
 	        seat2 = new Seat(2, "Business", 20, 15, 15000.0, flight1);
 	        seat3 = new Seat(3, "Economy", 100, 90, 4500.0, flight2);
 	        seat4 = new Seat(4, "Business", 25, 20, 14000.0, flight2);
-
-	        flight1 = new Flight("AI101", "Air India", "Delhi", "Mumbai", 
-	        		LocalDateTime.of(2025, 4, 1, 10, 0), LocalDateTime.of(2025, 4, 1, 12, 0), "Scheduled", 
-	                Arrays.asList(seat1, seat2));
-
-	        flight2 = new Flight("IG202", "IndiGo", "Mumbai", "Bangalore", 
-	        		LocalDateTime.of(2025, 4, 2, 14, 0), LocalDateTime.of(2025, 4, 2, 16, 0), "On Time", 
-	                Arrays.asList(seat3, seat4));
 	        
-	        bookings = new ArrayList<>();
-			pass1 = new PassengerDetails("Pavan Sai Gopal","male",22,50,"Economy",b1);
+	        flight1.setSeats(Arrays.asList(seat1, seat2));
+	        flight2.setSeats(Arrays.asList(seat3, seat4));
+	        
+	        b1 = new Booking("AI101",12106348,2,LocalDateTime.of(2025, 4, 1, 10, 0),"Confirmed", null);
+	        
+	        pass1 = new PassengerDetails("Pavan Sai Gopal","male",22,50,"Economy",b1);
 			pass2 = new PassengerDetails("Rakshit","male",22,49,"Economy",b1);
 
 			List<PassengerDetails> list = new ArrayList<>();
-			
 			list.add(pass1);
 			list.add(pass2);
 			
-			 b1 = new Booking("AI101",12106348,2,LocalDateTime.of(2025, 4, 1, 10, 0),"Confirmed", list);
+			b1.setPassengers(list);
+			
+			bookings = new ArrayList<>();
 			bookings.add(b1);
 	    }
 	    
