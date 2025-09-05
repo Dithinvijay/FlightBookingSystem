@@ -6,10 +6,16 @@
 .profile-icon {
   font-size: 1.7rem;
   color: rgb(17, 44, 77);
-  transition: color 0.2s;
+  transition: color 0.3s ease, transform 0.3s ease;
+  animation: pulseProfile 2s ease-in-out infinite;
+}
+
+.profile-link:hover .profile-icon {
+  transform: scale(1.2) rotate(10deg);
 }
 .profile-link:hover .profile-icon {
   color: #B9D1D8;
+  transform: scale(1.2) rotate(10deg);
 }
 .login-status {
   margin-left: 1.5rem;
@@ -44,10 +50,11 @@ body {
   box-shadow: 0 4px 24px 0 rgba(23,49,84,0.13);
   border-bottom: 3px solid var(--primary);
   border-radius: 30px;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s;
   overflow-x: auto;
   white-space: nowrap;
-  position: static; 
+  position: static;
+  animation: slideDownFade 0.8s ease-out;
 }
 
 .navbar:hover {
@@ -64,6 +71,13 @@ body {
   border-radius: 35px;
   vertical-align: middle;
   margin-right: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: logoSpin 1s ease-out 0.3s both;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 16px rgba(118,178,185,0.3);
 }
 .navbar-logo-link {
   display: flex;
@@ -87,6 +101,7 @@ body {
   margin: 0;
   padding: 0;
   align-items: center;
+  animation: slideInRight 0.8s ease-out 0.2s both;
 }
 
 .navbar-menu:hover {
@@ -100,9 +115,16 @@ body {
   font-weight: 500;
   border-radius: 1.5rem;
   background: transparent;
-  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+  transition: color 0.3s, background 0.3s, box-shadow 0.3s, transform 0.2s;
   padding: 0.4rem 1.2rem;
+  animation: fadeInUp 0.6s ease-out both;
 }
+
+.navbar-menu li:nth-child(1) { animation-delay: 0.4s; }
+.navbar-menu li:nth-child(2) { animation-delay: 0.5s; }
+.navbar-menu li:nth-child(3) { animation-delay: 0.6s; }
+.navbar-menu li:nth-child(4) { animation-delay: 0.7s; }
+.navbar-menu li:nth-child(5) { animation-delay: 0.8s; }
 
 .navbar-menu li a {
   color: var(--white);
@@ -281,6 +303,75 @@ body {
 
 .search-btn:hover {
   background: var(--secondary);
+}
+
+router-outlet {
+  display: block;
+  animation: routeSlideIn 0.5s ease-out;
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoSpin {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseProfile {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes routeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 900px) {

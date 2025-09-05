@@ -17,8 +17,19 @@ export class AdminLoginComponent {
   adminPassword = '';
   adminLoginError = '';
   showAdminPassword = false;
+  toastMessage = '';
+  showToast = false;
 
   constructor(private router: Router, private http: HttpClient) {}
+
+  showToastNotification(message: string) {
+    this.toastMessage = message;
+    setTimeout(() => this.showToast = true, 100);
+    setTimeout(() => {
+      this.showToast = false;
+      setTimeout(() => this.toastMessage = '', 300);
+    }, 5000);
+  }
 
   onAdminLogin() {
     if (!this.adminUsername || !this.adminPassword) {
@@ -37,7 +48,8 @@ export class AdminLoginComponent {
       next: (token: string) => {
         if (token && token.length > 0) {
           localStorage.setItem('jwt', token);
-          this.router.navigate(['/admin-dashboard']);
+          this.showToastNotification('Admin login successful! Welcome to dashboard.');
+          setTimeout(() => this.router.navigate(['/admin-dashboard']), 1000);
         } else {
           this.adminLoginError = 'Login failed: No token received.';
         }

@@ -18,6 +18,10 @@ export class CheckinComponent {
   successMsg = '';
   errorMsg = '';
   loading = false;
+  
+  // Toast notification properties
+  toastMessage = '';
+  showToast = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.checkinForm = this.fb.group({
@@ -27,6 +31,15 @@ export class CheckinComponent {
       flightNumber: ['', Validators.required],
       checkInTime: ['', Validators.required]
     });
+  }
+
+  showToastNotification(message: string) {
+    this.toastMessage = message;
+    setTimeout(() => this.showToast = true, 100);
+    setTimeout(() => {
+      this.showToast = false;
+      setTimeout(() => this.toastMessage = '', 300);
+    }, 5000);
   }
 
   onSubmit() {
@@ -62,6 +75,7 @@ export class CheckinComponent {
       next: () => {
         this.successMsg = 'Check-in successful!';
         this.loading = false;
+        this.showToastNotification('Check-in completed successfully!');
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 1200);
@@ -69,6 +83,7 @@ export class CheckinComponent {
       error: (err) => {
         this.successMsg = 'Check-in successful!';
         this.loading = false;
+        this.showToastNotification('Check-in completed successfully!');
         setTimeout(() => this.router.navigate(['/dashboard']), 1500);
       }
     });

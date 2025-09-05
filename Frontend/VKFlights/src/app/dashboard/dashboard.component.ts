@@ -29,8 +29,41 @@ export class DashboardComponent implements OnInit {
   updating = false;
   updateSuccess = false;
   updateError = '';
+  
+  // Toast notification properties
+  toastMessage = '';
+  showToast = false;
+  
+  // Form change tracking
+  originalUser: User | null = null;
+  hasFormChanges = false;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  showToastNotification(message: string) {
+    this.toastMessage = message;
+    setTimeout(() => this.showToast = true, 100);
+    setTimeout(() => {
+      this.showToast = false;
+      setTimeout(() => this.toastMessage = '', 300);
+    }, 3000);
+  }
+
+  checkFormChanges() {
+    if (!this.user || !this.originalUser) {
+      this.hasFormChanges = false;
+      return;
+    }
+    this.hasFormChanges = 
+      this.user.email !== this.originalUser.email ||
+      this.user.phoneNo !== this.originalUser.phoneNo ||
+      this.user.firstName !== this.originalUser.firstName ||
+      this.user.lastName !== this.originalUser.lastName;
+  }
+
+  onFieldChange() {
+    this.checkFormChanges();
+  }
   goToCheckin() {
     this.router.navigate(['/checkin']);
   }
@@ -56,7 +89,11 @@ export class DashboardComponent implements OnInit {
     this.http.get<User>(`${environment.apiUrlLogin}getUser/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
-      next: (user) => this.user = user,
+      next: (user) => {
+        this.user = user;
+        this.originalUser = { ...user };
+        this.checkFormChanges();
+      },
       error: (err) => this.error = err.error?.message || 'Failed to fetch user data.'
     });
   }
@@ -73,6 +110,9 @@ export class DashboardComponent implements OnInit {
       next: () => {
         this.updating = false;
         this.updateSuccess = true;
+        this.originalUser = { ...this.user! };
+        this.hasFormChanges = false;
+        this.showToastNotification('Profile updated successfully!');
         setTimeout(() => this.updateSuccess = false, 2000);
       },
       error: (err) => {
@@ -94,6 +134,7 @@ export class DashboardComponent implements OnInit {
       });
     }
     localStorage.removeItem('jwt');
-    window.location.href = '/login';
+    this.showToastNotification('Logged out successfully!');
+    setTimeout(() => window.location.href = '/login', 500);
   }
 }

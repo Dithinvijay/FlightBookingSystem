@@ -1,3 +1,10 @@
+<div class="toast-container" *ngIf="toastMessage">
+  <div class="toast" [class.show]="showToast">
+    <i class="fa fa-check-circle"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
 <section class="dashboard-section">
   <div class="dashboard-header">
     <h2>User Dashboard</h2>
@@ -14,22 +21,22 @@
         <li><strong>Username:</strong> <span>{{ user.username }}</span></li>
         <li>
           <strong>Email:</strong>
-          <input [(ngModel)]="user.email" name="email" required type="email" />
+          <input [(ngModel)]="user.email" name="email" required type="email" (input)="onFieldChange()" />
         </li>
         <li>
           <strong>Phone:</strong>
-          <input [(ngModel)]="user.phoneNo" name="phoneNo" required type="tel" />
+          <input [(ngModel)]="user.phoneNo" name="phoneNo" required type="tel" (input)="onFieldChange()" />
         </li>
         <li>
           <strong>First Name:</strong>
-          <input [(ngModel)]="user.firstName" name="firstName" required />
+          <input [(ngModel)]="user.firstName" name="firstName" required (input)="onFieldChange()" />
         </li>
         <li>
           <strong>Last Name:</strong>
-          <input [(ngModel)]="user.lastName" name="lastName" required />
+          <input [(ngModel)]="user.lastName" name="lastName" required (input)="onFieldChange()" />
         </li>
       </ul>
-      <button class="update-btn" type="submit" [disabled]="userForm.invalid || updating">Update</button>
+      <button class="update-btn" type="submit" [disabled]="userForm.invalid || updating || !hasFormChanges">Update</button>
       <span *ngIf="updateSuccess" class="update-success">Profile updated successfully!</span>
       <span *ngIf="updateError" class="update-error">{{ updateError }}</span>
     </form>

@@ -1,3 +1,10 @@
+<div class="toast-container" *ngIf="toastMessage">
+  <div class="toast" [class.show]="showToast">
+    <i class="fa fa-check-circle"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
 <div class="admin-auth-wrapper">
   <div class="admin-auth-container">
     <div class="admin-auth-image">
@@ -6,9 +13,9 @@
     <div class="admin-auth-form-section">
       <form (ngSubmit)="onAdminLogin()" autocomplete="off" class="admin-auth-form">
         <h1 class="admin-auth-title">Admin Login</h1>
-        <input type="text" placeholder="Admin Username" [(ngModel)]="adminUsername" name="adminUsername" required style="width:68%;transform: translateX(-3px); box-sizing:border-box;"/>
+        <input type="text" placeholder="Admin Username" [(ngModel)]="adminUsername" name="adminUsername" required style="width:75%;transform: translateX(-9px); box-sizing:border-box;"/>
         <div style="position: relative;">
-          <input [type]="showAdminPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="adminPassword" name="adminPassword" required style="width: 90%;transform: translateX(9px); box-sizing:border-box;"/>
+          <input [type]="showAdminPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="adminPassword" name="adminPassword" required style="width: 100%;transform: translateX(9px); box-sizing:border-box;"/>
         </div>
         <div class="admin-error-message" *ngIf="adminLoginError">{{ adminLoginError }}</div>
         <button type="submit" class="admin-auth-gradient-btn" style="width: 90%;">Sign In</button>

@@ -1,3 +1,10 @@
+<div class="toast-container" *ngIf="toastMessage">
+  <div class="toast" [class.show]="showToast">
+    <i class="fa fa-check-circle"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
 <div class="auth-wrapper">
   <div class="container" [class.right-panel-active]="rightPanelActive" id="container">
     <div class="form-container sign-up-container">
@@ -6,9 +13,13 @@
         <input type="text" placeholder="First Name" [(ngModel)]="regFirstName" name="regFirstName" required />
         <input type="text" placeholder="Last Name" [(ngModel)]="regLastName" name="regLastName" required />
         <input type="email" placeholder="Email" [(ngModel)]="regEmail" name="regEmail" required />
+        <div *ngIf="validationErrors.email" class="validation-error">{{ validationErrors.email }}</div>
         <input type="tel" placeholder="Phone Number" [(ngModel)]="regPhoneNo" name="regPhoneNo" required />
+        <div *ngIf="validationErrors.phone" class="validation-error">{{ validationErrors.phone }}</div>
         <input type="text" placeholder="Username" [(ngModel)]="regUsername" name="regUsername" required />
+        <div *ngIf="validationErrors.username" class="validation-error">{{ validationErrors.username }}</div>
         <input type="password" placeholder="Password" [(ngModel)]="regPassword" name="regPassword" required />
+        <div *ngIf="validationErrors.password" class="validation-error">{{ validationErrors.password }}</div>
         <input type="text" value="USER" readonly style="background:#EDF6F7; color:#1976d2; font-weight:600; letter-spacing:1px; text-align:center;" name="regRole" />
         <div class="error-message" *ngIf="registerError">{{ registerError }}</div>
         <button type="submit" class="auth-gradient-btn">Sign Up</button>
@@ -17,7 +28,7 @@
     <div class="form-container sign-in-container">
       <form (ngSubmit)="onLogin()" autocomplete="off">
         <h1>Sign in</h1>
-        <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required style="width:82%;"/>
+        <input type="text" placeholder="Username" [(ngModel)]="loginUsername" name="loginUsername" required style="width:67%;"/>
         <div style="position: relative;">
           <input [type]="showLoginPassword ? 'text' : 'password'" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
           <i 

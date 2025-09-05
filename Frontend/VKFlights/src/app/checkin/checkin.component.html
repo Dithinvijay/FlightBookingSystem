@@ -1,3 +1,10 @@
+<div class="toast-container" *ngIf="toastMessage">
+  <div class="toast" [class.show]="showToast">
+    <i class="fa fa-check-circle"></i>
+    {{ toastMessage }}
+  </div>
+</div>
+
 <section class="checkin-section">
   <div class="checkin-card">
     <h2 class="checkin-title"><i class="fa-solid fa-user-check"></i> Flight Check-In</h2>

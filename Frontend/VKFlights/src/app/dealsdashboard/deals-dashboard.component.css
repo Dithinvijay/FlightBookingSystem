@@ -9,6 +9,7 @@ body {
   margin-bottom: 2.5rem;
   border-radius: 1.5rem;
   box-shadow: 0 6px 32px rgba(23,49,84,0.10);
+  animation: slideInFromTop 1s ease-out;
 }
 .deals-banner img {
   width: 100%;
@@ -16,6 +17,13 @@ body {
   object-fit: cover;
   display: block;
   border-radius: 1.5rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  animation: zoomIn 1.2s ease-out;
+}
+
+.deals-banner:hover img {
+  transform: scale(1.02);
+  filter: brightness(1.1);
 }
 .deals-title {
   position: absolute;
@@ -29,7 +37,13 @@ body {
   background: rgba(23,49,84,0.45);
   padding: 0.7rem 2.2rem;
   border-radius: 1rem;
-  
+  animation: slideInFromRight 1s ease-out 0.3s both;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.deals-title:hover {
+  transform: scale(1.05);
+  background: rgba(23,49,84,0.6);
 }
 .deals-grid {
   display: grid;
@@ -41,6 +55,7 @@ body {
   box-sizing: border-box;
   margin: 0 1.5rem 2.5rem 1.5rem;
   box-shadow: 0 2px 16px rgba(23,49,84,0.06);
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 .deal-card {
   background: linear-gradient(120deg, #FAFCFB 60%, #EDF6F7 100%);
@@ -51,10 +66,17 @@ body {
   align-items: center;
   cursor: pointer;
   position: relative;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   border: 2px solid #B9D1D8;
   min-height: 420px;
+  animation: slideInFromBottom 0.8s ease-out both;
 }
+
+.deal-card:nth-child(1) { animation-delay: 0.1s; }
+.deal-card:nth-child(2) { animation-delay: 0.2s; }
+.deal-card:nth-child(3) { animation-delay: 0.3s; }
+.deal-card:nth-child(4) { animation-delay: 0.4s; }
+.deal-card:nth-child(5) { animation-delay: 0.5s; }
 .deal-card:hover, .deal-card:focus {
   box-shadow: 0 12px 36px rgba(23,49,84,0.18);
   transform: translateY(-6px) scale(1.04);
@@ -65,6 +87,12 @@ body {
   height: 180px;
   object-fit: cover;
   border-radius: 1.2rem 1.2rem 0 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.deal-card:hover .deal-image {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 .deal-content {
   width: 100%;
@@ -81,6 +109,12 @@ body {
   line-height: 1.2;
   padding-left: 30px;
   padding-right: 30px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.deal-card:hover .deal-content h2 {
+  color: #76B2B9;
+  transform: translateY(-2px);
 }
 .deal-content p {
   color: #173154;
@@ -122,9 +156,15 @@ body {
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 8px #17315422;
   margin-top: auto;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.deal-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 16px rgba(23,49,84,0.3);
 }
 .deal-btn:hover, .deal-btn:focus {
   background: linear-gradient(90deg, #173154 60%, #76B2B9 100%);
@@ -141,6 +181,12 @@ body {
   border-radius: 1rem;
   box-shadow: 0 2px 8px #17315422;
   letter-spacing: 1px;
+  animation: bounceIn 1s ease-out 0.8s both, shimmer 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.deal-featured-badge:hover {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .deal-modal-backdrop {
@@ -148,6 +194,7 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(23,49,84,0.25);
   z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
 }
 .deal-modal {
   position: fixed;
@@ -163,6 +210,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: modalSlideIn 0.3s ease-out;
 }
 .deal-modal-content {
   width: 100%;
@@ -185,7 +233,121 @@ body {
   font-size: 2rem;
   color: #173154;
   cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
+
+.close-btn:hover {
+  color: #76B2B9;
+  transform: scale(1.2) rotate(90deg);
+}
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.1);
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background: #173154;
+  }
+  50% {
+    background: #76B2B9;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px #17315422, 0 0 0 0 rgba(118,178,185,0.4);
+  }
+  50% {
+    box-shadow: 0 2px 8px #17315422, 0 0 15px 3px rgba(118,178,185,0.2);
+  }
+}
+
+@keyframes modalSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 900px) {
   .deals-title {
     font-size: 1.5rem;

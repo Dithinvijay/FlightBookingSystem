@@ -6,6 +6,7 @@
   min-height: 90vh;
   background-color: #1565c0;
   padding: 2rem 0;
+  animation: fadeInBackground 1s ease-out;
 }
 .booking-card {
   background: #fff;
@@ -18,6 +19,184 @@
   position: relative;
   transition: box-shadow 0.2s;
 }
+@keyframes fadeInBackground {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInStagger {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes typeWriter {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseArrow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(25,118,210,0.08), 0 0 0 0 rgba(25,118,210,0.4);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(25,118,210,0.08), 0 0 15px 3px rgba(25,118,210,0.2);
+  }
+}
+
+@keyframes slideInSuccess {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shakeIn {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
 .booking-card:hover {
   box-shadow: 0 8px 32px rgba(25,118,210,0.18);
 }
@@ -34,6 +213,13 @@
   background: #f5f7fa;
   border: 2px solid #e3eafc;
   margin-right: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: bounceIn 0.8s ease-out 0.3s both;
+}
+
+.airline-logo:hover {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 4px 16px rgba(25,118,210,0.2);
 }
 .airline-info {
   display: flex;
@@ -44,12 +230,19 @@
   font-weight: 700;
   color: var(--airline-color, #1976d2);
   letter-spacing: 0.5px;
+  animation: typeWriter 1s ease-out 0.5s both;
+  transition: transform 0.2s ease;
+}
+
+.airline-name:hover {
+  transform: scale(1.02);
 }
 .flight-card-header {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 1.2rem;
+  animation: slideInFromTop 0.8s ease-out 0.2s both;
 }
 .flight-card{
   display: flex;
@@ -59,22 +252,44 @@
   flex-direction: column;
   gap: 1.2rem;
   margin-bottom: 1.5rem;
+  animation: slideInScale 0.8s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flight-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(25,118,210,0.2);
 }
 .flight-number {
   font-size: 1.05rem;
   color: #757575;
   margin-top: 0.1rem;
+  animation: fadeInUp 0.6s ease-out 0.7s both;
 }
 .flight-route {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 1.2rem;
+  animation: slideInFromLeft 0.8s ease-out 0.4s both;
 }
 .airport {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.airport:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.airport.departure {
+  animation: slideInFromLeft 0.6s ease-out 0.6s both;
+}
+
+.airport.arrival {
+  animation: slideInFromRight 0.6s ease-out 0.8s both;
 }
 .airport-code {
   font-size: 1.1rem;
@@ -89,6 +304,12 @@
   font-size: 1.5rem;
   color: #1976d2;
   margin: 0 1.2rem;
+  animation: pulseArrow 2s ease-in-out infinite, fadeInScale 0.6s ease-out 0.7s both;
+  transition: transform 0.3s ease;
+}
+
+.route-arrow:hover {
+  transform: scale(1.2);
 }
 .flight-dashboard-section{
   width: auto;
@@ -99,12 +320,19 @@
   padding-right: 50px;
   margin-bottom: 1.5rem;
   border-radius: 20px;
+  animation: slideInFromBottom 0.8s ease-out 0.5s both;
 }
 .form-row {
   margin-bottom: 1.1rem;
   display: flex;
   flex-direction: column;
+  animation: fadeInStagger 0.5s ease-out both;
 }
+
+.form-row:nth-child(1) { animation-delay: 0.7s; }
+.form-row:nth-child(2) { animation-delay: 0.8s; }
+.form-row:nth-child(3) { animation-delay: 0.9s; }
+.form-row:nth-child(4) { animation-delay: 1s; }
 input, select {
   padding: 0.55rem;
   border-radius: 7px;
@@ -112,11 +340,18 @@ input, select {
   margin-top: 0.3rem;
   font-size: 1.05rem;
   background: #f8fafc;
-  transition: border 0.18s;
+  transition: border 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+input:hover, select:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(25,118,210,0.1);
 }
 input:focus, select:focus {
   border: 1.5px solid #1976d2;
   outline: none;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(25,118,210,0.15), 0 0 0 3px rgba(25,118,210,0.1);
 }
 .passenger-form {
   background: #f0f4fa;
@@ -124,6 +359,13 @@ input:focus, select:focus {
   padding: 1.1rem 1rem 0.8rem 1rem;
   margin-bottom: 1.1rem;
   box-shadow: 0 1px 6px rgba(25,118,210,0.06);
+  animation: slideInFromBottom 0.5s ease-out;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.passenger-form:hover {
+  box-shadow: 0 4px 16px rgba(25,118,210,0.12);
+  transform: translateY(-2px);
 }
 .passenger-form h4 {
   font-size: 1.08rem;
@@ -132,6 +374,7 @@ input:focus, select:focus {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  animation: fadeInLeft 0.5s ease-out 0.2s both;
 }
 button[type="submit"] {
   background: linear-gradient(90deg, var(--airline-color, #1976d2) 0%, #64b5f6 100%);
@@ -145,11 +388,17 @@ button[type="submit"] {
   margin-top: 1.2rem;
   width: 100%;
   box-shadow: 0 2px 8px rgba(25,118,210,0.08);
-  transition: background 0.18s, box-shadow 0.18s;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  animation: bounceIn 0.8s ease-out 1.2s both, pulseGlow 2s ease-in-out infinite;
+}
+
+button[type="submit"]:hover:not([disabled]) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(25,118,210,0.2);
 }
 button[type="submit"]:hover:not([disabled]) {
   background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
@@ -165,6 +414,11 @@ button[disabled] {
   font-weight: 700;
   font-size: 1.08rem;
   text-align: center;
+  animation: slideInSuccess 0.5s ease-out;
+  padding: 0.8rem;
+  background: rgba(56,142,60,0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(56,142,60,0.2);
 }
 .error-msg {
   color: #d32f2f;
@@ -172,4 +426,9 @@ button[disabled] {
   font-weight: 700;
   font-size: 1.08rem;
   text-align: center;
+  animation: shakeIn 0.5s ease-out;
+  padding: 0.8rem;
+  background: rgba(211,47,47,0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(211,47,47,0.2);
 }

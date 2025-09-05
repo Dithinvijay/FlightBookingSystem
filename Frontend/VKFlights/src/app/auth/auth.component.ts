@@ -23,12 +23,17 @@ export class AuthComponent {
   regPhoneNo = '';
   regUsername = '';
   regPassword = '';
-  regRole='';
+  regRole='USER';
   registerError = '';
 
   rightPanelActive = false;
 
   showLoginPassword = false;
+  toastMessage = '';
+  showToast = false;
+  
+  // Validation errors
+  validationErrors: any = {};
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -39,6 +44,15 @@ export class AuthComponent {
 
   showSignUp() { this.rightPanelActive = true; }
   showSignIn() { this.rightPanelActive = false; }
+
+  showToastNotification(message: string) {
+    this.toastMessage = message;
+    setTimeout(() => this.showToast = true, 100);
+    setTimeout(() => {
+      this.showToast = false;
+      setTimeout(() => this.toastMessage = '', 500);
+    }, 3000);
+  }
 
   onLogin() {
     if (!this.loginUsername || !this.loginPassword) {
@@ -57,7 +71,8 @@ export class AuthComponent {
       next: (token: string) => {
         if (token && token.length > 0) {
           localStorage.setItem('jwt', token);
-          this.router.navigate(['/dashboard']);
+          this.showToastNotification('Login successful! Welcome back.');
+          setTimeout(() => this.router.navigate(['/dashboard']), 1000);
         } else {
           this.loginError = 'Login failed: No token received.';
         }
@@ -66,11 +81,48 @@ export class AuthComponent {
     });
   }
 
+  validateSignUpForm(): boolean {
+    this.validationErrors = {};
+    let isValid = true;
+
+    // Email validation
+    if (!this.regEmail.includes('@gmail.com')) {
+      this.validationErrors.email = 'Enter valid email';
+      isValid = false;
+    }
+
+    // Phone validation
+    if (this.regPhoneNo.length !== 10 || !/^[6-9]/.test(this.regPhoneNo)) {
+      this.validationErrors.phone = 'Phone number must be 10 digits starting with 6-9';
+      isValid = false;
+    }
+
+    // Username validation
+    if (this.regUsername.length < 6) {
+      this.validationErrors.username = 'Username must be at least 6 characters';
+      isValid = false;
+    }
+
+    // Password validation
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    if (!passwordRegex.test(this.regPassword)) {
+      this.validationErrors.password = 'length must be 8 including numbers and symbols';
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
   onRegister() {
     if (!this.regFirstName || !this.regLastName || !this.regEmail || !this.regPhoneNo || !this.regUsername || !this.regPassword) {
       this.registerError = 'Please fill in all fields.';
       return;
     }
+    
+    if (!this.validateSignUpForm()) {
+      return;
+    }
+    
     this.registerError = '';
     this.http.post(`${environment.apiUrlLogin}register`, {
       firstName: this.regFirstName,
@@ -82,9 +134,11 @@ export class AuthComponent {
       role: this.regRole
     }).subscribe({
       next: () => {
-        this.showSignIn();
-        this.loginUsername = this.regUsername;
-        this.loginError = 'Registration successful! Please log in.';
+        this.showToastNotification('Registration successful! Please log in.');
+        setTimeout(() => {
+          this.showSignIn();
+          this.loginUsername = this.regUsername;
+        }, 1000);
       },
       error: (err: any) => this.registerError = err.error?.message || 'Registration failed.'
     });

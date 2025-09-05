@@ -75,9 +75,22 @@ removeSeatRow(index: number) {
   updateStatusErrors: any = {};
   updateSeatsErrors: any = {};
   deleteFlightErrors: any = {};
+  
+  // Toast notification properties
+  toastMessage = '';
+  showToast = false;
 
   constructor(public http: HttpClient, private router: Router) {
     this.newFlight = this.getEmptyFlight();
+  }
+
+  showToastNotification(message: string) {
+    this.toastMessage = message;
+    setTimeout(() => this.showToast = true, 100);
+    setTimeout(() => {
+      this.showToast = false;
+      setTimeout(() => this.toastMessage = '', 300);
+    }, 3000);
   }
 
   ngOnInit(): void {
@@ -113,6 +126,7 @@ removeSeatRow(index: number) {
     // Show toast popup immediately when Update Flight Status is clicked
     this.flightMessage = 'Flight Status Updated...';
     this.flightMessageType = 'success';
+    this.showToastNotification('Flight status updated successfully!');
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
@@ -138,6 +152,7 @@ removeSeatRow(index: number) {
     // Show toast popup immediately when Update Seats is clicked
     this.flightMessage = 'Seats Updated...';
     this.flightMessageType = 'success';
+    this.showToastNotification('Seats Updated Successfully!');
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
@@ -164,6 +179,7 @@ removeSeatRow(index: number) {
     // Show toast popup immediately when Delete Flight is clicked
     this.flightMessage = 'Flight Deleted...';
     this.flightMessageType = 'success';
+    this.showToastNotification('Flight deleted successfully!');
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
@@ -188,6 +204,7 @@ addFlight() {
     // Show toast popup immediately when Add Flight is clicked
     this.flightMessage = 'Flight Added Successfully...';
     this.flightMessageType = 'success';
+    this.showToastNotification('Flight added successfully!');
     setTimeout(() => {
       this.flightMessage = '';
     }, 2000);
@@ -247,7 +264,8 @@ addFlight() {
   }
   logout() {
     localStorage.removeItem('jwt');
-    this.router.navigate(['/admin-login']);
+    this.showToastNotification('Logged out successfully!');
+    setTimeout(() => this.router.navigate(['/admin-login']), 1000);
   }
   
   validateAddFlight(): boolean {

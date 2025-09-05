@@ -7,6 +7,7 @@
   font-size: 1.05rem;
   color: green;
   box-shadow: 0 2px 8px 0 rgba(211,47,47,0.07);
+  animation: slideInAlert 0.5s ease-out;
 }
 .admin-alert-success {
   background: #e8f5e9;
@@ -30,6 +31,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   box-shadow: 0 1px 4px 0 rgba(211,47,47,0.05);
+  animation: shakeIn 0.5s ease-out;
 }
 
 .add-flight-form-card input.error,
@@ -53,6 +55,7 @@ body {
   font-family: 'Segoe UI', Arial, sans-serif;
   width: 100vw;
   padding: 2.5rem 0;
+  animation: fadeInBackground 1s ease-out;
 }
 
 .admin-dashboard-content {
@@ -82,6 +85,13 @@ body {
   margin-bottom: 2.2rem;
   min-height: 120px;
   box-sizing: border-box;
+  animation: slideInFromTop 0.8s ease-out;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.admin-dashboard-header:hover {
+  box-shadow: 0 8px 32px rgba(23,49,84,0.15);
+  transform: translateY(-2px);
 }
 
 .admin-dashboard-image {
@@ -136,6 +146,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  animation: slideInFromLeft 0.8s ease-out 0.2s both;
 }
 .admin-dashboard-avatar {
   width: 70px;
@@ -143,6 +154,13 @@ body {
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(23,49,84,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: bounceIn 0.8s ease-out 0.3s both;
+}
+
+.admin-dashboard-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 16px rgba(23,49,84,0.2);
 }
 .admin-dashboard-subtitle {
   color: #1976d2;
@@ -159,7 +177,13 @@ body {
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(221,36,118,0.10);
-  transition: background 0.2s;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  animation: slideInFromRight 0.8s ease-out 0.4s both;
+}
+
+.admin-logout-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(221,36,118,0.2);
 }
 .admin-logout-btn:hover {
   background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
@@ -182,6 +206,13 @@ body {
   padding: 2rem 2.5rem;
   color: #173154;
   margin-bottom: 1.5rem;
+  animation: slideInFromRight 0.8s ease-out 0.3s both;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.admin-details-card:hover {
+  box-shadow: 0 8px 32px rgba(23,49,84,0.15);
+  transform: translateY(-3px) scale(1.02);
 }
 .admin-details-card h3 {
   color: #1976d2;
@@ -209,6 +240,12 @@ body {
   box-shadow: 0 4px 24px rgba(23,49,84,0.10);
   padding: 2rem 2.5rem;
   margin-bottom: 1.5rem;
+  animation: slideInFromLeft 0.8s ease-out 0.5s both;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.flights-management-section:hover {
+  box-shadow: 0 8px 32px rgba(23,49,84,0.15);
 }
 .flights-actions {
   display: flex;
@@ -224,11 +261,22 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(67,206,162,0.12);
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  animation: bounceIn 0.6s ease-out both;
+}
+
+.admin-action-btn:nth-child(1) { animation-delay: 0.7s; }
+.admin-action-btn:nth-child(2) { animation-delay: 0.8s; }
+.admin-action-btn:nth-child(3) { animation-delay: 0.9s; }
+.admin-action-btn:nth-child(4) { animation-delay: 1s; }
+
+.admin-action-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(67,206,162,0.2);
 }
 .admin-action-btn.delete {
   background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
@@ -251,6 +299,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  animation: slideInFromBottom 0.5s ease-out;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.add-flight-form-card:hover, .edit-flight-form-card:hover {
+  box-shadow: 0 4px 20px rgba(23,49,84,0.15);
+  transform: translateY(-2px);
 }
 .add-flight-form-card input, .edit-flight-form-card input {
   padding: 10px 14px;
@@ -258,11 +313,27 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
-  transition: border 0.2s;
+  transition: border 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   margin-bottom: 0.7rem;
+  animation: fadeInStagger 0.4s ease-out both;
+}
+
+.add-flight-form-card input:nth-of-type(1) { animation-delay: 0.1s; }
+.add-flight-form-card input:nth-of-type(2) { animation-delay: 0.2s; }
+.add-flight-form-card input:nth-of-type(3) { animation-delay: 0.3s; }
+.add-flight-form-card input:nth-of-type(4) { animation-delay: 0.4s; }
+.add-flight-form-card input:nth-of-type(5) { animation-delay: 0.5s; }
+.add-flight-form-card input:nth-of-type(6) { animation-delay: 0.6s; }
+.add-flight-form-card input:nth-of-type(7) { animation-delay: 0.7s; }
+
+.add-flight-form-card input:hover, .edit-flight-form-card input:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(25,118,210,0.1);
 }
 .add-flight-form-card input:focus, .edit-flight-form-card input:focus {
   border: 1.5px solid #1976d2;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(25,118,210,0.15), 0 0 0 3px rgba(25,118,210,0.1);
 }
 .admin-auth-gradient-btn {
   background: linear-gradient(90deg, #76B2B9 60%, #173154 100%);
@@ -274,9 +345,15 @@ body {
   font-weight: 700;
   cursor: pointer;
   margin-top: 0.5rem;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(23,49,84,0.07);
   width: 100%;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.admin-auth-gradient-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 16px rgba(23,49,84,0.15);
 }
 .admin-auth-gradient-btn:hover {
   background: linear-gradient(90deg, #173154 60%, #76B2B9 100%);
@@ -293,8 +370,13 @@ body {
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.5rem;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
   width: 100%;
+}
+
+.admin-cancel-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(25,118,210,0.2);
 }
 .admin-cancel-btn:hover {
   background: #1976d2;
@@ -307,6 +389,12 @@ body {
   border-radius: 0.7rem;
   padding: 1rem 1.2rem;
   box-shadow: 0 2px 8px rgba(23,49,84,0.06);
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+  transition: box-shadow 0.3s ease;
+}
+
+.seats-section:hover {
+  box-shadow: 0 4px 16px rgba(23,49,84,0.12);
 }
 .seat-row {
   display: flex;
@@ -338,7 +426,12 @@ body {
   cursor: pointer;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.add-seat-btn:hover, .remove-seat-btn:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 2px 8px rgba(25,118,210,0.2);
 }
 .add-seat-btn:hover, .remove-seat-btn:hover {
   background: #1976d2;
@@ -404,6 +497,157 @@ body {
     padding: 2.5rem 0 0 0;
   }
 }
+@keyframes fadeInBackground {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInStagger {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(23,49,84,0.07), 0 0 0 0 rgba(118,178,185,0.4);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(23,49,84,0.07), 0 0 15px 3px rgba(118,178,185,0.2);
+  }
+}
+
+@keyframes slideInAlert {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shakeIn {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  background: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast i {
+  font-size: 16px;
+}
+
 @media (max-width: 700px) {
   .admin-dashboard-header, .admin-dashboard-content, .flights-list-card, .add-flight-form-card, .edit-flight-form-card {
     padding: 1.2rem 0.5rem;
