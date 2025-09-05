@@ -35,6 +35,7 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	return	http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(request -> request// Only Admins can add flight
 				.requestMatchers("/register","/login","/validate/**").permitAll()
+				.requestMatchers("/user/deleteById/**").hasRole("ADMIN")
 				.requestMatchers("/user/**").hasRole("USER")
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())

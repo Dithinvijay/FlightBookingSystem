@@ -90,8 +90,15 @@
   color: #1976d2;
   margin: 0 1.2rem;
 }
+.flight-dashboard-section{
+  width: auto;
+}
+
 .flight-details-row {
+  padding-left: 50px;
+  padding-right: 50px;
   margin-bottom: 1.5rem;
+  border-radius: 20px;
 }
 .form-row {
   margin-bottom: 1.1rem;

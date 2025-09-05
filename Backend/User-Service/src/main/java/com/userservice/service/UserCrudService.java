@@ -85,6 +85,7 @@ public class UserCrudService {
         return list;
     }
     
+    @Transactional
     public int deleteUserById(Long id) {
     	
     	logger.info("Deleting user by id {}", id);
@@ -94,6 +95,7 @@ public class UserCrudService {
     		logger.info("Deleted User successfully");
     		return 1;
     	}
+    	logger.warn("User not found with id {}", id);
     	return -1;
     	
     }

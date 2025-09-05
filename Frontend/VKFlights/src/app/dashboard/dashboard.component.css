@@ -148,7 +148,6 @@ body {
 .checkin-btn {
   background: linear-gradient(90deg, #1976d2 0%, #64b5f6 100%);
   color: #fff;
-  bottom: 122px;
   border: none;
   border-radius: 8px;
   padding: 0.7rem 1.9rem;

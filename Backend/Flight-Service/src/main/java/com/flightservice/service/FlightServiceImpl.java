@@ -308,13 +308,25 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
+	@Transactional
 	public int deleteById(Long Id) {
 		// TODO Auto-generated method stub
 		Flight flights = flightRepository.findById(Id).orElse(null);
-		if(flights == null) {
+		if(flights == null) {	
 			return -1;
 		}
-		bookingOpenFeign.deleteBooking(flights.getFlightNumber());
+		try {
+			bookingOpenFeign.deleteBooking(flights.getFlightNumber());
+		} catch (Exception e) {
+			LOGGER.warn("Could not delete bookings for flight {}: {}", flights.getFlightNumber(), e.getMessage());
+		}
+		
+		// Clear seats relationship before deleting flight
+		if(flights.getSeats() != null) {
+			flights.getSeats().clear();
+			flightRepository.save(flights);
+		}
+		
 		flightRepository.deleteById(Id);
 		return 0;
 	}

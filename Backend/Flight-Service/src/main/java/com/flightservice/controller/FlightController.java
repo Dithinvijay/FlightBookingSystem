@@ -184,11 +184,16 @@ public class FlightController {
 //		
 		
 		@DeleteMapping("/deleteByFlightId/{Id}")
-		public ResponseEntity<String> deleteById(@PathVariable Long Id) throws FlightNotFoundException{
-			int x = flightServiceImpl.deleteById(Id);
-			if(x == -1) {
-				throw new FlightNotFoundException("Flight does not exists");
+		public ResponseEntity<String> deleteById(@PathVariable String Id) throws FlightNotFoundException{
+			try {
+				Long flightId = Long.parseLong(Id);
+				int x = flightServiceImpl.deleteById(flightId);
+				if(x == -1) {
+					throw new FlightNotFoundException("Flight does not exists");
+				}
+				return ResponseEntity.ok("Deleted");
+			} catch (NumberFormatException e) {
+				throw new FlightNotFoundException("Invalid flight ID format");
 			}
-			return ResponseEntity.ok("Deleted");
 		}
 }
