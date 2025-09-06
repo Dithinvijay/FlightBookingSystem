@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [NgIf, FormsModule]
+  imports: [NgIf, NgFor, FormsModule]
 })
 
 export class HomeComponent {
@@ -27,6 +27,12 @@ export class HomeComponent {
   toError: string = '';
   dateError: string = '';
 
+  cities = [
+    'Hyderabad', 'New Delhi', 'Bangalore', 'Goa', 'Rajahmundry', 
+    'Mumbai', 'Chennai', 'Kolkata', 'New York', 'London', 
+    'Tokyo', 'Sydney', 'Bangkok', 'Singapore', 'Dubai', 'Paris'
+  ];
+
   constructor(private router: Router, private http: HttpClient) {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -43,14 +49,7 @@ export class HomeComponent {
       return;
     }
     
-    const token = localStorage.getItem('jwt');
-    if (!token) {
-      this.searchError = 'Please login first to search for flights.';
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 1800);
-      return;
-    }
+    // Remove login requirement for search - users can search without login
     const today = new Date();
     today.setHours(0,0,0,0);
     const userDate = new Date(this.dateValue);
@@ -67,10 +66,10 @@ export class HomeComponent {
     const formattedDate = `${yyyy}-${mm}-${dd}`;
     this.isActive = true;
     this.isLoading = true;
-    const url = `http://localhost:8080/FMS/flights/${this.fromValue}/${this.toValue}/${formattedDate}`;
+    const url = `http://localhost:1001/FMS/flights/${this.fromValue}/${this.toValue}/${formattedDate}`;
     console.log('Requesting flights from:', url);
-    const headers = { headers: { 'Authorization': `Bearer ${token}` } };
-    this.http.get<any[]>(url, headers).subscribe({
+    // Using direct Flight Service port to bypass API Gateway
+    this.http.get<any[]>(url).subscribe({
       next: (flights) => {
         console.log('Flights received:', flights);
         localStorage.setItem('flightSearchResults', JSON.stringify(flights));

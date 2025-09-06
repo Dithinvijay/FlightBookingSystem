@@ -14,7 +14,10 @@
               <i class="fas fa-plane-departure"></i>
               From
             </label>
-            <input type="text" placeholder="City or Airport" [(ngModel)]="fromValue" (input)="onFieldChange()" [class.error]="fromError" />
+            <select [(ngModel)]="fromValue" (change)="onFieldChange()" [class.error]="fromError" style="width: auto;">
+              <option value="">Select departure city</option>
+              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
             <div *ngIf="fromError" class="validation-error">{{ fromError }}</div>
           </div>
           
@@ -29,7 +32,10 @@
               <i class="fas fa-plane-arrival"></i>
               To
             </label>
-            <input type="text" placeholder="City or Airport" [(ngModel)]="toValue" (input)="onFieldChange()" [class.error]="toError" />
+            <select [(ngModel)]="toValue" (change)="onFieldChange()" [class.error]="toError" style="width: auto;">
+              <option value="">Select destination city</option>
+              <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
             <div *ngIf="toError" class="validation-error">{{ toError }}</div>
           </div>
         </div>

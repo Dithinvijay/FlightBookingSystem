@@ -39,6 +39,11 @@ export class FlightFilterPipe implements PipeTransform {
 })
 export class FlightsDashboardComponent implements OnInit {
 onBookFlight(flight: Flight) {
+  if (!this.isLoggedIn) {
+    alert('Please login to book flights');
+    this.router.navigate(['/login']);
+    return;
+  }
   localStorage.setItem('selectedFlight', JSON.stringify(flight));
   this.router.navigate(['/booking-dashboard'], { state: { flight } });
 }
@@ -94,10 +99,7 @@ onBookFlight(flight: Flight) {
     }
     const { source, destination, date } = JSON.parse(search);
     this.loading = true;
-    const token = localStorage.getItem('jwt');
-    const headers = token ? { headers: { 'Authorization': `Bearer ${token}` } } : {};
-    this.http.get<Flight[]>(`${environment.apiUrlLogin}FMS/flights/${source}/${destination}`, headers
-    ).subscribe({
+    this.http.get<Flight[]>(`http://localhost:1001/FMS/flights/${source}/${destination}/${date}`).subscribe({
       next: (flights) => {
         this.flights = flights;
         this.loading = false;

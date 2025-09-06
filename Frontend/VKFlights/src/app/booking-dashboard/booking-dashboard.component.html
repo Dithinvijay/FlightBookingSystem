@@ -58,7 +58,7 @@
               <input formControlName="age" type="number" placeholder="Age" required />
             </div>
           </div>
-          <button type="submit" [ngStyle]="{'background': getAirlineColor(flight.airline)}" [disabled]="bookingForm.invalid">
+          <button type="submit" [ngStyle]="{'background': getAirlineColor(flight.airline)}" [disabled]="bookingForm.invalid || isFormSubmitted">
             <i class="fa-solid fa-ticket"></i> Book Now
           </button>
         </form>

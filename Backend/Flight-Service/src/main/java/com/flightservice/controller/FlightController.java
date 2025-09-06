@@ -108,8 +108,8 @@ public class FlightController {
 				throw new FlightHandlingException("Flight Not Deleted Successfully");
 			}
 		}
-//		
-//		
+
+		@CrossOrigin(value = "http://localhost:2025/")
 		@GetMapping("/flights/{source}/{destination}/{date}")
 		public ResponseEntity<List<Flight>> findByDateAndLocation(@PathVariable String source,
 				@PathVariable String destination

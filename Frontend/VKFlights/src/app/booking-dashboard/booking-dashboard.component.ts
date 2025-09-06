@@ -55,6 +55,7 @@ export class BookingDashboardComponent implements OnInit {
   bookingForm: FormGroup;
   bookingStatus: string = '';
   error: string = '';
+  isFormSubmitted: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -89,6 +90,11 @@ export class BookingDashboardComponent implements OnInit {
     }
     this.bookingForm.get('noOfSeats')?.valueChanges.subscribe(() => this.updatePassengers());
     this.updatePassengers();
+    this.bookingForm.valueChanges.subscribe(() => {
+      if (this.isFormSubmitted) {
+        this.isFormSubmitted = false;
+      }
+    });
   }
 
   get passengers() {
@@ -110,7 +116,8 @@ export class BookingDashboardComponent implements OnInit {
   }
 
   submitBooking() {
-    if (this.bookingForm.invalid) return;
+    if (this.bookingForm.invalid || this.isFormSubmitted) return;
+    this.isFormSubmitted = true;
     const { seatClass, noOfSeats, email, passengerBookingId, passengers } = this.bookingForm.value;
     const bookingData = {
       flightNumber: this.flight.flightNumber,

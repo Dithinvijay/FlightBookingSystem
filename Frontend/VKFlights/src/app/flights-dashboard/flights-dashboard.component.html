@@ -35,7 +35,7 @@
         </div>
         <div class="flight-details-row">
           <button class="book-btn" [ngStyle]="{'background': getAirlineColor(flight.airline)}" 
-                  [disabled]="!isLoggedIn" (click)="onBookFlight(flight)">
+                  (click)="onBookFlight(flight)">
             <i class="fa-solid fa-ticket"></i> Book
           </button>
   
