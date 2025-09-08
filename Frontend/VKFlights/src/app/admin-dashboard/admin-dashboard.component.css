@@ -234,8 +234,7 @@ body {
   background: #fff;
     position: absolute;
     top: calc(60% + 50px);
-    left: 22%;
-    transform: translate(-10%, -10%);
+    left: 15%;
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(23,49,84,0.10);
   padding: 2rem 2.5rem;
