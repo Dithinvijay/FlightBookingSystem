@@ -1,7 +1,7 @@
 package com.checkin.service;
 
 import java.time.LocalDateTime;
-import java.util.List;import org.hibernate.validator.internal.constraintvalidators.bv.time.futureorpresent.FutureOrPresentValidatorForLocalDateTime;
+import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,39 +23,9 @@ public class CheckInServiceImpl implements CheckInService {
 	
 	@Autowired
 	private CheckInRepository checkInRepository;
-
-	@Override
-	public int addCheckIn(CheckIn checkIn) {
-		LOGGER.info("Checking In by details");
-		
-		boolean check = false;
-		List<Booking> bookings = bookingOpenFeign.getBookings(checkIn.getFlightNumber());
-		
-		for(Booking booking:bookings) {
-			List<PassengerDetails> passengers = booking.getPassengers();
-			for(PassengerDetails pass:passengers) {
-				if(pass.getPassengerId() == checkIn.getPassengerId()) {
-					if(checkInRepository.findByPassengerId(checkIn.getPassengerId()) != null) {
-						LOGGER.error("Passenger already checked in with id {}", pass.getPassengerId());
-						return -2;
-					}
-					
-					check = true;
-					checkIn.setSeatNumber(pass.getSeatNumber());
-					checkIn.setSeatClass(pass.getSeatClass());
-					checkIn.setCheckedIn(true);
-					LOGGER.info("Checking In Successfully done {}", checkIn.getPassengerName());
-					checkInRepository.save(checkIn);
-					return 1;
-				
-				}
-			}
-		}
-		
-		return -1;
-	}
-
 	
+	@Autowired
+	private EmailService emailService;
 	
 	
 	@Override
@@ -102,33 +72,68 @@ public class CheckInServiceImpl implements CheckInService {
 
 
 
-
+	//main for check-in
 	@Override
 	public int checkIn(Integer passengerId) {
-		// TODO Auto-generated method stub
 		LOGGER.info("Fetching passenger details by id {}", passengerId);
-			PassengerDetails pass = bookingOpenFeign.getPassengerDetailsById(passengerId);
-			if(pass == null) {
-				LOGGER.error("Passenger not found with id {}", passengerId);
-				return -1;
-			}
+		PassengerDetails pass = bookingOpenFeign.getPassengerDetailsById(passengerId);
+		if(pass == null) {
+			LOGGER.error("Passenger not found with id {}", passengerId);
+			return -1;
+		}
 		if(checkInRepository.findByPassengerId(passengerId) != null) {
 			LOGGER.error("Passenger already checked in with id {}", passengerId);
 			return -2;
 		}
-			
-	CheckIn	checkIn = new CheckIn();
-//	checkIn.setFlightNumber(pass.getBooking().getFlightNumber()));
-	checkIn.setPassengerId(passengerId);
-	checkIn.setSeatNumber(pass.getSeatNumber());
-	checkIn.setSeatClass(pass.getSeatClass());
-//	checkIn.setBookingId(pass.getBooking().getBookingId());
-	checkIn.setPassengerName(pass.getPassengerName());
-	checkIn.setCheckInTime(LocalDateTime.now());
-	checkIn.setCheckedIn(true);
-	LOGGER.info("Checking In Successfully done {}", checkIn.getPassengerName());
-	checkInRepository.save(checkIn);
-	return 0;
+		
+		// Find booking that contains this passenger
+		Booking passengerBooking = null;
+		for(Booking booking : bookingOpenFeign.getBookingsById(pass.getPassengerId())) {
+			for(PassengerDetails passenger : booking.getPassengers()) {
+				if(passenger.getPassengerId().equals(passengerId)) {
+					passengerBooking = booking;
+					break;
+				}
+			}
+			if(passengerBooking != null) break;
+		}
+		
+		if(passengerBooking == null) {
+			LOGGER.error("Booking not found for passenger with id {}", passengerId);
+			return -1;
+		}
+		
+		CheckIn checkIn = new CheckIn();
+		checkIn.setFlightNumber(passengerBooking.getFlightNumber());
+		checkIn.setPassengerId(passengerId);
+		checkIn.setPassengerBookingId(passengerBooking.getPassengerBookingId());
+		checkIn.setSeatNumber(pass.getSeatNumber());
+		checkIn.setSeatClass(pass.getSeatClass());
+		checkIn.setBookingId(passengerBooking.getBookingId());
+		checkIn.setPassengerName(pass.getPassengerName());
+		checkIn.setCheckInTime(LocalDateTime.now());
+		checkIn.setCheckedIn(true);
+		checkInRepository.save(checkIn);
+		String emailTemplate = "✈️ Check-In Successful! ✅\n"
+				+ "\n"
+				+ "Dear " + pass.getPassengerName() + ",\n"
+				+ "\n"
+				+ "We are pleased to inform you that your check-in has been successfully completed.\n"
+				+ "\n"
+				+ "✈️ Flight Check-In Status: Confirmed\n"
+				+ "\n"
+				+ "Thank you for choosing VK-Flights. We are committed to making your journey comfortable and enjoyable.\n"
+				+ "\n"
+				+ "We wish you a safe and pleasant travel experience, " + pass.getPassengerName() + ".\n"
+				+ "\n"
+				+ "Warm regards,\n"
+				+ "Customer Service Team\n"
+				+ "VK-Flights\n"
+				+ "✈️ Fly Smart. Fly VK.";
+		
+		emailService.sendEmail(passengerBooking.getEmail(), "✅ Check-In Confirmation – VK-Flights", emailTemplate);
+		LOGGER.info("Checking In Successfully done {}", checkIn.getPassengerName());
+		return 1;
 	}
 
 }

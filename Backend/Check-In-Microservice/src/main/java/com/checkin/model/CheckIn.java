@@ -32,13 +32,15 @@ public class CheckIn {
 	private LocalDateTime checkInTime;
 
 	private boolean checkedIn;
+	
+	private String passengerBookingId;
 
 	public CheckIn() {
 		super();
 	}
 
 	public CheckIn(Integer passengerId, String passengerName, Integer seatNumber, String seatClass, Integer bookingId,
-			String flightNumber, LocalDateTime checkInTime, boolean checkedIn) {
+			String flightNumber, LocalDateTime checkInTime, boolean checkedIn, String passengerBookingId) {
 		super();
 		this.passengerId = passengerId;
 		this.passengerName = passengerName;
@@ -48,6 +50,7 @@ public class CheckIn {
 		this.flightNumber = flightNumber;
 		this.checkInTime = checkInTime;
 		this.checkedIn = checkedIn;
+		this.passengerBookingId=passengerBookingId;
 	}
 
 	public Integer getSeatNumber() {
@@ -121,5 +124,14 @@ public class CheckIn {
 	public void setCheckedIn(boolean checkedIn) {
 		this.checkedIn = checkedIn;
 	}
+
+	public String getPassengerBookingId() {
+		return passengerBookingId;
+	}
+
+	public void setPassengerBookingId(String passengerBookingId) {
+		this.passengerBookingId = passengerBookingId;
+	}
+	
 
 }

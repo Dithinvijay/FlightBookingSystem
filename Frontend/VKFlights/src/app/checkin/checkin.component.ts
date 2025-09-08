@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { environment } from '../../environments/environment';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-checkin',
@@ -15,75 +15,37 @@ import { environment } from '../../environments/environment';
 })
 export class CheckinComponent {
   checkinForm: FormGroup;
-  successMsg = '';
-  errorMsg = '';
   loading = false;
-  
-  // Toast notification properties
-  toastMessage = '';
-  showToast = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, public toastService: ToastService) {
     this.checkinForm = this.fb.group({
-      passengerId: ['', Validators.required],
-      passengerName: ['', Validators.required],
-      bookingId: ['', Validators.required],
-      flightNumber: ['', Validators.required],
-      checkInTime: ['', Validators.required]
+      passengerId: ['', Validators.required]
     });
-  }
-
-  showToastNotification(message: string) {
-    this.toastMessage = message;
-    setTimeout(() => this.showToast = true, 100);
-    setTimeout(() => {
-      this.showToast = false;
-      setTimeout(() => this.toastMessage = '', 300);
-    }, 5000);
   }
 
   onSubmit() {
     if (this.checkinForm.invalid) return;
-    this.successMsg = '';
-    this.errorMsg = '';
-    const raw = this.checkinForm.value;
-    let checkInTime = raw.checkInTime;
-    let checkInDate: Date;
-    if (checkInTime && checkInTime.includes('T')) {
-      const [date, time] = checkInTime.split('T');
-      checkInTime = `${date} ${time.length === 5 ? time + ':00' : time}`;
-      checkInDate = new Date(`${date}T${time}`);
-    } else {
-      checkInDate = new Date(checkInTime.replace(' ', 'T'));
-    }
-    const now = new Date();
-    if (checkInDate < now) {
-      this.errorMsg = 'Check-in time cannot be in the past.';
-      return;
-    }
+    
     this.loading = true;
-    const payload = {
-      passengerId: Number(raw.passengerId),
-      passengerName: raw.passengerName,
-      bookingId: Number(raw.bookingId),
-      flightNumber: raw.flightNumber,
-      checkInTime: checkInTime
-    };
+    
+    const passengerId = this.checkinForm.value.passengerId;
     const token = localStorage.getItem('jwt');
-    const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-    this.http.post('http://localhost:8080/checkIn/addCheckIn', payload, headers).subscribe({
-      next: () => {
-        this.successMsg = 'Check-in successful!';
+    const options = token ? {
+      responseType: 'text' as const,
+      headers: { Authorization: `Bearer ${token}` }
+    } : {
+      responseType: 'text' as const
+    };
+    
+    this.http.get(`http://localhost:8080/checkIn/checkIn/${passengerId}`, options).subscribe({
+      next: (response: string) => {
+        this.toastService.showToast(response, 'success');
         this.loading = false;
-        this.showToastNotification('Check-in completed successfully!');
-        setTimeout(() => {
-          this.router.navigate(['/dashboard']);
-        }, 1200);
+        this.checkinForm.reset();
       },
       error: (err) => {
-        this.errorMsg = 'User is already checked-In';
+        this.toastService.showToast(err.error || 'An error occurred during check-in', 'error');
         this.loading = false;
-        setTimeout(() => this.router.navigate(['/dashboard']), 1500);
       }
     });
   }

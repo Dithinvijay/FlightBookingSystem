@@ -1,10 +1,3 @@
-<div class="toast-container" *ngIf="toastMessage">
-  <div class="toast" [class.show]="showToast">
-    <i class="fa fa-check-circle"></i>
-    {{ toastMessage }}
-  </div>
-</div>
-
 <section class="checkin-section">
   <div class="checkin-card">
     <h2 class="checkin-title"><i class="fa-solid fa-user-check"></i> Flight Check-In</h2>
@@ -13,28 +6,17 @@
         <label>Passenger ID</label>
         <input formControlName="passengerId" type="number" placeholder="Enter Passenger ID" required />
       </div>
-      <div class="form-row">
-        <label>Passenger Name</label>
-        <input formControlName="passengerName" type="text" placeholder="Enter Passenger Name" required />
-      </div>
-      <div class="form-row">
-        <label>Booking ID</label>
-        <input formControlName="bookingId" type="number" placeholder="Enter Booking ID" required />
-      </div>
-      <div class="form-row">
-        <label>Flight Number</label>
-        <input formControlName="flightNumber" type="text" placeholder="Enter Flight Number" required />
-      </div>
-      <div class="form-row">
-        <label>Check-In Time</label>
-        <input formControlName="checkInTime" type="datetime-local" required />
-      </div>
       <button class="checkin-btn" type="submit" [disabled]="loading || checkinForm.invalid">
         <span *ngIf="!loading">Check In</span>
         <span *ngIf="loading"><i class="fa fa-spinner fa-spin"></i> Checking In...</span>
       </button>
-      <div *ngIf="successMsg" class="checkin-success">{{ successMsg }}</div>
-      <div *ngIf="errorMsg" class="checkin-error">{{ errorMsg }}</div>
     </form>
   </div>
 </section>
+
+<div class="toast-container">
+  <div class="toast" [class.show]="(toastService.toast$ | async)?.show" [class.error]="(toastService.toast$ | async)?.type === 'error'">
+    <i class="fa" [class.fa-check-circle]="(toastService.toast$ | async)?.type === 'success'" [class.fa-exclamation-circle]="(toastService.toast$ | async)?.type === 'error'"></i>
+    {{ (toastService.toast$ | async)?.message }}
+  </div>
+</div>

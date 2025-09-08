@@ -32,6 +32,9 @@ public class UserCrudService {
     
     @Autowired
 	AuthenticationManager authManager;
+    
+    @Autowired
+    private EmailService emailService;
 	
 
 
@@ -40,9 +43,13 @@ public class UserCrudService {
     @Transactional
     public User register(User user) {
         logger.info("Registering new user: {}", user.getUsername());
+
         user.setPassword(encoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         logger.info("User registered successfully with ID: {}", savedUser.getId());
+        
+        emailService.sendWelcomeEmail(savedUser.getEmail(), savedUser.getFirstName());
+        
         return savedUser;
     }
     

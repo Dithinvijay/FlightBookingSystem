@@ -11,18 +11,20 @@ public class Booking {
 
 	private String flightNumber;
 
-	private Integer passengerBookingId;
+	private String passengerBookingId;
 
 	private Integer noOfSeats;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime bookingDate;
 
+	private String email;
+	
 	private String bookingStatus;
 
 	private List<PassengerDetails> passengers;
 
-	public Booking(String flightNumber, Integer passengerId, LocalDateTime bookingDate, String bookingStatus) {
+	public Booking(String flightNumber, String passengerId, LocalDateTime bookingDate, String bookingStatus) {
 		super();
 		this.flightNumber = flightNumber;
 		this.passengerBookingId = passengerId;
@@ -34,8 +36,8 @@ public class Booking {
 		super();
 	}
 
-	public Booking(String flightNumber, Integer passengerBookingId, Integer noOfSeats, LocalDateTime bookingDate,
-			String bookingStatus, List<PassengerDetails> passengers) {
+	public Booking(String flightNumber, String passengerBookingId, Integer noOfSeats, LocalDateTime bookingDate,
+			String bookingStatus, String email, List<PassengerDetails> passengers) {
 		super();
 		this.flightNumber = flightNumber;
 		this.passengerBookingId = passengerBookingId;
@@ -43,9 +45,10 @@ public class Booking {
 		this.bookingDate = bookingDate;
 		this.bookingStatus = bookingStatus;
 		this.passengers = passengers;
+		this.email=email;
 	}
 
-	public Booking(String flightNumber, Integer passengerBookingId, LocalDateTime bookingDate, String bookingStatus,
+	public Booking(String flightNumber, String passengerBookingId, LocalDateTime bookingDate, String bookingStatus,
 			List<PassengerDetails> passengers) {
 		super();
 		this.flightNumber = flightNumber;
@@ -87,11 +90,11 @@ public class Booking {
 		this.flightNumber = flightNumber;
 	}
 
-	public Integer getPassengerBookingId() {
+	public String getPassengerBookingId() {
 		return passengerBookingId;
 	}
 
-	public void setPassengerBookingId(Integer passengerId) {
+	public void setPassengerBookingId(String passengerId) {
 		this.passengerBookingId = passengerId;
 	}
 
@@ -109,6 +112,16 @@ public class Booking {
 
 	public void setBookingStatus(String bookingStatus) {
 		this.bookingStatus = bookingStatus;
+	}
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

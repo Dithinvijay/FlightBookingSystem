@@ -23,7 +23,6 @@ import com.checkin.Repo.CheckInRepository;
 import com.checkin.model.CheckIn;
 import com.checkin.service.CheckInServiceImpl;
 
-import jakarta.transaction.Transactional;
 
 @ExtendWith(MockitoExtension.class)
 public class checkInServiceImplTest {
@@ -38,7 +37,7 @@ public class checkInServiceImplTest {
 	
 	@BeforeEach
 	void setUp() {
-		checkIn = new CheckIn(1,"Dithin",50,"Economy",1,"VS-102",LocalDateTime.of(2025,4,1,10,0),false);
+		checkIn = new CheckIn(1,"Dithin",50,"Economy",1,"VS-102",LocalDateTime.of(2025,4,1,10,0),false,"VIS12345");
 	}
 	
 	@Test

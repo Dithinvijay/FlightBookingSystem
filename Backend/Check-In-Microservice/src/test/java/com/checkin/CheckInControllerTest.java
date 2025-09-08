@@ -62,44 +62,9 @@ public class CheckInControllerTest {
         objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
     }
 
-    @Test
-    void testAddCheckIn_Success() throws Exception {
-        when(checkInService.addCheckIn(any(CheckIn.class))).thenReturn(1);
+    
 
-        mockMvc.perform(post("/checkIn/addCheckIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(checkIn)))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("CheckIn Successfully done John Doe Your seat number is 10 Economyclass")));
-
-        verify(checkInService, times(1)).addCheckIn(any(CheckIn.class));
-    }
-
-    @Test
-    void testAddCheckIn_AlreadyCheckedIn() throws Exception {
-        when(checkInService.addCheckIn(any(CheckIn.class))).thenReturn(-2);
-
-        mockMvc.perform(post("/checkIn/addCheckIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(checkIn)))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Already Checked In"));
-
-        verify(checkInService, times(1)).addCheckIn(any(CheckIn.class));
-    }
-
-    @Test
-    void testAddCheckIn_NotCheckedInSuccessfully() throws Exception {
-        when(checkInService.addCheckIn(any(CheckIn.class))).thenReturn(0); // Assuming 0 or other non-1, non -2 indicates failure
-
-        mockMvc.perform(post("/checkIn/addCheckIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(checkIn)))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Not Checked In successfully"));
-
-        verify(checkInService, times(1)).addCheckIn(any(CheckIn.class));
-    }
+    
 
     @Test
     void testIsCheckedIn_Success() throws Exception {

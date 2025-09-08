@@ -120,23 +120,26 @@ public class BookingController {
 			
 			String template = "🎟️ Congratulations! Your Tickets Are Confirmed! 🎉\n"
 					+ "\n"
-					+ "Dear "+booking.getPassengers().get(0).getPassengerName()
+					+ "Dear " + booking.getPassengers().get(0).getPassengerName() + ",\n"
 					+ "\n"
-					+ "📍 Flight Number: "+booking.getFlightNumber()
+					+ "We are pleased to confirm your flight booking with VK-Flights. Below are your travel details:\n"
 					+ "\n"
-					+ "📅 Date: "+booking.getBookingDate()
+					+ "📍 Flight Number: " + booking.getFlightNumber() + "\n"
+					+ "📅 Departure Date: " + booking.getBookingDate() + "\n"
+					+ "🪑 Number of Seats Booked: " + booking.getPassengers().size() + "\n"
+					+ "🎟️ Passenger Booking ID: " + booking.getPassengerBookingId() + "\n"
+					+ "👤 Passenger Details: " + booking.getPassengers() + "\n"
+					+ "💰 Total Amount Paid: ₹" + price + "\n"
 					+ "\n"
-					+ "🪑 Seats: "+booking.getPassengers().size()
-					+"\n"
-					+ "🎟️ PassengerDetails - "+booking.getPassengers()
+					+ "📝 Note: Please use your Passenger ID to complete check-in either through our website or directly at the airport.\n"
 					+ "\n"
-					+ "💰 Amount Paid: "+price
+					+ "Thank you for choosing VK-Flights. We look forward to serving you and wish you a pleasant journey.\n"
 					+ "\n"
-					+ "✅ Thank you for choosing us! Your journey awaits.\n"
-					+ "\n"
-					+ "Best Regards,\n"
-					+ "✈️ VK-Flights";
-			emailService.sendEmail(booking.getEmail(), "Tickets Confirmation", template);
+					+ "Warm regards,\n"
+					+ "Customer Service Team\n"
+					+ "VK-Flights\n"
+					+ "✈️ Fly Smart. Fly VK.";
+			emailService.sendEmail(booking.getEmail(), "✈️ Flight Ticket Confirmation – VK-Flights", template);
 			return ResponseEntity.ok("Order created successfully. Please pay amount "+price + " to book");
 			//return ResponseEntity.ok("Please pay "+price+" for confirming the booking");
 		//	return ResponseEntity.status(HttpStatus.CREATED).body("Booking Succesful. Your Booking_Id is "+booking.getBookingId());

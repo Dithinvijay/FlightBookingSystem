@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,29 +19,19 @@ public class CheckInController {
 	
 	@Autowired
 	private CheckInService checkInService;
-
-	@PostMapping("/addCheckIn")
-	public ResponseEntity<String> addCheckIn(@RequestBody CheckIn checkIn){
-		
-		int x= checkInService.addCheckIn(checkIn);
-		
-		if( x == 1) {
-		return ResponseEntity.ok("CheckIn Successfully done "+checkIn.getPassengerName()+ " Your seat number is "+ checkIn.getSeatNumber() + " "+checkIn.getSeatClass()+"class \nWish You a Happy and Safe Journey..");
-	}else if(x == -2) {
-		return ResponseEntity.badRequest().body("Already Checked In");
-	}
-		return ResponseEntity.badRequest().body("Not Checked In successfully");
-	}
 	
+	//main for check-in
 	@GetMapping("/checkIn/{passengerId}")
 	public ResponseEntity<String> checkIn(@PathVariable Integer passengerId){
 		int x = checkInService.checkIn(passengerId);
-		if(x == -1 || x == -2) {
-			return ResponseEntity.badRequest().body("CheckIn Failed");
+		if(x == -1) {
+			return ResponseEntity.badRequest().body("Passenger not found with id");
 		}
-	
-		return ResponseEntity.ok("Check In success ");
+		else if(x==-2) {
+			return ResponseEntity.badRequest().body("Passenger is already checked in");
+		}
 		
+		return ResponseEntity.ok("Check In success ");
 	}
 	
 	@GetMapping("/checkedInStatus/{passengerId}")
