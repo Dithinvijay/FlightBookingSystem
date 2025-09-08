@@ -21,4 +21,7 @@ public interface BookingOpenFeign {
 	@GetMapping("/BMS/getPassengerById/{passengerId}")
 	PassengerDetails getPassengerDetailsById(@PathVariable Integer passengerId);
 	
+	@GetMapping("/BMS/getBookingByPassengerId/{passengerId}")
+	Booking getBookingByPassengerId(@PathVariable Integer passengerId);
+	
 }

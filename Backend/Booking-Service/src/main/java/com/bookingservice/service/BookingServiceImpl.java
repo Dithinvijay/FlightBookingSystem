@@ -287,11 +287,33 @@ public class BookingServiceImpl implements BookingService {
 		LOGGER.info("Fetching passenger Details");
 		PassengerDetails pass = passengerRepo.findByPassengerId(passengerId);
 		if(pass == null) {
-			LOGGER.info("Passenege with {} not found", passengerId);
+			LOGGER.info("Passenger with {} not found", passengerId);
 			return null;
 		}
-		LOGGER.info("Passenger found with Id {}", passengerId);
+		// Ensure booking relationship is loaded
+		if(pass.getBooking() != null) {
+			LOGGER.info("Passenger found with Id {} and booking ID {}", passengerId, pass.getBooking().getBookingId());
+		} else {
+			LOGGER.warn("Passenger found with Id {} but no booking relationship", passengerId);
+		}
 		return pass;
+	}
+	
+	@Override
+	public Booking getBookingByPassengerId(Integer passengerId) {
+		LOGGER.info("Fetching booking for passenger ID {}", passengerId);
+		PassengerDetails pass = passengerRepo.findByPassengerId(passengerId);
+		if(pass == null) {
+			LOGGER.error("Passenger with ID {} not found", passengerId);
+			return null;
+		}
+		Booking booking = pass.getBooking();
+		if(booking != null) {
+			LOGGER.info("Found booking ID {} for passenger ID {}", booking.getBookingId(), passengerId);
+		} else {
+			LOGGER.error("No booking found for passenger ID {}", passengerId);
+		}
+		return booking;
 	}
 
 }

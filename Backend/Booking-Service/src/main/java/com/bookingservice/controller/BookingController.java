@@ -58,6 +58,15 @@ public class BookingController {
 		}
 		return ResponseEntity.ok(pass);
 	}
+	
+	@GetMapping("/getBookingByPassengerId/{passengerId}")
+	public ResponseEntity<Booking> getBookingByPassengerId(@PathVariable Integer passengerId) throws BookingsNotFoundException{
+		Booking booking = bookingService.getBookingByPassengerId(passengerId);
+		if(booking == null) {
+			throw new BookingsNotFoundException("Booking Not Found for Passenger ID " + passengerId);
+		}
+		return ResponseEntity.ok(booking);
+	}
 	@GetMapping("/getByBookingId/{bookingId}")
 	public ResponseEntity<List<Booking>> getBookingsById(@PathVariable Integer bookingId) throws BookingsNotFoundException{
 		List<Booking> bookings = bookingService.getBookingsById(bookingId);

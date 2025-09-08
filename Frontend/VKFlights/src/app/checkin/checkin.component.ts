@@ -44,7 +44,13 @@ export class CheckinComponent {
         this.checkinForm.reset();
       },
       error: (err) => {
-        this.toastService.showToast(err.error || 'An error occurred during check-in', 'error');
+        let errorMessage = 'An error occurred during check-in';
+        if (err.error && typeof err.error === 'string') {
+          errorMessage = err.error;
+        } else if (err.message) {
+          errorMessage = err.message;
+        }
+        this.toastService.showToast(errorMessage, 'error');
         this.loading = false;
       }
     });

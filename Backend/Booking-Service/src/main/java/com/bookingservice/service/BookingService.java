@@ -29,4 +29,6 @@ public interface BookingService {
 	double calculateTotalPrice(Integer noOfSeats,String seatclass, String flightNumber);
 	
 	PassengerDetails getPassengerDetailsById(Integer passengerId);
+	
+	Booking getBookingByPassengerId(Integer passengerId);
 }

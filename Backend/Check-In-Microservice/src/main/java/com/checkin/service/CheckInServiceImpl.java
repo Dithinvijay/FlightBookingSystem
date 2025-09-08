@@ -76,7 +76,13 @@ public class CheckInServiceImpl implements CheckInService {
 	@Override
 	public int checkIn(Integer passengerId) {
 		LOGGER.info("Fetching passenger details by id {}", passengerId);
-		PassengerDetails pass = bookingOpenFeign.getPassengerDetailsById(passengerId);
+		PassengerDetails pass = null;
+		try {
+			pass = bookingOpenFeign.getPassengerDetailsById(passengerId);
+		} catch (Exception e) {
+			LOGGER.error("Error fetching passenger details for id {}: {}", passengerId, e.getMessage());
+			return -1;
+		}
 		if(pass == null) {
 			LOGGER.error("Passenger not found with id {}", passengerId);
 			return -1;
@@ -86,16 +92,18 @@ public class CheckInServiceImpl implements CheckInService {
 			return -2;
 		}
 		
-		// Find booking that contains this passenger
-		Booking passengerBooking = null;
-		for(Booking booking : bookingOpenFeign.getBookingsById(pass.getPassengerId())) {
-			for(PassengerDetails passenger : booking.getPassengers()) {
-				if(passenger.getPassengerId().equals(passengerId)) {
-					passengerBooking = booking;
-					break;
-				}
+		// Get booking from passenger details or fetch it separately
+		Booking passengerBooking = pass.getBooking();
+		
+		// If booking is not loaded in passenger details, fetch it using the new endpoint
+		if(passengerBooking == null) {
+			LOGGER.warn("Booking not found in passenger details, fetching separately for passenger {}", passengerId);
+			try {
+				passengerBooking = bookingOpenFeign.getBookingByPassengerId(passengerId);
+			} catch (Exception e) {
+				LOGGER.error("Error fetching booking for passenger {}: {}", passengerId, e.getMessage());
+				return -1;
 			}
-			if(passengerBooking != null) break;
 		}
 		
 		if(passengerBooking == null) {
