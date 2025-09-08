@@ -29,8 +29,7 @@ export class HomeComponent {
 
   cities = [
     'Hyderabad', 'New Delhi', 'Bangalore', 'Goa', 'Rajahmundry', 
-    'Mumbai', 'Chennai', 'Kolkata', 'New York', 'London', 
-    'Tokyo', 'Sydney', 'Bangkok', 'Singapore', 'Dubai', 'Paris'
+    'Mumbai', 'Chennai', 'Kolkata'
   ];
 
   constructor(private router: Router, private http: HttpClient) {

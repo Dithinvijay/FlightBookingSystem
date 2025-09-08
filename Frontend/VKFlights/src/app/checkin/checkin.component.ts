@@ -81,9 +81,8 @@ export class CheckinComponent {
         }, 1200);
       },
       error: (err) => {
-        this.successMsg = 'Check-in successful!';
+        this.errorMsg = 'User is already checked-In';
         this.loading = false;
-        this.showToastNotification('Check-in completed successfully!');
         setTimeout(() => this.router.navigate(['/dashboard']), 1500);
       }
     });

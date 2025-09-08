@@ -38,7 +38,7 @@ public class checkInServiceImplTest {
 	
 	@BeforeEach
 	void setUp() {
-		checkIn = new CheckIn(1,"Pavan",50,"Economy",1,"VS-102",LocalDateTime.of(2025,4,1,10,0),false);
+		checkIn = new CheckIn(1,"Dithin",50,"Economy",1,"VS-102",LocalDateTime.of(2025,4,1,10,0),false);
 	}
 	
 	@Test

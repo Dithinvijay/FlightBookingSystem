@@ -39,7 +39,7 @@ public class BookingController {
     private EmailService emailService;
 
 	@GetMapping("/bookingsOfPassenger/{passengerBookingId}")
-	public ResponseEntity<List<Booking>> getBookings(@PathVariable Integer passengerBookingId) throws BookingsNotFoundException{
+	public ResponseEntity<List<Booking>> getBookingsByPasssengerBookingId(@PathVariable String passengerBookingId) throws BookingsNotFoundException{
 		List<Booking> bookings = bookingService.getBookingByPassengerBookingId(passengerBookingId);
 		if(bookings.size()== 0) {
 			throw new BookingsNotFoundException("No Bookings Available");

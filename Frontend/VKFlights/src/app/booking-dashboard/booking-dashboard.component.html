@@ -43,7 +43,7 @@
           </div>
           <div class="form-row">
             <label><i class="fa-solid fa-id-card"></i> Passenger Booking ID:</label>
-            <input type="text" formControlName="passengerBookingId" placeholder="Enter booking ID" required />
+            <input type="text" formControlName="passengerBookingId" placeholder="Auto-generated" readonly />
           </div>
           <div formArrayName="passengers">
             <div *ngFor="let passenger of passengers.controls; let i = index" [formGroupName]="i" class="passenger-form">

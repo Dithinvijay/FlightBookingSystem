@@ -73,11 +73,11 @@ public class BookingControllerTest {
 	
 	@BeforeEach
 	void setUp() {
-		PassengerDetails passenger1 = new PassengerDetails("Pavan", "Male", 22, null);
-        PassengerDetails passenger2 = new PassengerDetails("Sai Gopal", "Female", 22, null);
+		PassengerDetails passenger1 = new PassengerDetails("Dithin", "Male", 21, null);
+        PassengerDetails passenger2 = new PassengerDetails("Malavika", "Female", 22, null);
         List<PassengerDetails> passengers = Arrays.asList(passenger1, passenger2);
         
-        booking = new Booking("AIR-100", 1, 2, LocalDateTime.now(), "Scheduled", passengers);
+        booking = new Booking("AIR-100", "IND12345", 2, LocalDateTime.now(), "test@email.com", "Scheduled", passengers);
 	}
 	
 	@Test
@@ -147,7 +147,7 @@ public class BookingControllerTest {
 	@Test
     void testGetBookingByPassengerId_Success() throws Exception {
         // Arrange
-        int passengerBookingId = 12106941;
+        String passengerBookingId = "IND12345";
         List<Booking> bookings = Arrays.asList(booking);
         when(bookingService.getBookingByPassengerBookingId(passengerBookingId)).thenReturn(bookings);
 

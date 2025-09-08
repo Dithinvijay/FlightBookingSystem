@@ -8,7 +8,7 @@ import com.bookingservice.model.PassengerDetails;
 
 public interface BookingService {
 
-	List<Booking> getBookingByPassengerBookingId(Integer passengerBookingId);
+	List<Booking> getBookingByPassengerBookingId(String passengerBookingId);
 	
 	List<Booking> getBookingsById(Integer bookingId);
 	

@@ -10,7 +10,7 @@ import com.bookingservice.model.Booking;
 @Repository
 public interface BookingRepo  extends JpaRepository<Booking, Integer>{
 
-	List<Booking> findByPassengerBookingId(Integer passengerBookingId);
+	List<Booking> findByPassengerBookingId(String passengerBookingId);
 	
 	List<Booking> findByFlightNumber(String flightNumber);
 	

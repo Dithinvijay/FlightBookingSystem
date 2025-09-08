@@ -1,0 +1,169 @@
+id,airline,arrival_airport,arrival_time,departure_airport,departure_time,flight_number,status
+1,Air India,New Delhi,2026-04-01 08:15:00,Hyderabad,2026-04-01 06:15:00,AIR-100,Scheduled
+2,Air India,Bangalore,2026-04-01 08:30:00,Hyderabad,2026-04-01 06:30:00,AIR-101,Scheduled
+3,Air India,Goa,2026-04-01 08:45:00,Hyderabad,2026-04-01 06:45:00,AIR-102,Scheduled
+4,Air India,Rajahmundry,2026-04-01 09:00:00,Hyderabad,2026-04-01 07:00:00,AIR-103,Scheduled
+5,Air India,Mumbai,2026-04-01 09:15:00,Hyderabad,2026-04-01 07:15:00,AIR-104,Scheduled
+6,Air India,Chennai,2026-04-01 09:30:00,Hyderabad,2026-04-01 07:30:00,AIR-105,Scheduled
+7,Air India,Kolkata,2026-04-01 09:45:00,Hyderabad,2026-04-01 07:45:00,AIR-106,Scheduled
+8,Air India,Hyderabad,2026-04-01 10:00:00,New Delhi,2026-04-01 08:00:00,AIR-107,Scheduled
+9,Air India,Bangalore,2026-04-01 10:15:00,New Delhi,2026-04-01 08:15:00,AIR-108,Scheduled
+10,Air India,Goa,2026-04-01 10:30:00,New Delhi,2026-04-01 08:30:00,AIR-109,Scheduled
+11,Air India,Rajahmundry,2026-04-01 10:45:00,New Delhi,2026-04-01 08:45:00,AIR-110,Scheduled
+12,Air India,Mumbai,2026-04-01 11:00:00,New Delhi,2026-04-01 09:00:00,AIR-111,Scheduled
+13,Air India,Chennai,2026-04-01 11:15:00,New Delhi,2026-04-01 09:15:00,AIR-112,Scheduled
+14,Air India,Kolkata,2026-04-01 11:30:00,New Delhi,2026-04-01 09:30:00,AIR-113,Scheduled
+15,Air India,Hyderabad,2026-04-01 11:45:00,Bangalore,2026-04-01 09:45:00,AIR-114,Scheduled
+16,Air India,New Delhi,2026-04-01 12:00:00,Bangalore,2026-04-01 10:00:00,AIR-115,Scheduled
+17,Air India,Goa,2026-04-01 12:15:00,Bangalore,2026-04-01 10:15:00,AIR-116,Scheduled
+18,Air India,Rajahmundry,2026-04-01 12:30:00,Bangalore,2026-04-01 10:30:00,AIR-117,Scheduled
+19,Air India,Mumbai,2026-04-01 12:45:00,Bangalore,2026-04-01 10:45:00,AIR-118,Scheduled
+20,Air India,Chennai,2026-04-01 13:00:00,Bangalore,2026-04-01 11:00:00,AIR-119,Scheduled
+21,Air India,Kolkata,2026-04-01 13:15:00,Bangalore,2026-04-01 11:15:00,AIR-120,Scheduled
+22,Air India,Hyderabad,2026-04-01 13:30:00,Goa,2026-04-01 11:30:00,AIR-121,Scheduled
+23,Air India,New Delhi,2026-04-01 13:45:00,Goa,2026-04-01 11:45:00,AIR-122,Scheduled
+24,Air India,Bangalore,2026-04-01 14:00:00,Goa,2026-04-01 12:00:00,AIR-123,Scheduled
+25,Air India,Rajahmundry,2026-04-01 14:15:00,Goa,2026-04-01 12:15:00,AIR-124,Scheduled
+26,Air India,Mumbai,2026-04-01 14:30:00,Goa,2026-04-01 12:30:00,AIR-125,Scheduled
+27,Air India,Chennai,2026-04-01 14:45:00,Goa,2026-04-01 12:45:00,AIR-126,Scheduled
+28,Air India,Kolkata,2026-04-01 15:00:00,Goa,2026-04-01 13:00:00,AIR-127,Scheduled
+29,Air India,Hyderabad,2026-04-01 15:15:00,Rajahmundry,2026-04-01 13:15:00,AIR-128,Scheduled
+30,Air India,New Delhi,2026-04-01 15:30:00,Rajahmundry,2026-04-01 13:30:00,AIR-129,Scheduled
+31,Air India,Bangalore,2026-04-01 15:45:00,Rajahmundry,2026-04-01 13:45:00,AIR-130,Scheduled
+32,Air India,Goa,2026-04-01 16:00:00,Rajahmundry,2026-04-01 14:00:00,AIR-131,Scheduled
+33,Air India,Mumbai,2026-04-01 16:15:00,Rajahmundry,2026-04-01 14:15:00,AIR-132,Scheduled
+34,Air India,Chennai,2026-04-01 16:30:00,Rajahmundry,2026-04-01 14:30:00,AIR-133,Scheduled
+35,Air India,Kolkata,2026-04-01 16:45:00,Rajahmundry,2026-04-01 14:45:00,AIR-134,Scheduled
+36,Air India,Hyderabad,2026-04-01 17:00:00,Mumbai,2026-04-01 15:00:00,AIR-135,Scheduled
+37,Air India,New Delhi,2026-04-01 17:15:00,Mumbai,2026-04-01 15:15:00,AIR-136,Scheduled
+38,Air India,Bangalore,2026-04-01 17:30:00,Mumbai,2026-04-01 15:30:00,AIR-137,Scheduled
+39,Air India,Goa,2026-04-01 17:45:00,Mumbai,2026-04-01 15:45:00,AIR-138,Scheduled
+40,Air India,Rajahmundry,2026-04-01 18:00:00,Mumbai,2026-04-01 16:00:00,AIR-139,Scheduled
+41,Air India,Chennai,2026-04-01 18:15:00,Mumbai,2026-04-01 16:15:00,AIR-140,Scheduled
+42,Air India,Kolkata,2026-04-01 18:30:00,Mumbai,2026-04-01 16:30:00,AIR-141,Scheduled
+43,Air India,Hyderabad,2026-04-01 18:45:00,Chennai,2026-04-01 16:45:00,AIR-142,Scheduled
+44,Air India,New Delhi,2026-04-01 19:00:00,Chennai,2026-04-01 17:00:00,AIR-143,Scheduled
+45,Air India,Bangalore,2026-04-01 19:15:00,Chennai,2026-04-01 17:15:00,AIR-144,Scheduled
+46,Air India,Goa,2026-04-01 19:30:00,Chennai,2026-04-01 17:30:00,AIR-145,Scheduled
+47,Air India,Rajahmundry,2026-04-01 19:45:00,Chennai,2026-04-01 17:45:00,AIR-146,Scheduled
+48,Air India,Mumbai,2026-04-01 20:00:00,Chennai,2026-04-01 18:00:00,AIR-147,Scheduled
+49,Air India,Kolkata,2026-04-01 20:15:00,Chennai,2026-04-01 18:15:00,AIR-148,Scheduled
+50,Air India,Hyderabad,2026-04-01 20:30:00,Kolkata,2026-04-01 18:30:00,AIR-149,Scheduled
+51,Air India,New Delhi,2026-04-01 20:45:00,Kolkata,2026-04-01 18:45:00,AIR-150,Scheduled
+52,Air India,Bangalore,2026-04-01 21:00:00,Kolkata,2026-04-01 19:00:00,AIR-151,Scheduled
+53,Air India,Goa,2026-04-01 21:15:00,Kolkata,2026-04-01 19:15:00,AIR-152,Scheduled
+54,Air India,Rajahmundry,2026-04-01 21:30:00,Kolkata,2026-04-01 19:30:00,AIR-153,Scheduled
+55,Air India,Mumbai,2026-04-01 21:45:00,Kolkata,2026-04-01 19:45:00,AIR-154,Scheduled
+56,Air India,Chennai,2026-04-01 22:00:00,Kolkata,2026-04-01 20:00:00,AIR-155,Scheduled
+57,Indigo,New Delhi,2026-04-01 22:15:00,Hyderabad,2026-04-01 20:15:00,IND-200,Scheduled
+58,Indigo,Bangalore,2026-04-01 22:30:00,Hyderabad,2026-04-01 20:30:00,IND-201,Scheduled
+59,Indigo,Goa,2026-04-01 22:45:00,Hyderabad,2026-04-01 20:45:00,IND-202,Scheduled
+60,Indigo,Rajahmundry,2026-04-01 23:00:00,Hyderabad,2026-04-01 21:00:00,IND-203,Scheduled
+61,Indigo,Mumbai,2026-04-01 23:15:00,Hyderabad,2026-04-01 21:15:00,IND-204,Scheduled
+62,Indigo,Chennai,2026-04-01 23:30:00,Hyderabad,2026-04-01 21:30:00,IND-205,Scheduled
+63,Indigo,Kolkata,2026-04-01 23:45:00,Hyderabad,2026-04-01 21:45:00,IND-206,Scheduled
+64,Indigo,Hyderabad,2026-04-02 00:00:00,New Delhi,2026-04-01 22:00:00,IND-207,Scheduled
+65,Indigo,Bangalore,2026-04-02 00:15:00,New Delhi,2026-04-01 22:15:00,IND-208,Scheduled
+66,Indigo,Goa,2026-04-02 00:30:00,New Delhi,2026-04-01 22:30:00,IND-209,Scheduled
+67,Indigo,Rajahmundry,2026-04-02 00:45:00,New Delhi,2026-04-01 22:45:00,IND-210,Scheduled
+68,Indigo,Mumbai,2026-04-02 01:00:00,New Delhi,2026-04-01 23:00:00,IND-211,Scheduled
+69,Indigo,Chennai,2026-04-02 01:15:00,New Delhi,2026-04-01 23:15:00,IND-212,Scheduled
+70,Indigo,Kolkata,2026-04-02 01:30:00,New Delhi,2026-04-01 23:30:00,IND-213,Scheduled
+71,Indigo,Hyderabad,2026-04-02 01:45:00,Bangalore,2026-04-01 23:45:00,IND-214,Scheduled
+72,Indigo,New Delhi,2026-04-02 02:00:00,Bangalore,2026-04-02 00:00:00,IND-215,Scheduled
+73,Indigo,Goa,2026-04-02 02:15:00,Bangalore,2026-04-02 00:15:00,IND-216,Scheduled
+74,Indigo,Rajahmundry,2026-04-02 02:30:00,Bangalore,2026-04-02 00:30:00,IND-217,Scheduled
+75,Indigo,Mumbai,2026-04-02 02:45:00,Bangalore,2026-04-02 00:45:00,IND-218,Scheduled
+76,Indigo,Chennai,2026-04-02 03:00:00,Bangalore,2026-04-02 01:00:00,IND-219,Scheduled
+77,Indigo,Kolkata,2026-04-02 03:15:00,Bangalore,2026-04-02 01:15:00,IND-220,Scheduled
+78,Indigo,Hyderabad,2026-04-02 03:30:00,Goa,2026-04-02 01:30:00,IND-221,Scheduled
+79,Indigo,New Delhi,2026-04-02 03:45:00,Goa,2026-04-02 01:45:00,IND-222,Scheduled
+80,Indigo,Bangalore,2026-04-02 04:00:00,Goa,2026-04-02 02:00:00,IND-223,Scheduled
+81,Indigo,Rajahmundry,2026-04-02 04:15:00,Goa,2026-04-02 02:15:00,IND-224,Scheduled
+82,Indigo,Mumbai,2026-04-02 04:30:00,Goa,2026-04-02 02:30:00,IND-225,Scheduled
+83,Indigo,Chennai,2026-04-02 04:45:00,Goa,2026-04-02 02:45:00,IND-226,Scheduled
+84,Indigo,Kolkata,2026-04-02 05:00:00,Goa,2026-04-02 03:00:00,IND-227,Scheduled
+85,Indigo,Hyderabad,2026-04-02 05:15:00,Rajahmundry,2026-04-02 03:15:00,IND-228,Scheduled
+86,Indigo,New Delhi,2026-04-02 05:30:00,Rajahmundry,2026-04-02 03:30:00,IND-229,Scheduled
+87,Indigo,Bangalore,2026-04-02 05:45:00,Rajahmundry,2026-04-02 03:45:00,IND-230,Scheduled
+88,Indigo,Goa,2026-04-02 06:00:00,Rajahmundry,2026-04-02 04:00:00,IND-231,Scheduled
+89,Indigo,Mumbai,2026-04-02 06:15:00,Rajahmundry,2026-04-02 04:15:00,IND-232,Scheduled
+90,Indigo,Chennai,2026-04-02 06:30:00,Rajahmundry,2026-04-02 04:30:00,IND-233,Scheduled
+91,Indigo,Kolkata,2026-04-02 06:45:00,Rajahmundry,2026-04-02 04:45:00,IND-234,Scheduled
+92,Indigo,Hyderabad,2026-04-02 07:00:00,Mumbai,2026-04-02 05:00:00,IND-235,Scheduled
+93,Indigo,New Delhi,2026-04-02 07:15:00,Mumbai,2026-04-02 05:15:00,IND-236,Scheduled
+94,Indigo,Bangalore,2026-04-02 07:30:00,Mumbai,2026-04-02 05:30:00,IND-237,Scheduled
+95,Indigo,Goa,2026-04-02 07:45:00,Mumbai,2026-04-02 05:45:00,IND-238,Scheduled
+96,Indigo,Rajahmundry,2026-04-02 08:00:00,Mumbai,2026-04-02 06:00:00,IND-239,Scheduled
+97,Indigo,Chennai,2026-04-02 08:15:00,Mumbai,2026-04-02 06:15:00,IND-240,Scheduled
+98,Indigo,Kolkata,2026-04-02 08:30:00,Mumbai,2026-04-02 06:30:00,IND-241,Scheduled
+99,Indigo,Hyderabad,2026-04-02 08:45:00,Chennai,2026-04-02 06:45:00,IND-242,Scheduled
+100,Indigo,New Delhi,2026-04-02 09:00:00,Chennai,2026-04-02 07:00:00,IND-243,Scheduled
+101,Indigo,Bangalore,2026-04-02 09:15:00,Chennai,2026-04-02 07:15:00,IND-244,Scheduled
+102,Indigo,Goa,2026-04-02 09:30:00,Chennai,2026-04-02 07:30:00,IND-245,Scheduled
+103,Indigo,Rajahmundry,2026-04-02 09:45:00,Chennai,2026-04-02 07:45:00,IND-246,Scheduled
+104,Indigo,Mumbai,2026-04-02 10:00:00,Chennai,2026-04-02 08:00:00,IND-247,Scheduled
+105,Indigo,Kolkata,2026-04-02 10:15:00,Chennai,2026-04-02 08:15:00,IND-248,Scheduled
+106,Indigo,Hyderabad,2026-04-02 10:30:00,Kolkata,2026-04-02 08:30:00,IND-249,Scheduled
+107,Indigo,New Delhi,2026-04-02 10:45:00,Kolkata,2026-04-02 08:45:00,IND-250,Scheduled
+108,Indigo,Bangalore,2026-04-02 11:00:00,Kolkata,2026-04-02 09:00:00,IND-251,Scheduled
+109,Indigo,Goa,2026-04-02 11:15:00,Kolkata,2026-04-02 09:15:00,IND-252,Scheduled
+110,Indigo,Rajahmundry,2026-04-02 11:30:00,Kolkata,2026-04-02 09:30:00,IND-253,Scheduled
+111,Indigo,Mumbai,2026-04-02 11:45:00,Kolkata,2026-04-02 09:45:00,IND-254,Scheduled
+112,Indigo,Chennai,2026-04-02 12:00:00,Kolkata,2026-04-02 10:00:00,IND-255,Scheduled
+113,Vistara,New Delhi,2026-04-02 12:15:00,Hyderabad,2026-04-02 10:15:00,VIS-300,Scheduled
+114,Vistara,Bangalore,2026-04-02 12:30:00,Hyderabad,2026-04-02 10:30:00,VIS-301,Scheduled
+115,Vistara,Goa,2026-04-02 12:45:00,Hyderabad,2026-04-02 10:45:00,VIS-302,Scheduled
+116,Vistara,Rajahmundry,2026-04-02 13:00:00,Hyderabad,2026-04-02 11:00:00,VIS-303,Scheduled
+117,Vistara,Mumbai,2026-04-02 13:15:00,Hyderabad,2026-04-02 11:15:00,VIS-304,Scheduled
+118,Vistara,Chennai,2026-04-02 13:30:00,Hyderabad,2026-04-02 11:30:00,VIS-305,Scheduled
+119,Vistara,Kolkata,2026-04-02 13:45:00,Hyderabad,2026-04-02 11:45:00,VIS-306,Scheduled
+120,Vistara,Hyderabad,2026-04-02 14:00:00,New Delhi,2026-04-02 12:00:00,VIS-307,Scheduled
+121,Vistara,Bangalore,2026-04-02 14:15:00,New Delhi,2026-04-02 12:15:00,VIS-308,Scheduled
+122,Vistara,Goa,2026-04-02 14:30:00,New Delhi,2026-04-02 12:30:00,VIS-309,Scheduled
+123,Vistara,Rajahmundry,2026-04-02 14:45:00,New Delhi,2026-04-02 12:45:00,VIS-310,Scheduled
+124,Vistara,Mumbai,2026-04-02 15:00:00,New Delhi,2026-04-02 13:00:00,VIS-311,Scheduled
+125,Vistara,Chennai,2026-04-02 15:15:00,New Delhi,2026-04-02 13:15:00,VIS-312,Scheduled
+126,Vistara,Kolkata,2026-04-02 15:30:00,New Delhi,2026-04-02 13:30:00,VIS-313,Scheduled
+127,Vistara,Hyderabad,2026-04-02 15:45:00,Bangalore,2026-04-02 13:45:00,VIS-314,Scheduled
+128,Vistara,New Delhi,2026-04-02 16:00:00,Bangalore,2026-04-02 14:00:00,VIS-315,Scheduled
+129,Vistara,Goa,2026-04-02 16:15:00,Bangalore,2026-04-02 14:15:00,VIS-316,Scheduled
+130,Vistara,Rajahmundry,2026-04-02 16:30:00,Bangalore,2026-04-02 14:30:00,VIS-317,Scheduled
+131,Vistara,Mumbai,2026-04-02 16:45:00,Bangalore,2026-04-02 14:45:00,VIS-318,Scheduled
+132,Vistara,Chennai,2026-04-02 17:00:00,Bangalore,2026-04-02 15:00:00,VIS-319,Scheduled
+133,Vistara,Kolkata,2026-04-02 17:15:00,Bangalore,2026-04-02 15:15:00,VIS-320,Scheduled
+134,Vistara,Hyderabad,2026-04-02 17:30:00,Goa,2026-04-02 15:30:00,VIS-321,Scheduled
+135,Vistara,New Delhi,2026-04-02 17:45:00,Goa,2026-04-02 15:45:00,VIS-322,Scheduled
+136,Vistara,Bangalore,2026-04-02 18:00:00,Goa,2026-04-02 16:00:00,VIS-323,Scheduled
+137,Vistara,Rajahmundry,2026-04-02 18:15:00,Goa,2026-04-02 16:15:00,VIS-324,Scheduled
+138,Vistara,Mumbai,2026-04-02 18:30:00,Goa,2026-04-02 16:30:00,VIS-325,Scheduled
+139,Vistara,Chennai,2026-04-02 18:45:00,Goa,2026-04-02 16:45:00,VIS-326,Scheduled
+140,Vistara,Kolkata,2026-04-02 19:00:00,Goa,2026-04-02 17:00:00,VIS-327,Scheduled
+141,Vistara,Hyderabad,2026-04-02 19:15:00,Rajahmundry,2026-04-02 17:15:00,VIS-328,Scheduled
+142,Vistara,New Delhi,2026-04-02 19:30:00,Rajahmundry,2026-04-02 17:30:00,VIS-329,Scheduled
+143,Vistara,Bangalore,2026-04-02 19:45:00,Rajahmundry,2026-04-02 17:45:00,VIS-330,Scheduled
+144,Vistara,Goa,2026-04-02 20:00:00,Rajahmundry,2026-04-02 18:00:00,VIS-331,Scheduled
+145,Vistara,Mumbai,2026-04-02 20:15:00,Rajahmundry,2026-04-02 18:15:00,VIS-332,Scheduled
+146,Vistara,Chennai,2026-04-02 20:30:00,Rajahmundry,2026-04-02 18:30:00,VIS-333,Scheduled
+147,Vistara,Kolkata,2026-04-02 20:45:00,Rajahmundry,2026-04-02 18:45:00,VIS-334,Scheduled
+148,Vistara,Hyderabad,2026-04-02 21:00:00,Mumbai,2026-04-02 19:00:00,VIS-335,Scheduled
+149,Vistara,New Delhi,2026-04-02 21:15:00,Mumbai,2026-04-02 19:15:00,VIS-336,Scheduled
+150,Vistara,Bangalore,2026-04-02 21:30:00,Mumbai,2026-04-02 19:30:00,VIS-337,Scheduled
+151,Vistara,Goa,2026-04-02 21:45:00,Mumbai,2026-04-02 19:45:00,VIS-338,Scheduled
+152,Vistara,Rajahmundry,2026-04-02 22:00:00,Mumbai,2026-04-02 20:00:00,VIS-339,Scheduled
+153,Vistara,Chennai,2026-04-02 22:15:00,Mumbai,2026-04-02 20:15:00,VIS-340,Scheduled
+154,Vistara,Kolkata,2026-04-02 22:30:00,Mumbai,2026-04-02 20:30:00,VIS-341,Scheduled
+155,Vistara,Hyderabad,2026-04-02 22:45:00,Chennai,2026-04-02 20:45:00,VIS-342,Scheduled
+156,Vistara,New Delhi,2026-04-02 23:00:00,Chennai,2026-04-02 21:00:00,VIS-343,Scheduled
+157,Vistara,Bangalore,2026-04-02 23:15:00,Chennai,2026-04-02 21:15:00,VIS-344,Scheduled
+158,Vistara,Goa,2026-04-02 23:30:00,Chennai,2026-04-02 21:30:00,VIS-345,Scheduled
+159,Vistara,Rajahmundry,2026-04-02 23:45:00,Chennai,2026-04-02 21:45:00,VIS-346,Scheduled
+160,Vistara,Mumbai,2026-04-03 00:00:00,Chennai,2026-04-02 22:00:00,VIS-347,Scheduled
+161,Vistara,Kolkata,2026-04-03 00:15:00,Chennai,2026-04-02 22:15:00,VIS-348,Scheduled
+162,Vistara,Hyderabad,2026-04-03 00:30:00,Kolkata,2026-04-02 22:30:00,VIS-349,Scheduled
+163,Vistara,New Delhi,2026-04-03 00:45:00,Kolkata,2026-04-02 22:45:00,VIS-350,Scheduled
+164,Vistara,Bangalore,2026-04-03 01:00:00,Kolkata,2026-04-02 23:00:00,VIS-351,Scheduled
+165,Vistara,Goa,2026-04-03 01:15:00,Kolkata,2026-04-02 23:15:00,VIS-352,Scheduled
+166,Vistara,Rajahmundry,2026-04-03 01:30:00,Kolkata,2026-04-02 23:30:00,VIS-353,Scheduled
+167,Vistara,Mumbai,2026-04-03 01:45:00,Kolkata,2026-04-02 23:45:00,VIS-354,Scheduled
+168,Vistara,Chennai,2026-04-03 02:00:00,Kolkata,2026-04-03 00:00:00,VIS-355,Scheduled

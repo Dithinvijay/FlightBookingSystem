@@ -66,15 +66,15 @@ public class BookingServiceImplTest {
 	@BeforeEach
 	void setUp() {
 		bookings = new ArrayList<>();
-		pass1 = new PassengerDetails("Pavan Sai Gopal","male",22,50,"Economy",b1);
-		pass2 = new PassengerDetails("Rakshit","male",22,49,"Business",b1);
+		pass1 = new PassengerDetails("Dithin Vijay","male",22,50,"Economy",b1);
+		pass2 = new PassengerDetails("Arjun","male",22,49,"Business",b1);
 
 		List<PassengerDetails> list = new ArrayList<>();
 		
 		list.add(pass1);
 		list.add(pass2);
 		
-		 b1 = new Booking("VS-102",12106348,2,LocalDateTime.of(2025, 4, 1, 10, 0),"Confirmed", list);
+		 b1 = new Booking("VS-102","VIS12348",2,LocalDateTime.of(2025, 4, 1, 10, 0),"test@email.com","Confirmed", list);
 		bookings.add(b1);
 		
 	}
@@ -82,12 +82,12 @@ public class BookingServiceImplTest {
 	@Test
 	void testGetBookingByPassengerBookingId() {
 		
-		when(bookingRepo.findByPassengerBookingId(12106348)).thenReturn(bookings);
+		when(bookingRepo.findByPassengerBookingId("VIS12348")).thenReturn(bookings);
 		
-		List<Booking> bookingsById = bookingService.getBookingByPassengerBookingId(12106348);
+		List<Booking> bookingsById = bookingService.getBookingByPassengerBookingId("VIS12348");
 		assertNotNull(bookings);
 		assertEquals(0, bookingsById.size());
-		verify(bookingRepo, times(1)).findByPassengerBookingId(12106348);
+		verify(bookingRepo, times(1)).findByPassengerBookingId("VIS12348");
 	}
 	
 	@Test

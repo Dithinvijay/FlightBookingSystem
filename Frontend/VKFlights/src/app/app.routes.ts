@@ -10,6 +10,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BookingDashboardComponent } from './booking-dashboard/booking-dashboard.component';
 import { CheckinComponent } from './checkin/checkin.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,11 +18,11 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'login', component: AuthComponent },
   { path: 'register', component: AuthComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'flights-dashboard', component: FlightsDashboardComponent },
-  { path: 'booking-dashboard', component: BookingDashboardComponent },
+  { path: 'booking-dashboard', component: BookingDashboardComponent, canActivate: [AuthGuard] },
   { path: 'admin-login', component: AdminLoginComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'checkin', component: CheckinComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]},
+  { path: 'checkin', component: CheckinComponent, canActivate: [AuthGuard]}
 
 ];

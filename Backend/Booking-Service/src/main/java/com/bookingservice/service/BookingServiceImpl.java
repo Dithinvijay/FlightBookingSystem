@@ -37,7 +37,7 @@ public class BookingServiceImpl implements BookingService {
 	private FlightClient flightClient;
 
 	@Override
-	public List<Booking> getBookingByPassengerBookingId(Integer passengerBookingId) {
+	public List<Booking> getBookingByPassengerBookingId(String passengerBookingId) {
 		// TODO Auto-generated method stub
 		LOGGER.info("Fetching Bookings By Passenger Booking ID {}",passengerBookingId);
 

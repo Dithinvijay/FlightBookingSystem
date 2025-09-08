@@ -25,7 +25,7 @@ public class Booking {
 
 	private String flightNumber;
 
-	private Integer passengerBookingId;
+	private String passengerBookingId;
 
 	private Integer noOfSeats;
 
@@ -54,7 +54,7 @@ public class Booking {
 	}
 
 	public Booking(@NotBlank(message = "Flight number is required") String flightNumber,
-			@NotNull(message = "Passenger Id is required") Integer passengerBookingId,
+			@NotNull(message = "Passenger Id is required") String passengerBookingId,
 			@NotNull(message = "No Of Seats is required") Integer noOfSeats,
 			@NotNull(message = "Booking Date is required") LocalDateTime bookingDate, String bookingStatus,
 			List<PassengerDetails> passengers) {
@@ -68,7 +68,7 @@ public class Booking {
 	}
 
 	public Booking(@NotBlank(message = "Flight number is required") String flightNumber,
-			@NotBlank(message = "Passenger Id is required") Integer passengerBookingId,
+			@NotBlank(message = "Passenger Id is required") String passengerBookingId,
 			@NotBlank(message = "Booking Date is required") LocalDateTime bookingDate,
 			@NotBlank(message = "Booking Status is required") String bookingStatus, List<PassengerDetails> passengers) {
 		super();
@@ -79,7 +79,7 @@ public class Booking {
 		this.passengers = passengers;
 	}
 
-	public Booking(String flightNumber, Integer passengerId, LocalDateTime bookingDate, String bookingStatus) {
+	public Booking(String flightNumber, String passengerId, LocalDateTime bookingDate, String bookingStatus) {
 		super();
 		this.flightNumber = flightNumber;
 		this.passengerBookingId = passengerId;
@@ -88,7 +88,7 @@ public class Booking {
 	}
 
 	public Booking(@NotBlank(message = "Flight number is required") String flightNumber,
-			@NotNull(message = "Passenger Id is required") Integer passengerBookingId, Integer noOfSeats,
+			@NotNull(message = "Passenger Id is required") String passengerBookingId, Integer noOfSeats,
 			@NotNull(message = "Booking Date is required") LocalDateTime bookingDate, String email,
 			String bookingStatus, List<PassengerDetails> passengers) {
 		super();
@@ -133,11 +133,11 @@ public class Booking {
 		this.flightNumber = flightNumber;
 	}
 
-	public Integer getPassengerBookingId() {
+	public String getPassengerBookingId() {
 		return passengerBookingId;
 	}
 
-	public void setPassengerBookingId(Integer passengerId) {
+	public void setPassengerBookingId(String passengerId) {
 		this.passengerBookingId = passengerId;
 	}
 

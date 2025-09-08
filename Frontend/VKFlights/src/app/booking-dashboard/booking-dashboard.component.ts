@@ -66,7 +66,7 @@ export class BookingDashboardComponent implements OnInit {
       seatClass: ['', Validators.required],
       noOfSeats: [1, [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
-      passengerBookingId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      passengerBookingId: [''],
       passengers: this.fb.array([])
     });
   }
@@ -88,6 +88,7 @@ export class BookingDashboardComponent implements OnInit {
         return;
       }
     }
+    this.generatePassengerBookingId();
     this.bookingForm.get('noOfSeats')?.valueChanges.subscribe(() => this.updatePassengers());
     this.updatePassengers();
     this.bookingForm.valueChanges.subscribe(() => {
@@ -124,7 +125,7 @@ export class BookingDashboardComponent implements OnInit {
       seatClass,
       noOfSeats,
       email,
-      passengerBookingId,
+      passengerBookingId: String(passengerBookingId),
       passengers,
       flight: this.flight
     };
@@ -221,6 +222,14 @@ export class BookingDashboardComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/']);
     }, 500);
+  }
+
+  generatePassengerBookingId(): void {
+    if (!this.flight?.airline) return;
+    const airlinePrefix = this.flight.airline.replace(/\s+/g, '').substring(0, 3).toUpperCase();
+    const randomNumber = Math.floor(10000 + Math.random() * 90000);
+    const bookingId = `${airlinePrefix}${randomNumber}`;
+    this.bookingForm.patchValue({ passengerBookingId: bookingId });
   }
 
   calculateTotalPrice(seatClass: string, noOfSeats: number): number {
