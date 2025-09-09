@@ -33,16 +33,16 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	return	http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(request -> request// Only Admins can add flight
-				.requestMatchers("/register","/login","/validate/**").permitAll()
+	return	http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(request -> request
+				.requestMatchers("/register","/login","/verify-otp","/validate/**").permitAll()
 				.requestMatchers("/user/deleteById/**").hasRole("ADMIN")
 				.requestMatchers("/user/**").hasRole("USER")
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
-			//.formLogin(Customizer.withDefaults())
 			.httpBasic(Customizer.withDefaults())
-			    .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-						.build();
+			.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+			.build();
 
 	
 	}

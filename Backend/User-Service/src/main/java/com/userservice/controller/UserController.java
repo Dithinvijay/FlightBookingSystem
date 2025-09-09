@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.userservice.Model.Role;
 import com.userservice.Model.User;
@@ -44,9 +45,21 @@ public class UserController {
 	
 	
 	@PostMapping("/register")
-	public User register(@RequestBody User user) {
-	    System.out.println("User object received in controller: " + user);
-		return userCrudService.register(user);
+	public ResponseEntity<String> register(@RequestBody User user) {
+		return ResponseEntity.ok(userCrudService.sendOtp(user));
+	}
+	
+	@PostMapping("/verify-otp")
+	public ResponseEntity<String> verifyOtp(@RequestParam String email, @RequestParam String otp) {
+		try {
+			User user = userCrudService.verifyOtpAndRegister(email, otp);
+			if (user != null) {
+				return ResponseEntity.ok("Registration successful");
+			}
+			return ResponseEntity.badRequest().body("Invalid or expired OTP");
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Registration failed. Please try again.");
+		}
 	}
 	
 	@PostMapping("/login")

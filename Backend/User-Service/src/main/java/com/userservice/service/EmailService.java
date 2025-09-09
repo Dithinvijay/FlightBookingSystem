@@ -14,6 +14,24 @@ public class EmailService {
 	@Autowired
     private JavaMailSender mailSender;
 
+    public void sendOtpEmail(String to, String firstName, String otp) {
+        try {
+            logger.info("Preparing OTP email to send...");
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("dithin12398@gmail.com");
+            message.setTo(to);
+            message.setSubject("🔐 VK Flights - Email Verification Code");
+            message.setText(buildOtpMessage(firstName, otp));
+
+            mailSender.send(message);
+
+            logger.info("OTP email sent successfully to {}", to);
+        } catch (Exception e) {
+            logger.error("Failed to send OTP email to {}. Error: {}", to, e.getMessage(), e);
+        }
+    }
+    
     public void sendWelcomeEmail(String to, String firstName) {
     	try {
             logger.info("Preparing welcome email to send...");
@@ -30,6 +48,26 @@ public class EmailService {
         } catch (Exception e) {
             logger.error("Failed to send welcome email to {}. Error: {}", to, e.getMessage(), e);
         }
+    }
+    
+    private String buildOtpMessage(String firstName, String otp) {
+        return String.format(
+            "Dear %s,\n"
+            + "\n"
+            + "Thank you for registering with VK Flights!\n"
+            + "\n"
+            + "To complete your registration, please use the following verification code:\n"
+            + "\n"
+            + "🔐 Verification Code: %s\n"
+            + "\n"
+            + "This code will expire in 10 minutes for security purposes.\n"
+            + "\n"
+            + "If you didn't request this registration, please ignore this email.\n"
+            + "\n"
+            + "Best regards,\n"
+            + "VK Flights Team\n"
+            + "✈️ Fly Smart. Fly VK.", firstName, otp
+        );
     }
 
     private String buildWelcomeMessage(String firstName) {

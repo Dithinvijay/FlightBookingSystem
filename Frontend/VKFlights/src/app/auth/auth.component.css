@@ -505,6 +505,22 @@ h1 {
   animation: shakeIn 0.5s ease-out;
 }
 
+.otp-input {
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.otp-info {
+  text-align: center;
+  margin: 10px 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 @media (max-width: 900px) {
   .container {
     width: 98vw;

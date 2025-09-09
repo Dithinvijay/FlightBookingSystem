@@ -22,10 +22,12 @@
         <li>
           <strong>Email:</strong>
           <input [(ngModel)]="user.email" name="email" required type="email" (input)="onFieldChange()" />
+          <div *ngIf="validationErrors.email" class="validation-error">{{ validationErrors.email }}</div>
         </li>
         <li>
           <strong>Phone:</strong>
           <input [(ngModel)]="user.phoneNo" name="phoneNo" required type="tel" (input)="onFieldChange()" />
+          <div *ngIf="validationErrors.phone" class="validation-error">{{ validationErrors.phone }}</div>
         </li>
         <li>
           <strong>First Name:</strong>

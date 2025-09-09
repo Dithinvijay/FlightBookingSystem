@@ -37,6 +37,9 @@ export class DashboardComponent implements OnInit {
   // Form change tracking
   originalUser: User | null = null;
   hasFormChanges = false;
+  
+  // Validation errors
+  validationErrors: any = {};
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -63,6 +66,28 @@ export class DashboardComponent implements OnInit {
 
   onFieldChange() {
     this.checkFormChanges();
+    this.validateForm();
+  }
+  
+  validateForm(): boolean {
+    this.validationErrors = {};
+    let isValid = true;
+    
+    if (!this.user) return false;
+
+    // Email validation
+    if (!this.user.email.includes('@gmail.com')) {
+      this.validationErrors.email = 'Enter valid email';
+      isValid = false;
+    }
+
+    // Phone validation
+    if (this.user.phoneNo.length !== 10 || !/^[6-9]/.test(this.user.phoneNo)) {
+      this.validationErrors.phone = 'Phone number must be 10 digits starting with 6-9';
+      isValid = false;
+    }
+
+    return isValid;
   }
   goToCheckin() {
     this.router.navigate(['/checkin']);
@@ -100,6 +125,12 @@ export class DashboardComponent implements OnInit {
 
   onUpdate() {
     if (!this.user) return;
+    
+    if (!this.validateForm()) {
+      this.showToastNotification('Please fix validation errors before updating.');
+      return;
+    }
+    
     this.updating = true;
     this.updateSuccess = false;
     this.updateError = '';

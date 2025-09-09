@@ -1,8 +1,17 @@
 package com.userservice.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.userservice.Model.OtpData;
 import com.userservice.Model.Role;
 import com.userservice.Model.User;
 import com.userservice.Repo.UserRepository;
@@ -39,16 +49,57 @@ public class UserCrudService {
 
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private static Map<String, OtpData> otpStorage = new ConcurrentHashMap<>();
+    private static final String OTP_FILE = "otp_storage.dat";
+    private Random random = new Random();
 
+    public String sendOtp(User user) {
+        logger.info("Sending OTP for user registration: {}", user.getUsername());
+        
+        String otp = String.format("%06d", random.nextInt(1000000));
+        LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(10);
+        
+        otpStorage.put(user.getEmail(), new OtpData(otp, user, expiryTime));
+        saveOtpStorage();
+        
+        emailService.sendOtpEmail(user.getEmail(), user.getFirstName(), otp);
+        logger.info("OTP sent successfully to: {}", user.getEmail());
+        
+        return "OTP sent to your email";
+    }
+    
     @Transactional
-    public User register(User user) {
-        logger.info("Registering new user: {}", user.getUsername());
-
+    public User verifyOtpAndRegister(String email, String otp) {
+        logger.info("Verifying OTP for email: {}", email);
+        loadOtpStorage();
+        
+        OtpData otpData = otpStorage.get(email);
+        if (otpData == null) {
+            logger.warn("No OTP found for email: {}", email);
+            return null;
+        }
+        
+        if (otpData.isExpired()) {
+            otpStorage.remove(email);
+            saveOtpStorage();
+            logger.warn("OTP expired for email: {}", email);
+            return null;
+        }
+        
+        if (!otpData.getOtp().equals(otp)) {
+            logger.warn("Invalid OTP for email: {}", email);
+            return null;
+        }
+        
+        User user = otpData.getUser();
         user.setPassword(encoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
-        logger.info("User registered successfully with ID: {}", savedUser.getId());
+        
+        otpStorage.remove(email);
+        saveOtpStorage();
         
         emailService.sendWelcomeEmail(savedUser.getEmail(), savedUser.getFirstName());
+        logger.info("User registered successfully with ID: {}", savedUser.getId());
         
         return savedUser;
     }
@@ -127,6 +178,28 @@ public class UserCrudService {
     	if(jwtService.validateToken(token))
     		return "token is valid";
     	return "token is either invalid or expired, Kindly login again";
+    }
+    
+    private void saveOtpStorage() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(OTP_FILE))) {
+            oos.writeObject(otpStorage);
+        } catch (Exception e) {
+            logger.error("Error saving OTP storage: {}", e.getMessage());
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void loadOtpStorage() {
+        try {
+            File file = new File(OTP_FILE);
+            if (file.exists()) {
+                try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                    otpStorage = (Map<String, OtpData>) ois.readObject();
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Error loading OTP storage: {}", e.getMessage());
+        }
     }
     
     

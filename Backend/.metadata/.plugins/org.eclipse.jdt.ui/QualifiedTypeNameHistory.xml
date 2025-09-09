@@ -25,7 +25,6 @@
     <fullyQualifiedTypeName name="java.time.Instant"/>
     <fullyQualifiedTypeName name="java.lang.Long"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonFormat"/>
@@ -37,4 +36,5 @@
     <fullyQualifiedTypeName name="jakarta.persistence.OneToMany"/>
     <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
 </qualifiedTypeNameHistroy>

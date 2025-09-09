@@ -25,6 +25,14 @@ export class AuthComponent {
   regPassword = '';
   regRole='USER';
   registerError = '';
+  
+  // OTP verification
+  showOtpVerification = false;
+  otpCode = '';
+  otpError = '';
+  userEmail = '';
+  otpLoading = false;
+  registerLoading = false;
 
   rightPanelActive = false;
 
@@ -42,8 +50,14 @@ export class AuthComponent {
   }
 
 
-  showSignUp() { this.rightPanelActive = true; }
-  showSignIn() { this.rightPanelActive = false; }
+  showSignUp() { 
+    this.rightPanelActive = true;
+    this.showOtpVerification = false;
+  }
+  showSignIn() { 
+    this.rightPanelActive = false;
+    this.showOtpVerification = false;
+  }
 
   showToastNotification(message: string) {
     this.toastMessage = message;
@@ -123,7 +137,13 @@ export class AuthComponent {
       return;
     }
     
+    if (this.registerLoading) {
+      return;
+    }
+    
     this.registerError = '';
+    this.registerLoading = true;
+    
     this.http.post(`${environment.apiUrlLogin}register`, {
       firstName: this.regFirstName,
       lastName: this.regLastName,
@@ -132,15 +152,61 @@ export class AuthComponent {
       username: this.regUsername,
       password: this.regPassword,
       role: this.regRole
-    }).subscribe({
-      next: () => {
+    }, { responseType: 'text' }).subscribe({
+      next: (response: string) => {
+        this.registerLoading = false;
+        this.userEmail = this.regEmail;
+        this.showOtpVerification = true;
+        this.showToastNotification('OTP sent to your email. Please verify to complete registration.');
+      },
+      error: (err: any) => {
+        this.registerLoading = false;
+        this.registerError = err.error?.message || 'Registration failed.';
+      }
+    });
+  }
+  
+  onVerifyOtp() {
+    if (!this.otpCode || this.otpCode.length !== 6) {
+      this.otpError = 'Please enter a valid 6-digit OTP.';
+      return;
+    }
+    
+    if (this.otpLoading) {
+      return;
+    }
+    
+    this.otpError = '';
+    this.otpLoading = true;
+    
+    this.http.post(`${environment.apiUrlLogin}verify-otp?email=${this.userEmail}&otp=${this.otpCode}`, {}, { responseType: 'text' }).subscribe({
+      next: (response: string) => {
+        this.otpLoading = false;
         this.showToastNotification('Registration successful! Please log in.');
+        this.showOtpVerification = false;
+        this.resetRegistrationForm();
         setTimeout(() => {
           this.showSignIn();
           this.loginUsername = this.regUsername;
         }, 1000);
       },
-      error: (err: any) => this.registerError = err.error?.message || 'Registration failed.'
+      error: (err: any) => {
+        this.otpLoading = false;
+        this.otpError = err.error || 'Invalid or expired OTP.';
+      }
     });
+  }
+  
+  resetRegistrationForm() {
+    this.regFirstName = '';
+    this.regLastName = '';
+    this.regEmail = '';
+    this.regPhoneNo = '';
+    this.regUsername = '';
+    this.regPassword = '';
+    this.otpCode = '';
+    this.validationErrors = {};
+    this.otpLoading = false;
+    this.registerLoading = false;
   }
 }

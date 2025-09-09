@@ -8,7 +8,8 @@
 <div class="auth-wrapper">
   <div class="container" [class.right-panel-active]="rightPanelActive" id="container">
     <div class="form-container sign-up-container">
-      <form (ngSubmit)="onRegister()" autocomplete="off">
+      <!-- Registration Form -->
+      <form *ngIf="!showOtpVerification" (ngSubmit)="onRegister()" autocomplete="off">
         <h1>Create Account</h1>
         <input type="text" placeholder="First Name" [(ngModel)]="regFirstName" name="regFirstName" required />
         <input type="text" placeholder="Last Name" [(ngModel)]="regLastName" name="regLastName" required />
@@ -22,7 +23,23 @@
         <div *ngIf="validationErrors.password" class="validation-error">{{ validationErrors.password }}</div>
         <input type="text" value="USER" readonly style="background:#EDF6F7; color:#1976d2; font-weight:600; letter-spacing:1px; text-align:center;" name="regRole" />
         <div class="error-message" *ngIf="registerError">{{ registerError }}</div>
-        <button type="submit" class="auth-gradient-btn">Sign Up</button>
+        <button type="submit" class="auth-gradient-btn" [disabled]="registerLoading">
+          <span *ngIf="!registerLoading">Sign Up</span>
+          <span *ngIf="registerLoading">Sending OTP...</span>
+        </button>
+      </form>
+      
+      <!-- OTP Verification Form -->
+      <form *ngIf="showOtpVerification" (ngSubmit)="onVerifyOtp()" autocomplete="off">
+        <h1>Verify Email</h1>
+        <p class="otp-info">Enter the 6-digit code sent to<br><strong>{{ userEmail }}</strong></p>
+        <input type="text" placeholder="Enter 6-digit OTP" [(ngModel)]="otpCode" name="otpCode" maxlength="6" required class="otp-input" />
+        <div class="error-message" *ngIf="otpError">{{ otpError }}</div>
+        <button type="submit" class="auth-gradient-btn" [disabled]="otpLoading || !otpCode || otpCode.length !== 6">
+          <span *ngIf="!otpLoading">Verify & Register</span>
+          <span *ngIf="otpLoading">Verifying...</span>
+        </button>
+        <button type="button" class="ghost" (click)="showOtpVerification = false" style="margin-top: 10px;">Back to Registration</button>
       </form>
     </div>
     <div class="form-container sign-in-container">

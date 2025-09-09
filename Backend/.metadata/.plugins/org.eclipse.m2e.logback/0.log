@@ -10193,3 +10193,281 @@ Caused by: java.util.concurrent.RejectedExecutionException: Task java.util.concu
 2025-09-08 17:59:44,303 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-09-08 17:59:44,321 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-09-08 17:59:44,331 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\discovery-server\src\test\resources
+2025-09-08 18:10:17,132 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@4ee3f556{STOPPING}[12.0.21,sto=0]
+2025-09-08 18:10:17,140 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@4fb94b2f{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2025-09-09 10:09:39,020 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2025-09-09 10:21:25,655 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 10:21:25,688 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 10:21:25,703 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 10:24:41,911 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 10:24:41,920 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 10:24:41,926 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 10:25:24,880 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 10:25:24,889 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 10:25:24,907 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 10:25:32,814 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.21; built: 2025-05-09T00:32:00.688Z; git: 1c4719601e31b05b7d68910d2edd980259f1f53c; jvm 21.0.7+6-LTS
+2025-09-09 10:25:32,970 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@1107cdcb{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@701d35d8{STARTED}}
+2025-09-09 10:25:32,971 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-09-09 10:25:33,019 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@66c3d4ba{HTTP/1.1, (http/1.1)}{127.0.0.1:51488}
+2025-09-09 10:25:33,050 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@6aa871d8{STARTING}[12.0.21,sto=0] @1062518ms
+2025-09-09 10:59:44,646 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-09-09 11:04:26,287 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,357 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,360 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,363 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,366 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,368 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:68)
+	... 13 common frames omitted
+2025-09-09 11:04:26,371 [LS-org.eclipse.languageserver.languages.springboot#dispatcher] ERROR reactor.core.publisher.Operators - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+Caused by: org.eclipse.lsp4j.jsonrpc.JsonRpcException: java.io.IOException: The pipe is being closed
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:72)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$3(LanguageServerWrapper.java:413)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.request(RemoteEndpoint.java:171)
+	at org.eclipse.lsp4j.jsonrpc.services.EndpointProxy.invoke(EndpointProxy.java:91)
+	at jdk.proxy19/jdk.proxy19.$Proxy64.executeCommand(Unknown Source)
+	at org.springframework.ide.eclipse.boot.dash.liveprocess.DefaultLiveProcessCommandExecutor.lambda$5(DefaultLiveProcessCommandExecutor.java:54)
+	at org.eclipse.lsp4e.LanguageServers.lambda$3(LanguageServers.java:75)
+	at org.eclipse.lsp4e.LanguageServers.lambda$24(LanguageServers.java:445)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$17(LanguageServerWrapper.java:976)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.io.IOException: The pipe is being closed
+	at java.base/java.io.FileOutputStream.writeBytes(Native Method)
+	at java.base/java.io.FileOutputStream.write(FileOutputStream.java:367)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:125)
+	at java.base/java.io.BufferedOutputStream.implWrite(BufferedOutputStream.java:222)
+	at java.base/java.io.BufferedOutputStream.write(BufferedOutputStream.java:200)
+	at java.base/java.io.FilterOutputStream.write(FilterOutputStream.java:110)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageConsumer.consume(StreamMessageConsumer.java:67)
+	... 13 common frames omitted
+2025-09-09 11:38:51,993 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-09-09 11:40:28,917 [Worker-11: Launching Flight-Service - FlightServiceApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:28,944 [Worker-11: Launching Flight-Service - FlightServiceApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:28,952 [Worker-11: Launching Flight-Service - FlightServiceApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\Payment-Service\src\test\resources
+2025-09-09 11:40:33,544 [Worker-2: Launching User-Service1- UserServiceApplication (1)] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:33,562 [Worker-2: Launching User-Service1- UserServiceApplication (1)] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:33,569 [Worker-2: Launching User-Service1- UserServiceApplication (1)] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 11:40:39,205 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:39,263 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:39,282 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\APIGATEWAY-Service\src\test\resources
+2025-09-09 11:40:41,521 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:41,574 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:41,588 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\Booking-Service\src\test\resources
+2025-09-09 11:40:43,320 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:43,351 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:43,376 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\Check-In-Microservice\src\test\resources
+2025-09-09 11:40:45,149 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:40:45,200 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:40:45,216 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\Flight-Service\src\test\resources
+2025-09-09 11:50:19,338 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.21; built: 2025-05-09T00:32:00.688Z; git: 1c4719601e31b05b7d68910d2edd980259f1f53c; jvm 21.0.7+6-LTS
+2025-09-09 11:50:19,416 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@58b2aed5{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@69390c37{STARTED}}
+2025-09-09 11:50:19,418 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2025-09-09 11:50:19,477 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@4d5a1223{HTTP/1.1, (http/1.1)}{127.0.0.1:62231}
+2025-09-09 11:50:19,512 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@1376a3e5{STARTING}[12.0.21,sto=0] @718510ms
+2025-09-09 11:52:43,887 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:52:43,899 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:52:43,908 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 11:58:01,915 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 11:58:01,924 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 11:58:01,940 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:01:17,364 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:01:17,372 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:01:17,381 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:04:48,125 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:04:48,134 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:04:48,139 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:07:40,531 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:07:40,542 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:07:40,551 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:08:17,556 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:08:17,561 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:08:17,566 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:13:07,588 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:13:07,597 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:13:07,603 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:14:14,768 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:14:14,773 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:14:14,778 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:25:26,960 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:25:26,967 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:25:26,971 [Worker-8: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:28:34,044 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:28:34,054 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:28:34,062 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:31:26,289 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:31:26,298 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:31:26,306 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:35:33,160 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:35:33,176 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:35:33,186 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:35:38,984 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:35:39,001 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:35:39,011 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:36:05,714 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:36:05,722 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:36:05,728 [Worker-9: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:38:42,109 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:38:42,111 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:38:42,117 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:39:42,999 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:39:43,007 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:39:43,012 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 12:54:58,551 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-09 12:54:58,595 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 12:54:58,600 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources
+2025-09-09 14:26:55,642 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 14:26:55,645 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-09 14:26:55,654 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\ditkumar\CpWork\vscodedir\FullStack\FlightBookingSystem\Backend\User-Service\src\test\resources

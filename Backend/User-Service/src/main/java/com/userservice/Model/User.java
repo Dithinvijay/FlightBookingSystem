@@ -1,5 +1,6 @@
 package com.userservice.Model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -13,7 +14,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +36,7 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String username;
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String password;
 
 	@Enumerated(EnumType.STRING)
