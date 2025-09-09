@@ -304,12 +304,80 @@
   font-size: 16px;
 }
 
-@media (max-width: 900px) {
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .admin-auth-wrapper {
+    padding: 0.5rem;
+  }
   .admin-auth-container {
     flex-direction: column;
-    min-width: 320px;
+    width: calc(100vw - 1rem);
+    min-width: 300px;
     min-height: 0;
-    max-width: 98vw;
+    border-radius: 12px;
+  }
+  .admin-auth-image {
+    min-height: 150px;
+    max-height: 180px;
+    order: 2;
+  }
+  .admin-auth-image img {
+    min-width: 0;
+    min-height: 0;
+    max-height: 180px;
+    object-fit: cover;
+  }
+  .admin-auth-form-section {
+    order: 1;
+    padding: 1rem 0.5rem;
+  }
+  .admin-auth-form {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+  .admin-auth-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+  .admin-auth-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  .admin-auth-gradient-btn {
+    padding: 0.9rem 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+  .admin-error-message {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  .toast {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .admin-auth-wrapper {
+    padding: 1rem;
+  }
+  .admin-auth-container {
+    flex-direction: column;
+    width: calc(100vw - 2rem);
+    max-width: 500px;
+    border-radius: 14px;
   }
   .admin-auth-image {
     min-height: 180px;
@@ -321,6 +389,144 @@
     max-height: 220px;
   }
   .admin-auth-form-section {
-    padding: 1.2rem 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+  .admin-auth-form {
+    max-width: 380px;
+    padding: 2rem 1.2rem;
+    border-radius: 10px;
+  }
+  .admin-auth-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+  .admin-auth-form input {
+    width: 95%;
+    padding: 0.85rem 1.1rem;
+    font-size: 1.05rem;
+    border-radius: 10px;
+  }
+  .admin-auth-gradient-btn {
+    padding: 0.95rem 0;
+    font-size: 1.15rem;
+    border-radius: 10px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .admin-auth-container {
+    flex-direction: row;
+    max-width: 750px;
+    min-height: 450px;
+  }
+  .admin-auth-image {
+    flex: 1;
+  }
+  .admin-auth-image img {
+    min-height: 450px;
+  }
+  .admin-auth-form-section {
+    flex: 1;
+    padding: 2rem 1.5rem;
+  }
+  .admin-auth-form {
+    max-width: 320px;
+    padding: 2.2rem 1.3rem;
+  }
+  .admin-auth-title {
+    font-size: 1.9rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .admin-auth-container {
+    max-width: 800px;
+    min-height: 480px;
+  }
+  .admin-auth-image img {
+    min-height: 480px;
+  }
+  .admin-auth-form {
+    max-width: 340px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .admin-auth-container {
+    max-width: 900px;
+    min-height: 480px;
+  }
+  .admin-auth-image img {
+    min-height: 480px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .admin-auth-wrapper {
+    padding: 0.5rem;
+  }
+  .admin-auth-container {
+    flex-direction: row;
+    min-height: 350px;
+    max-width: 90vw;
+  }
+  .admin-auth-image {
+    min-height: 350px;
+  }
+  .admin-auth-image img {
+    min-height: 350px;
+  }
+  .admin-auth-form {
+    padding: 1.5rem 1rem;
+  }
+  .admin-auth-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .admin-auth-form input {
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .admin-auth-gradient-btn {
+    padding: 0.8rem 0;
+    margin-top: 0.3rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .admin-auth-gradient-btn {
+    min-height: 48px;
+    padding: 1rem 0;
+  }
+  .admin-auth-form input {
+    min-height: 44px;
+    padding: 0.9rem 1.2rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .admin-auth-container {
+    border-width: 0.5px;
+  }
+  .admin-auth-form input {
+    border-width: 1px;
+  }
+  .admin-auth-image img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* General responsive adjustments for older breakpoint */
+@media (max-width: 900px) {
+  .admin-auth-form-section {
+    background: linear-gradient(120deg, #B9D1D8 0%, #76B2B9 100%);
   }
 }

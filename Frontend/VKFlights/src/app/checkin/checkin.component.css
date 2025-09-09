@@ -261,3 +261,159 @@
     transform: none;
   }
 }
+
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .checkin-section {
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+  }
+  .checkin-card {
+    width: calc(100vw - 2rem);
+    max-width: 350px;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
+  .checkin-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .checkin-title i {
+    font-size: 1.8rem;
+  }
+  .form-row {
+    margin-bottom: 1rem;
+  }
+  .form-row input {
+    padding: 0.8rem 0.6rem;
+    font-size: 1rem;
+  }
+  .checkin-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+  .toast {
+    min-width: calc(100vw - 2rem);
+    margin: 0 1rem;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  .toast-container {
+    top: 10px;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .checkin-section {
+    padding: 1.5rem 1rem;
+  }
+  .checkin-card {
+    width: calc(100vw - 3rem);
+    max-width: 400px;
+    padding: 2.5rem 2rem;
+    border-radius: 18px;
+  }
+  .checkin-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.6rem;
+  }
+  .form-row input {
+    padding: 0.8rem;
+    font-size: 1.05rem;
+  }
+  .checkin-btn {
+    padding: 1.05rem 2.2rem;
+    font-size: 1.15rem;
+  }
+  .toast {
+    min-width: 280px;
+    padding: 14px 20px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .checkin-section {
+    padding: 2rem 1.5rem;
+  }
+  .checkin-card {
+    width: 450px;
+    padding: 2.6rem 2.3rem;
+    border-radius: 20px;
+  }
+  .checkin-title {
+    font-size: 1.9rem;
+  }
+  .toast {
+    min-width: 320px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .checkin-card {
+    width: 420px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .checkin-card {
+    width: 450px;
+    padding: 3rem 2.8rem;
+  }
+  .checkin-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .checkin-section {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  .checkin-card {
+    padding: 1.5rem 2rem;
+    margin: 0 auto;
+  }
+  .checkin-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .form-row {
+    margin-bottom: 0.8rem;
+  }
+  .checkin-btn {
+    padding: 0.8rem 2rem;
+    margin-top: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .checkin-card {
+    border-width: 0.5px;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .checkin-btn {
+    min-height: 48px;
+    padding: 1rem 2rem;
+  }
+  .form-row input {
+    min-height: 44px;
+    padding: 0.8rem;
+  }
+}

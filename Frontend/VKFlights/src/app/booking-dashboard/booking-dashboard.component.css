@@ -432,3 +432,201 @@ button[disabled] {
   border-radius: 8px;
   border: 1px solid rgba(211,47,47,0.2);
 }
+
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .booking-dashboard-section {
+    padding: 1rem 0.5rem;
+    min-height: 100vh;
+  }
+  .booking-card {
+    width: calc(100vw - 1rem);
+    margin: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+  .booking-card-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .airline-logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .airline-name {
+    font-size: 1.1rem;
+  }
+  .flight-number {
+    font-size: 0.95rem;
+  }
+  .flight-route {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .route-arrow {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  .flight-details-row {
+    padding: 0 1rem;
+  }
+  .passenger-form {
+    padding: 1rem 0.8rem;
+  }
+  .form-row {
+    margin-bottom: 0.8rem;
+  }
+  input, select {
+    padding: 0.7rem 0.5rem;
+    font-size: 1rem;
+  }
+  button[type="submit"] {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .booking-dashboard-section {
+    padding: 1.5rem 1rem;
+  }
+  .booking-card {
+    width: calc(100vw - 2rem);
+    margin: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+  }
+  .booking-card-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .airline-logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 0;
+  }
+  .airline-name {
+    font-size: 1.2rem;
+  }
+  .flight-route {
+    justify-content: space-around;
+  }
+  .flight-details-row {
+    padding: 0 1.5rem;
+  }
+  .passenger-form {
+    padding: 1.2rem 1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .booking-dashboard-section {
+    padding: 2rem 1.5rem;
+  }
+  .booking-card {
+    width: calc(100vw - 3rem);
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2.2rem 2rem;
+  }
+  .airline-logo {
+    width: 120px;
+    height: 120px;
+  }
+  .flight-details-row {
+    padding: 0 2rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .booking-card {
+    width: 70%;
+    max-width: 700px;
+    margin: 2rem auto;
+  }
+  .airline-logo {
+    width: 140px;
+    height: 140px;
+  }
+  .flight-details-row {
+    padding: 0 3rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .booking-card {
+    width: 60%;
+    max-width: 800px;
+    margin: 2.5rem auto;
+  }
+  .airline-logo {
+    width: 154px;
+    height: 154px;
+  }
+  .flight-details-row {
+    padding: 0 4rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .booking-dashboard-section {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  .booking-card {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+  .booking-card-header {
+    margin-bottom: 1rem;
+  }
+  .airline-logo {
+    width: 80px;
+    height: 80px;
+  }
+  .flight-route {
+    margin-bottom: 1rem;
+  }
+  .passenger-form {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .form-row {
+    margin-bottom: 0.8rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  button[type="submit"] {
+    min-height: 48px;
+    padding: 1rem 2rem;
+  }
+  input, select {
+    min-height: 44px;
+    padding: 0.8rem;
+  }
+  .airline-logo {
+    cursor: pointer;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .booking-card {
+    border-width: 0.5px;
+  }
+  .airline-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}

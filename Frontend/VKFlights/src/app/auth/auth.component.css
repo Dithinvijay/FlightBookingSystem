@@ -521,18 +521,303 @@ h1 {
   line-height: 1.4;
 }
 
-@media (max-width: 900px) {
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 0.5rem;
+  }
   .container {
-    width: 98vw;
-    min-width: 320px;
+    width: calc(100vw - 1rem);
+    min-width: 300px;
+    min-height: 500px;
+    border-radius: 8px;
+    flex-direction: column;
+  }
+  .form-container {
+    position: static;
+    width: 100% !important;
+    height: auto;
+  }
+  .sign-in-container,
+  .sign-up-container {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    transform: none !important;
+  }
+  .overlay-container {
+    display: none;
   }
   form {
-    padding: 0 10px;
+    padding: 1.5rem 1rem;
+    height: auto;
+    min-height: auto;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  input {
+    padding: 0.8rem 0.6rem;
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+  }
+  .auth-gradient-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .signin-btn-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .admin-login-link {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    min-width: auto;
+    min-height: auto;
+  }
+  .otp-input {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  .validation-error {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  .toast {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Samsung Galaxy S20 Ultra specific adjustments */
+@media (min-width: 400px) and (max-width: 420px) and (min-height: 900px) {
+  .auth-wrapper {
+    padding: 1rem 0.5rem;
+  }
+  .container {
+    width: calc(100vw - 1rem);
+    min-width: 380px;
+    min-height: 600px;
+    border-radius: 12px;
+    flex-direction: column;
+  }
+  .form-container {
+    position: static;
+    width: 100% !important;
+    height: auto;
+  }
+  .sign-in-container,
+  .sign-up-container {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    transform: none !important;
+  }
+  .overlay-container {
+    display: none;
+  }
+  form {
+    padding: 1.5rem 1rem;
+    height: auto;
+    min-height: auto;
+  }
+  h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  input {
+    padding: 0.7rem 0.5rem;
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+  }
+  .auth-gradient-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    margin: 0.8rem 0;
+  }
+  .signin-btn-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .admin-login-link {
+    width: 100%;
+    height: 36px;
+    border-radius: 18px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .auth-wrapper {
+    padding: 1rem;
+  }
+  .container {
+    width: calc(100vw - 2rem);
+    min-width: 400px;
+    min-height: 600px;
+    border-radius: 10px;
+  }
+  .form-container {
+    position: static;
+    width: 100% !important;
+    height: auto;
+  }
+  .sign-in-container,
+  .sign-up-container {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    transform: none !important;
+  }
+  .overlay-container {
+    display: none;
+  }
+  form {
+    padding: 2rem 1.5rem;
+    height: auto;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  input {
+    padding: 0.9rem 0.8rem;
+  }
+  .auth-gradient-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.05rem;
+  }
+  .signin-btn-row {
+    flex-direction: row;
+  }
+  .admin-login-link {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .container {
+    width: calc(100vw - 3rem);
+    max-width: 700px;
+    min-height: 650px;
+  }
+  .form-container {
+    width: 50%;
+  }
+  .overlay-container {
+    display: block;
+  }
+  form {
+    padding: 0 2rem;
   }
   .overlay-panel {
-    padding: 0 10px;
-    width: 100%;
+    padding: 0 2rem;
   }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .container {
+    width: 800px;
+    min-height: 680px;
+  }
+  form {
+    padding: 0 3rem;
+  }
+  .overlay-panel {
+    padding: 0 3rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .container {
+    width: 888px;
+    min-height: 680px;
+  }
+  form {
+    padding: 0 50px;
+  }
+  .overlay-panel {
+    padding: 0 40px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .auth-wrapper {
+    padding: 0.5rem;
+  }
+  .container {
+    min-height: 400px;
+    width: 90vw;
+    max-width: 800px;
+  }
+  form {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  input {
+    padding: 0.6rem;
+    margin: 0.2rem 0;
+  }
+  .auth-gradient-btn {
+    padding: 0.6rem 1.5rem;
+    margin: 0.5rem 0;
+  }
+  .overlay-panel {
+    padding: 0 1.5rem;
+  }
+  .overlay-panel p {
+    margin: 10px 0 15px 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .auth-gradient-btn {
+    min-height: 48px;
+    padding: 0.8rem 2rem;
+  }
+  input {
+    min-height: 44px;
+    padding: 0.8rem;
+  }
+  .admin-login-link {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  button.ghost {
+    min-height: 44px;
+    padding: 0.8rem 2rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .container {
+    border-width: 0.5px;
+  }
+  input {
+    border-width: 1px;
+  }
+}
+
+/* General responsive adjustments for older breakpoint */
+@media (max-width: 900px) {
   .overlay-panel p {
     font-size: 0.95rem;
     max-width: 100%;

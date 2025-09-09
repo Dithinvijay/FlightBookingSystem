@@ -33,10 +33,15 @@
   --gradient-main: linear-gradient(135deg, #76B2B9 60%, #173154 100%);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
   background: var(--background);
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -374,23 +379,146 @@ router-outlet {
   }
 }
 
-@media (max-width: 900px) {
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
   .navbar {
     flex-direction: column;
-    padding: 0.7rem 1vw;
+    padding: 0.5rem 2vw;
+    border-radius: 0;
+  }
+  .navbar-logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
   }
   .navbar-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
   }
   .navbar-menu {
-    gap: 1.2rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
+  .navbar-menu li {
+    padding: 0.3rem 0.8rem;
+  }
+  .navbar-menu li a {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .profile-icon {
+    font-size: 1.4rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.6rem 2vw;
+    border-radius: 15px;
+  }
+  .navbar-logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+  }
+  .navbar-title {
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+  }
+  .navbar-menu {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .navbar-menu li {
+    padding: 0.4rem 1rem;
+  }
+  .profile-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .navbar {
+    padding: 0.7rem 2.5vw;
+    border-radius: 20px;
+  }
+  .navbar-logo {
+    height: 65px;
+    width: 65px;
+    border-radius: 32px;
+  }
+  .navbar-title {
+    font-size: 2rem;
+  }
+  .navbar-menu {
+    gap: 1.5rem;
+  }
+  .profile-icon {
+    font-size: 1.6rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .navbar {
+    padding: 0.8rem 3vw;
+    border-radius: 25px;
+  }
+  .navbar-menu {
+    gap: 2rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .navbar {
+    padding: 0.8rem 3vw;
+    border-radius: 30px;
+  }
+  .navbar-menu {
+    gap: 2.5rem;
+  }
+}
+
+/* General responsive adjustments for smaller screens */
+@media (max-width: 900px) {
   .flight-card {
     padding: 1.2rem 0.5rem;
     max-width: 98vw;
+    border-radius: 1rem;
   }
   .hero-content {
     min-height: 200px;
+    padding: 1rem;
+  }
+  .hero-banner-img {
+    border-radius: 0;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navbar {
+    padding: 0.4rem 2vw;
+  }
+  .navbar-logo {
+    height: 45px;
+    width: 45px;
+  }
+  .navbar-title {
+    font-size: 1.5rem;
+  }
+  .navbar-menu {
+    gap: 1rem;
+  }
+  .hero-content {
+    min-height: 150px;
   }
 }

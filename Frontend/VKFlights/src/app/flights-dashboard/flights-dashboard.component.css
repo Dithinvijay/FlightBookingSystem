@@ -372,3 +372,164 @@
   vertical-align: middle;
   color: #1976d2;
 }
+
+/* Mobile First - Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  .flights-dashboard-section {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0.5rem;
+    border-radius: 8px;
+  }
+  .filter-input {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  .flights-card-list {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  .flight-card {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .flight-card-header {
+    padding: 0.8rem 1rem 0.5rem 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .airline-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .airline-name {
+    font-size: 1rem;
+  }
+  .flight-number {
+    font-size: 0.9rem;
+  }
+  .flight-price {
+    font-size: 1.1rem;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  .flight-card-body {
+    padding: 0.8rem 1rem 1rem 1rem;
+    gap: 0.8rem;
+  }
+  .flight-route {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .airport {
+    font-size: 0.95rem;
+  }
+  .book-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .flights-dashboard-section {
+    padding: 1.5rem 1rem;
+    margin: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+  .filter-input {
+    width: 100%;
+    max-width: 320px;
+  }
+  .flights-card-list {
+    gap: 1.5rem;
+  }
+  .flight-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  .flight-card-header {
+    padding: 1rem 1.2rem 0.6rem 1.2rem;
+  }
+  .airline-logo {
+    width: 44px;
+    height: 44px;
+  }
+  .flight-card-body {
+    padding: 1rem 1.2rem 1.2rem 1.2rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .flights-dashboard-section {
+    padding: 1.8rem 1.5rem;
+    margin: 2rem 1.5rem;
+    max-width: 95vw;
+  }
+  .flights-card-list {
+    gap: 1.8rem;
+    justify-content: space-around;
+  }
+  .flight-card {
+    width: calc(50% - 1rem);
+    min-width: 300px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .flights-dashboard-section {
+    max-width: 95vw;
+  }
+  .flights-card-list {
+    justify-content: flex-start;
+  }
+  .flight-card {
+    width: calc(50% - 1rem);
+    max-width: 400px;
+    min-width: 300px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1201px) {
+  .flights-card-list {
+    justify-content: flex-start;
+  }
+  .flight-card {
+    width: calc(33.333% - 1.5rem);
+    max-width: 380px;
+    min-width: 300px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .flights-dashboard-section {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  .flight-card {
+    margin-bottom: 1rem;
+  }
+  .flight-card-header {
+    padding: 0.8rem 1rem 0.5rem 1rem;
+  }
+  .flight-card-body {
+    padding: 0.8rem 1rem 1rem 1rem;
+    gap: 0.8rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .airline-logo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
