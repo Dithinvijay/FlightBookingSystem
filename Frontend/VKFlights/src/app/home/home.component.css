@@ -384,6 +384,19 @@ body {
   transform: rotate(180deg) !important;
 }
 
+.search-note {
+  text-align: center;
+  color: #173154;
+  background: #EDF6F7;
+  border: 1px solid #76B2B9;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(118,178,185,0.1);
+}
+
 .prompt-message {
   color: #d32f2f;
   background: #fff3f3;

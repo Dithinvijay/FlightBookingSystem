@@ -220,7 +220,7 @@ export class BookingDashboardComponent implements OnInit {
     const pdfUrl = URL.createObjectURL(pdfBlob);
     window.open(pdfUrl, '_blank');
     setTimeout(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/checkin']);
     }, 500);
   }
 

@@ -44,7 +44,7 @@ export class CheckinComponent {
         this.checkinForm.reset();
         setTimeout(() => {
           this.router.navigate(['/home']);
-        }, 3000);
+        }, 1500);
       },
       error: (err) => {
         let errorMessage = 'An error occurred during check-in';
