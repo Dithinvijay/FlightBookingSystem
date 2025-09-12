@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { environment } from '../../environments/environment';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import jsPDF from 'jspdf';
 @Component({
@@ -11,9 +11,9 @@ import jsPDF from 'jspdf';
   templateUrl: './booking-dashboard.component.html',
   styleUrls: ['./booking-dashboard.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule]
 })
-export class BookingDashboardComponent implements OnInit {
+export class BookingDashboardComponent implements OnInit, AfterViewInit {
   isLoggedIn: boolean = false;
   airlineLogoMap: { [key: string]: string } = {
     'indigo': 'assets/indigologo.png',
@@ -56,6 +56,12 @@ export class BookingDashboardComponent implements OnInit {
   bookingStatus: string = '';
   error: string = '';
   isFormSubmitted: boolean = false;
+  showCaptcha: boolean = false;
+  captchaVerified: boolean = false;
+  captchaCode: string = '';
+  captchaInput: string = '';
+  captchaError: string = '';
+  @ViewChild('captchaCanvas', { static: false }) captchaCanvas!: ElementRef<HTMLCanvasElement>;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -119,6 +125,134 @@ export class BookingDashboardComponent implements OnInit {
   submitBooking() {
     if (this.bookingForm.invalid || this.isFormSubmitted) return;
     this.isFormSubmitted = true;
+    this.showCaptcha = true;
+    setTimeout(() => this.generateCaptcha(), 100);
+  }
+
+  ngAfterViewInit(): void {
+    // Canvas will be available after view init
+  }
+
+  generateCaptcha(): void {
+    if (!this.captchaCanvas) return;
+    
+    const canvas = this.captchaCanvas.nativeElement;
+    const ctx = canvas.getContext('2d')!;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Generate random 6-character code
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    this.captchaCode = '';
+    for (let i = 0; i < 6; i++) {
+      this.captchaCode += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    
+    // Set background with gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#f0f4f8');
+    gradient.addColorStop(0.5, '#e2e8f0');
+    gradient.addColorStop(1, '#cbd5e0');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add noise lines
+    for (let i = 0; i < 8; i++) {
+      ctx.strokeStyle = this.getRandomColor();
+      ctx.lineWidth = Math.random() * 2 + 1;
+      ctx.beginPath();
+      ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+      ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+      ctx.stroke();
+    }
+    
+    // Add noise dots
+    for (let i = 0; i < 50; i++) {
+      ctx.fillStyle = this.getRandomColor();
+      ctx.beginPath();
+      ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 2, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+    
+    // Draw captcha text
+    const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Verdana'];
+    for (let i = 0; i < this.captchaCode.length; i++) {
+      const char = this.captchaCode[i];
+      const fontSize = 24 + Math.random() * 8;
+      const font = fonts[Math.floor(Math.random() * fonts.length)];
+      const angle = (Math.random() - 0.5) * 0.4;
+      const x = 20 + i * 28 + Math.random() * 10;
+      const y = 35 + Math.random() * 20;
+      
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.font = `bold ${fontSize}px ${font}`;
+      ctx.fillStyle = this.getRandomDarkColor();
+      ctx.strokeStyle = this.getRandomDarkColor();
+      ctx.lineWidth = 0.5;
+      ctx.fillText(char, 0, 0);
+      ctx.strokeText(char, 0, 0);
+      ctx.restore();
+    }
+    
+    // Add distortion lines
+    for (let i = 0; i < 3; i++) {
+      ctx.strokeStyle = this.getRandomColor();
+      ctx.lineWidth = Math.random() * 1.5 + 0.5;
+      ctx.beginPath();
+      const startX = Math.random() * canvas.width;
+      const startY = Math.random() * canvas.height;
+      const endX = Math.random() * canvas.width;
+      const endY = Math.random() * canvas.height;
+      const cpX = Math.random() * canvas.width;
+      const cpY = Math.random() * canvas.height;
+      ctx.moveTo(startX, startY);
+      ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+      ctx.stroke();
+    }
+    
+    this.captchaInput = '';
+    this.captchaError = '';
+  }
+  
+  getRandomColor(): string {
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+    return colors[Math.floor(Math.random() * colors.length)] + '80';
+  }
+  
+  getRandomDarkColor(): string {
+    const colors = ['#2c3e50', '#34495e', '#7f8c8d', '#27ae60', '#2980b9', '#8e44ad', '#e74c3c'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+  
+  verifyCaptcha(): void {
+    if (!this.captchaInput.trim()) {
+      this.captchaError = 'Please enter the captcha code';
+      return;
+    }
+    
+    if (this.captchaInput.toUpperCase() === this.captchaCode.toUpperCase()) {
+      this.captchaVerified = true;
+      this.showCaptcha = false;
+      this.captchaError = '';
+      this.proceedToPayment();
+    } else {
+      this.captchaError = 'Invalid captcha code. Please try again.';
+      this.generateCaptcha();
+    }
+  }
+  
+  closeCaptcha(): void {
+    this.showCaptcha = false;
+    this.isFormSubmitted = false;
+    this.captchaVerified = false;
+    this.captchaInput = '';
+    this.captchaError = '';
+  }
+
+  proceedToPayment() {
     const { seatClass, noOfSeats, email, passengerBookingId, passengers } = this.bookingForm.value;
     const bookingData = {
       flightNumber: this.flight.flightNumber,

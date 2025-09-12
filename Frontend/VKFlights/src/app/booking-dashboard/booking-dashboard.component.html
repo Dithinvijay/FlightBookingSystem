@@ -67,4 +67,47 @@
       <div *ngIf="error" class="error-msg">{{ error }}</div>
     </div>
   </div>
+
+  <!-- Captcha Modal -->
+  <div *ngIf="showCaptcha" class="captcha-overlay">
+    <div class="captcha-modal">
+      <div class="captcha-header">
+        <h3><i class="fa-solid fa-shield-halved"></i> Security Verification</h3>
+        <button class="captcha-close" (click)="closeCaptcha()">&times;</button>
+      </div>
+      <div class="captcha-body">
+        <div class="captcha-instruction">
+          <p>Please enter the characters shown in the image below:</p>
+        </div>
+        <div class="captcha-image-container">
+          <canvas #captchaCanvas width="200" height="80" class="captcha-canvas"></canvas>
+          <button class="captcha-refresh" (click)="generateCaptcha()" title="Refresh Captcha">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+        <div class="captcha-input-container">
+          <input 
+            type="text" 
+            [(ngModel)]="captchaInput" 
+            placeholder="Enter captcha code" 
+            class="captcha-input"
+            maxlength="6"
+            autocomplete="off"
+            (keyup.enter)="verifyCaptcha()"
+          />
+          <div class="captcha-buttons">
+            <button class="captcha-verify" (click)="verifyCaptcha()" [disabled]="!captchaInput">
+              <i class="fa-solid fa-check"></i> Verify
+            </button>
+            <button class="captcha-cancel" (click)="closeCaptcha()">
+              <i class="fa-solid fa-times"></i> Cancel
+            </button>
+          </div>
+        </div>
+        <div *ngIf="captchaError" class="captcha-error">
+          <i class="fa-solid fa-exclamation-triangle"></i> {{ captchaError }}
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
