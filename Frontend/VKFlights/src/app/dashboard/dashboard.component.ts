@@ -68,6 +68,14 @@ export class DashboardComponent implements OnInit {
     this.checkFormChanges();
     this.validateForm();
   }
+
+  checkNameLength(event: any, fieldName: string): void {
+    const value = event.target.value;
+    if (value.length > 8) {
+      const fieldLabel = fieldName === 'firstName' ? 'First name' : 'Last name';
+      alert(`${fieldLabel} must be maximum 8 characters!`);
+    }
+  }
   
   validateForm(): boolean {
     this.validationErrors = {};
@@ -84,6 +92,18 @@ export class DashboardComponent implements OnInit {
     // Phone validation
     if (this.user.phoneNo.length !== 10 || !/^[6-9]/.test(this.user.phoneNo)) {
       this.validationErrors.phone = 'Phone number must be 10 digits starting with 6-9';
+      isValid = false;
+    }
+
+    // First name validation
+    if (this.user.firstName.length > 8) {
+      this.validationErrors.firstName = 'First name must be maximum 8 characters';
+      isValid = false;
+    }
+
+    // Last name validation
+    if (this.user.lastName.length > 8) {
+      this.validationErrors.lastName = 'Last name must be maximum 8 characters';
       isValid = false;
     }
 

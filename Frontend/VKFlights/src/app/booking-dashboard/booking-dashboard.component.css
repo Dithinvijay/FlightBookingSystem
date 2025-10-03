@@ -433,6 +433,13 @@ button[disabled] {
   border: 1px solid rgba(211,47,47,0.2);
 }
 
+.error-message {
+  color: #f44336;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
 /* Mobile First - Extra small devices (phones, 480px and down) */
 @media (max-width: 480px) {
   .booking-dashboard-section {

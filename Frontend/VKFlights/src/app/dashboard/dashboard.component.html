@@ -31,11 +31,13 @@
         </li>
         <li>
           <strong>First Name:</strong>
-          <input [(ngModel)]="user.firstName" name="firstName" required (input)="onFieldChange()" />
+          <input [(ngModel)]="user.firstName" name="firstName" required maxlength="8" (input)="onFieldChange(); checkNameLength($event, 'firstName')" />
+          <div *ngIf="validationErrors.firstName" class="validation-error">{{ validationErrors.firstName }}</div>
         </li>
         <li>
           <strong>Last Name:</strong>
-          <input [(ngModel)]="user.lastName" name="lastName" required (input)="onFieldChange()" />
+          <input [(ngModel)]="user.lastName" name="lastName" required maxlength="8" (input)="onFieldChange(); checkNameLength($event, 'lastName')" />
+          <div *ngIf="validationErrors.lastName" class="validation-error">{{ validationErrors.lastName }}</div>
         </li>
       </ul>
       <button class="update-btn" type="submit" [disabled]="userForm.invalid || updating || !hasFormChanges">Update</button>

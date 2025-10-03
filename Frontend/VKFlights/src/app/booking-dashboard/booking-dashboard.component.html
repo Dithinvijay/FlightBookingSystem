@@ -1,10 +1,24 @@
 <style background-color="yellow"></style>
 <section class="flights-dashboard-section">
-  <div class="flight-card" *ngIf="flight" [ngStyle]="{'border-top': '5px solid ' + getAirlineColor(flight.airline)}">
+  <div
+    class="flight-card"
+    *ngIf="flight"
+    [ngStyle]="{ 'border-top': '5px solid ' + getAirlineColor(flight.airline) }"
+  >
     <div class="flight-card-header">
-      <img class="airline-logo" [src]="getAirlineLogo(flight.airline)" alt="Logo" onerror="this.src='assets/indigologo.png'" />
+      <img
+        class="airline-logo"
+        [src]="getAirlineLogo(flight.airline)"
+        alt="Logo"
+        onerror="this.src='assets/indigologo.png'"
+      />
       <div class="airline-info">
-        <div class="airline-name" [ngStyle]="{'color': getAirlineColor(flight.airline)}">{{ flight.airline }}</div>
+        <div
+          class="airline-name"
+          [ngStyle]="{ color: getAirlineColor(flight.airline) }"
+        >
+          {{ flight.airline }}
+        </div>
         <div class="flight-number">{{ flight.flightNumber }}</div>
       </div>
     </div>
@@ -13,7 +27,9 @@
         <div class="airport departure">
           <i class="fa-solid fa-plane-departure"></i>
           <span class="airport-code">{{ flight.departureAirport }}</span>
-          <span class="time"><b>{{ flight.departureTime | date:'shortTime' }}</b></span>
+          <span class="time"
+            ><b>{{ flight.departureTime | date : "shortTime" }}</b></span
+          >
         </div>
         <div class="route-arrow">
           <i class="fa-solid fa-arrow-right"></i>
@@ -21,44 +37,146 @@
         <div class="airport arrival">
           <i class="fa-solid fa-plane-arrival"></i>
           <span class="airport-code">{{ flight.arrivalAirport }}</span>
-          <span class="time"><b>{{ flight.arrivalTime ? (flight.arrivalTime | date:'shortTime') : (flight.departureTime | date:'shortTime') }}</b></span>
+          <span class="time"
+            ><b>{{
+              flight.arrivalTime
+                ? (flight.arrivalTime | date : "shortTime")
+                : (flight.departureTime | date : "shortTime")
+            }}</b></span
+          >
         </div>
       </div>
       <div class="flight-details-row">
-        <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()" style="width:100%">
+        <form
+          [formGroup]="bookingForm"
+          (ngSubmit)="submitBooking()"
+          style="width: 100%"
+        >
           <div class="form-row">
             <label><i class="fa-solid fa-chair"></i> Seat Class:</label>
             <select formControlName="seatClass">
               <option value="">Select</option>
-              <option *ngFor="let seat of flight.seats" [value]="seat.seatClass">{{ seat.seatClass }}</option>
+              <option
+                *ngFor="let seat of flight.seats"
+                [value]="seat.seatClass"
+              >
+                {{ seat.seatClass }}
+              </option>
             </select>
           </div>
           <div class="form-row">
             <label><i class="fa-solid fa-users"></i> No. of Seats:</label>
-            <input type="number" formControlName="noOfSeats" min="1" [max]="flight.seats[0]?.availableSeats || 10" />
+            <input
+              type="number"
+              formControlName="noOfSeats"
+              min="1"
+              max="6"
+              (input)="limitSeatsInput($event)"
+            />
+            <div
+              *ngIf="
+                bookingForm.get('noOfSeats')?.invalid &&
+                bookingForm.get('noOfSeats')?.touched
+              "
+              class="error-message"
+            >
+              <span *ngIf="bookingForm.get('noOfSeats')?.errors?.['required']"
+                >Number of seats is required</span
+              >
+              <span *ngIf="bookingForm.get('noOfSeats')?.errors?.['min']"
+                >Minimum 1 seat required</span
+              >
+              <span *ngIf="bookingForm.get('noOfSeats')?.errors?.['max']"
+                >Maximum 6 seats allowed</span
+              >
+            </div>
           </div>
           <div class="form-row">
             <label><i class="fa-solid fa-envelope"></i> Email:</label>
-            <input type="email" formControlName="email" placeholder="Enter your email" required />
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+              required
+            />
           </div>
           <div class="form-row">
-            <label><i class="fa-solid fa-id-card"></i> Passenger Booking ID:</label>
-            <input type="text" formControlName="passengerBookingId" placeholder="Auto-generated" readonly />
+            <label
+              ><i class="fa-solid fa-id-card"></i> Passenger Booking ID:</label
+            >
+            <input
+              type="text"
+              formControlName="passengerBookingId"
+              placeholder="Auto-generated"
+              readonly
+            />
           </div>
           <div formArrayName="passengers">
-            <div *ngFor="let passenger of passengers.controls; let i = index" [formGroupName]="i" class="passenger-form">
+            <div
+              *ngFor="let passenger of passengers.controls; let i = index"
+              [formGroupName]="i"
+              class="passenger-form"
+            >
               <h4><i class="fa-solid fa-user"></i> Passenger {{ i + 1 }}</h4>
-              <input formControlName="passengerName" placeholder="Name" required />
+              <input
+                formControlName="passengerName"
+                placeholder="Name"
+                maxlength="12"
+                required
+              />
+              <div
+                *ngIf="
+                  passenger.get('passengerName')?.invalid &&
+                  passenger.get('passengerName')?.touched
+                "
+                class="error-message"
+              >
+                <span
+                  *ngIf="passenger.get('passengerName')?.errors?.['required']"
+                  >Name is required</span
+                >
+                <span
+                  *ngIf="passenger.get('passengerName')?.errors?.['maxlength']"
+                  >Name must be 12 characters or less</span
+                >
+              </div>
               <select formControlName="gender" required>
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Not to specify">Not to specify</option>
               </select>
-              <input formControlName="age" type="number" placeholder="Age" required />
+              <input
+                formControlName="age"
+                type="number"
+                placeholder="Age"
+                max="90"
+                (input)="limitAgeInput($event, i)"
+                required
+              />
+              <div
+                *ngIf="
+                  passenger.get('age')?.invalid && passenger.get('age')?.touched
+                "
+                class="error-message"
+              >
+                <span *ngIf="passenger.get('age')?.errors?.['required']"
+                  >Age is required</span
+                >
+                <span *ngIf="passenger.get('age')?.errors?.['min']"
+                  >Age must be at least 1 year</span
+                >
+                <span *ngIf="passenger.get('age')?.errors?.['max']"
+                  >Maximum age is 90 years</span
+                >
+              </div>
             </div>
           </div>
-          <button type="submit" [ngStyle]="{'background': getAirlineColor(flight.airline)}" [disabled]="bookingForm.invalid || isFormSubmitted">
+          <button
+            type="submit"
+            [ngStyle]="{ background: getAirlineColor(flight.airline) }"
+            [disabled]="bookingForm.invalid || isFormSubmitted"
+          >
             <i class="fa-solid fa-ticket"></i> Book Now
           </button>
         </form>
@@ -80,23 +198,36 @@
           <p>Please enter the characters shown in the image below:</p>
         </div>
         <div class="captcha-image-container">
-          <canvas #captchaCanvas width="200" height="80" class="captcha-canvas"></canvas>
-          <button class="captcha-refresh" (click)="generateCaptcha()" title="Refresh Captcha">
+          <canvas
+            #captchaCanvas
+            width="200"
+            height="80"
+            class="captcha-canvas"
+          ></canvas>
+          <button
+            class="captcha-refresh"
+            (click)="generateCaptcha()"
+            title="Refresh Captcha"
+          >
             <i class="fa-solid fa-rotate-right"></i>
           </button>
         </div>
         <div class="captcha-input-container">
-          <input 
-            type="text" 
-            [(ngModel)]="captchaInput" 
-            placeholder="Enter captcha code" 
+          <input
+            type="text"
+            [(ngModel)]="captchaInput"
+            placeholder="Enter captcha code"
             class="captcha-input"
             maxlength="6"
             autocomplete="off"
             (keyup.enter)="verifyCaptcha()"
           />
           <div class="captcha-buttons">
-            <button class="captcha-verify" (click)="verifyCaptcha()" [disabled]="!captchaInput">
+            <button
+              class="captcha-verify"
+              (click)="verifyCaptcha()"
+              [disabled]="!captchaInput"
+            >
               <i class="fa-solid fa-check"></i> Verify
             </button>
             <button class="captcha-cancel" (click)="closeCaptcha()">

@@ -5,6 +5,10 @@
       <div class="form-row">
         <label>Passenger ID</label>
         <input formControlName="passengerId" type="number" placeholder="Enter Passenger ID" required />
+        <div *ngIf="checkinForm.get('passengerId')?.invalid && checkinForm.get('passengerId')?.touched" class="error-message">
+          <span *ngIf="checkinForm.get('passengerId')?.errors?.['required']">Passenger ID is required</span>
+          <span *ngIf="checkinForm.get('passengerId')?.errors?.['pattern']">Passenger ID must be a number with maximum 5 digits</span>
+        </div>
       </div>
       <button class="checkin-btn" type="submit" [disabled]="loading || checkinForm.invalid">
         <span *ngIf="!loading">Check In</span>

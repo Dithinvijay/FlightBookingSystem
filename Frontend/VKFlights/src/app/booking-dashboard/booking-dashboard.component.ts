@@ -70,7 +70,7 @@ export class BookingDashboardComponent implements OnInit, AfterViewInit {
   ) {
     this.bookingForm = this.fb.group({
       seatClass: ['', Validators.required],
-      noOfSeats: [1, [Validators.required, Validators.min(1)]],
+      noOfSeats: [1, [Validators.required, Validators.min(1), Validators.max(6)]],
       email: ['', [Validators.required, Validators.email]],
       passengerBookingId: [''],
       passengers: this.fb.array([])
@@ -112,9 +112,9 @@ export class BookingDashboardComponent implements OnInit, AfterViewInit {
     const noOfSeats = this.bookingForm.get('noOfSeats')?.value || 1;
     while (this.passengers.length < noOfSeats) {
       this.passengers.push(this.fb.group({
-        passengerName: ['', Validators.required],
+        passengerName: ['', [Validators.required, Validators.maxLength(12)]],
         gender: ['', Validators.required],
-        age: ['', [Validators.required, Validators.min(1)]]
+        age: ['', [Validators.required, Validators.min(1), Validators.max(90)]]
       }));
     }
     while (this.passengers.length > noOfSeats) {
@@ -364,6 +364,24 @@ export class BookingDashboardComponent implements OnInit, AfterViewInit {
     const randomNumber = Math.floor(10000 + Math.random() * 90000);
     const bookingId = `${airlinePrefix}${randomNumber}`;
     this.bookingForm.patchValue({ passengerBookingId: bookingId });
+  }
+
+  limitSeatsInput(event: any): void {
+    const value = parseInt(event.target.value);
+    if (value > 6) {
+      event.target.value = '6';
+      this.bookingForm.patchValue({ noOfSeats: 6 });
+      alert('Maximum 6 seats allowed!');
+    }
+  }
+
+  limitAgeInput(event: any, passengerIndex: number): void {
+    const value = parseInt(event.target.value);
+    if (value > 90) {
+      event.target.value = '90';
+      this.passengers.at(passengerIndex).patchValue({ age: 90 });
+      alert('Maximum age is 90 years!');
+    }
   }
 
   calculateTotalPrice(seatClass: string, noOfSeats: number): number {

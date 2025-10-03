@@ -19,7 +19,7 @@ export class CheckinComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, public toastService: ToastService) {
     this.checkinForm = this.fb.group({
-      passengerId: ['', Validators.required]
+      passengerId: ['', [Validators.required, Validators.pattern(/^\d{1,5}$/)]]
     });
   }
 
